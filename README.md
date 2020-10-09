@@ -48,4 +48,4 @@
 ## Сервер
 Предположительно       [firebase.google.com](firebase.google.com)
 ## RoadMap
-![roadmap](road_map.png)
+![roadmap](./road_map.png)
