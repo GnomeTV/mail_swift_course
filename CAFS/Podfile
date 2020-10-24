@@ -6,8 +6,8 @@ target 'CAFS' do
   use_frameworks!
 
   # Pods for CAFS
-  pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Auth'
-
 
 end
