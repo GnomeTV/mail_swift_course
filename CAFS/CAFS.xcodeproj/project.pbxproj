@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */; };
+		BD109C2D2545EA2300EA76D6 /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2C2545EA2300EA76D6 /* ServiceAssembly.swift */; };
+		BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */; };
+		BD109C352545EACC00EA76D6 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C342545EACC00EA76D6 /* UIColor+Utils.swift */; };
+		BD81095F2545EC00000CC4E4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD81095E2545EC00000CC4E4 /* LoginViewController.swift */; };
+		BD8109672545F54E000CC4E4 /* HseStyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8109662545F54E000CC4E4 /* HseStyleButton.swift */; };
 		F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135D64E2534646F00D74201 /* AppDelegate.swift */; };
-		F135D6532534646F00D74201 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135D6522534646F00D74201 /* ViewController.swift */; };
-		F135D6562534646F00D74201 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F135D6542534646F00D74201 /* Main.storyboard */; };
 		F135D6582534647000D74201 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F135D6572534647000D74201 /* Assets.xcassets */; };
 		F135D65B2534647000D74201 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F135D6592534647000D74201 /* LaunchScreen.storyboard */; };
 		F17B3C1A2538BFDB004767D0 /* Pods_CAFS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DD20CBEF5B2D5055914C2D /* Pods_CAFS.framework */; };
@@ -34,10 +38,14 @@
 /* Begin PBXFileReference section */
 		2D65339E6538AE487697171F /* Pods-CAFS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CAFS.debug.xcconfig"; path = "Target Support Files/Pods-CAFS/Pods-CAFS.debug.xcconfig"; sourceTree = "<group>"; };
 		58DD20CBEF5B2D5055914C2D /* Pods_CAFS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CAFS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
+		BD109C2C2545EA2300EA76D6 /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
+		BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAssembly.swift; sourceTree = "<group>"; };
+		BD109C342545EACC00EA76D6 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
+		BD81095E2545EC00000CC4E4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BD8109662545F54E000CC4E4 /* HseStyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HseStyleButton.swift; sourceTree = "<group>"; };
 		F135D64B2534646F00D74201 /* CAFS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAFS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F135D64E2534646F00D74201 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F135D6522534646F00D74201 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F135D6552534646F00D74201 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F135D6572534647000D74201 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F135D65A2534647000D74201 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F135D65C2534647000D74201 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,6 +71,61 @@
 				58DD20CBEF5B2D5055914C2D /* Pods_CAFS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BD109C302545EA3A00EA76D6 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				BD81095E2545EC00000CC4E4 /* LoginViewController.swift */,
+				BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */,
+				BD109C362545EAD900EA76D6 /* Utils */,
+				BD8109682545F558000CC4E4 /* CustomElements */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		BD109C312545EA4300EA76D6 /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+				BD109C2C2545EA2300EA76D6 /* ServiceAssembly.swift */,
+			);
+			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		BD109C322545EA4C00EA76D6 /* CoreLayer */ = {
+			isa = PBXGroup;
+			children = (
+				BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */,
+			);
+			path = CoreLayer;
+			sourceTree = "<group>";
+		};
+		BD109C332545EA6A00EA76D6 /* AppResources */ = {
+			isa = PBXGroup;
+			children = (
+				F135D64E2534646F00D74201 /* AppDelegate.swift */,
+				F1AB3194253999BA00F8172D /* GoogleService-Info.plist */,
+				F135D6572534647000D74201 /* Assets.xcassets */,
+				F135D6592534647000D74201 /* LaunchScreen.storyboard */,
+				F135D65C2534647000D74201 /* Info.plist */,
+			);
+			path = AppResources;
+			sourceTree = "<group>";
+		};
+		BD109C362545EAD900EA76D6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BD109C342545EACC00EA76D6 /* UIColor+Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		BD8109682545F558000CC4E4 /* CustomElements */ = {
+			isa = PBXGroup;
+			children = (
+				BD8109662545F54E000CC4E4 /* HseStyleButton.swift */,
+			);
+			path = CustomElements;
 			sourceTree = "<group>";
 		};
 		EE11FB2331BCB59B6FE89A67 /* Pods */ = {
@@ -95,13 +158,10 @@
 		F135D64D2534646F00D74201 /* CAFS */ = {
 			isa = PBXGroup;
 			children = (
-				F135D64E2534646F00D74201 /* AppDelegate.swift */,
-				F135D6522534646F00D74201 /* ViewController.swift */,
-				F135D6542534646F00D74201 /* Main.storyboard */,
-				F1AB3194253999BA00F8172D /* GoogleService-Info.plist */,
-				F135D6572534647000D74201 /* Assets.xcassets */,
-				F135D6592534647000D74201 /* LaunchScreen.storyboard */,
-				F135D65C2534647000D74201 /* Info.plist */,
+				BD109C332545EA6A00EA76D6 /* AppResources */,
+				BD109C302545EA3A00EA76D6 /* PresentationLayer */,
+				BD109C312545EA4300EA76D6 /* ServiceLayer */,
+				BD109C322545EA4C00EA76D6 /* CoreLayer */,
 			);
 			path = CAFS;
 			sourceTree = "<group>";
@@ -169,7 +229,6 @@
 				F135D65B2534647000D74201 /* LaunchScreen.storyboard in Resources */,
 				F1AB3195253999BA00F8172D /* GoogleService-Info.plist in Resources */,
 				F135D6582534647000D74201 /* Assets.xcassets in Resources */,
-				F135D6562534646F00D74201 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,7 +281,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F135D6532534646F00D74201 /* ViewController.swift in Sources */,
+				BD81095F2545EC00000CC4E4 /* LoginViewController.swift in Sources */,
+				BD109C352545EACC00EA76D6 /* UIColor+Utils.swift in Sources */,
+				BD109C2D2545EA2300EA76D6 /* ServiceAssembly.swift in Sources */,
+				BD8109672545F54E000CC4E4 /* HseStyleButton.swift in Sources */,
+				BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */,
+				BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */,
 				F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,14 +294,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F135D6542534646F00D74201 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F135D6552534646F00D74201 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F135D6592534647000D74201 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -372,7 +428,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CAFS/Info.plist;
+				INFOPLIST_FILE = CAFS/AppResources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -391,7 +447,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CAFS/Info.plist;
+				INFOPLIST_FILE = CAFS/AppResources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
