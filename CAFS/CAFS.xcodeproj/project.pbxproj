@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7EA0129E2544A2D400809284 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0129D2544A2D400809284 /* AuthorizationViewController.swift */; };
+		7EA012A02544A75C00809284 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0129F2544A75C00809284 /* UIColor+Utils.swift */; };
+		7EB4880925449B5900240092 /* PresentationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4880825449B5900240092 /* PresentationLayer.swift */; };
+		7EB4880B25449B9600240092 /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4880A25449B9600240092 /* ServiceLayer.swift */; };
+		7EB4880D25449BE600240092 /* CoreLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4880C25449BE600240092 /* CoreLayer.swift */; };
 		F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135D64E2534646F00D74201 /* AppDelegate.swift */; };
-		F135D6532534646F00D74201 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135D6522534646F00D74201 /* ViewController.swift */; };
-		F135D6562534646F00D74201 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F135D6542534646F00D74201 /* Main.storyboard */; };
 		F135D6582534647000D74201 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F135D6572534647000D74201 /* Assets.xcassets */; };
 		F135D65B2534647000D74201 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F135D6592534647000D74201 /* LaunchScreen.storyboard */; };
 		F17B3C1A2538BFDB004767D0 /* Pods_CAFS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DD20CBEF5B2D5055914C2D /* Pods_CAFS.framework */; };
@@ -34,10 +37,13 @@
 /* Begin PBXFileReference section */
 		2D65339E6538AE487697171F /* Pods-CAFS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CAFS.debug.xcconfig"; path = "Target Support Files/Pods-CAFS/Pods-CAFS.debug.xcconfig"; sourceTree = "<group>"; };
 		58DD20CBEF5B2D5055914C2D /* Pods_CAFS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CAFS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EA0129D2544A2D400809284 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
+		7EA0129F2544A75C00809284 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
+		7EB4880825449B5900240092 /* PresentationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationLayer.swift; sourceTree = "<group>"; };
+		7EB4880A25449B9600240092 /* ServiceLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLayer.swift; sourceTree = "<group>"; };
+		7EB4880C25449BE600240092 /* CoreLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLayer.swift; sourceTree = "<group>"; };
 		F135D64B2534646F00D74201 /* CAFS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAFS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F135D64E2534646F00D74201 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F135D6522534646F00D74201 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F135D6552534646F00D74201 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F135D6572534647000D74201 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F135D65A2534647000D74201 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F135D65C2534647000D74201 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +63,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7EA012A12544A76000809284 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7EA0129F2544A75C00809284 /* UIColor+Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7EB4880E25449C2700240092 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				F135D6592534647000D74201 /* LaunchScreen.storyboard */,
+				7EB4880825449B5900240092 /* PresentationLayer.swift */,
+				7EA0129D2544A2D400809284 /* AuthorizationViewController.swift */,
+				7EA012A12544A76000809284 /* Utils */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		7EB4880F25449C3A00240092 /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+				7EB4880A25449B9600240092 /* ServiceLayer.swift */,
+			);
+			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		7EB4881025449C4900240092 /* CoreLayer */ = {
+			isa = PBXGroup;
+			children = (
+				7EB4880C25449BE600240092 /* CoreLayer.swift */,
+			);
+			path = CoreLayer;
+			sourceTree = "<group>";
+		};
+		7EB4881125449C6700240092 /* AppResources */ = {
+			isa = PBXGroup;
+			children = (
+				F135D65C2534647000D74201 /* Info.plist */,
+				F1AB3194253999BA00F8172D /* GoogleService-Info.plist */,
+				F135D6572534647000D74201 /* Assets.xcassets */,
+				F135D64E2534646F00D74201 /* AppDelegate.swift */,
+			);
+			path = AppResources;
+			sourceTree = "<group>";
+		};
 		8BBAC995A5D38EBF4C5A6775 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,13 +147,10 @@
 		F135D64D2534646F00D74201 /* CAFS */ = {
 			isa = PBXGroup;
 			children = (
-				F135D64E2534646F00D74201 /* AppDelegate.swift */,
-				F135D6522534646F00D74201 /* ViewController.swift */,
-				F135D6542534646F00D74201 /* Main.storyboard */,
-				F1AB3194253999BA00F8172D /* GoogleService-Info.plist */,
-				F135D6572534647000D74201 /* Assets.xcassets */,
-				F135D6592534647000D74201 /* LaunchScreen.storyboard */,
-				F135D65C2534647000D74201 /* Info.plist */,
+				7EB4881125449C6700240092 /* AppResources */,
+				7EB4880E25449C2700240092 /* PresentationLayer */,
+				7EB4880F25449C3A00240092 /* ServiceLayer */,
+				7EB4881025449C4900240092 /* CoreLayer */,
 			);
 			path = CAFS;
 			sourceTree = "<group>";
@@ -169,7 +218,6 @@
 				F135D65B2534647000D74201 /* LaunchScreen.storyboard in Resources */,
 				F1AB3195253999BA00F8172D /* GoogleService-Info.plist in Resources */,
 				F135D6582534647000D74201 /* Assets.xcassets in Resources */,
-				F135D6562534646F00D74201 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,22 +270,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F135D6532534646F00D74201 /* ViewController.swift in Sources */,
+				7EB4880D25449BE600240092 /* CoreLayer.swift in Sources */,
 				F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */,
+				7EB4880B25449B9600240092 /* ServiceLayer.swift in Sources */,
+				7EA012A02544A75C00809284 /* UIColor+Utils.swift in Sources */,
+				7EA0129E2544A2D400809284 /* AuthorizationViewController.swift in Sources */,
+				7EB4880925449B5900240092 /* PresentationLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F135D6542534646F00D74201 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F135D6552534646F00D74201 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F135D6592534647000D74201 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -372,7 +416,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CAFS/Info.plist;
+				INFOPLIST_FILE = CAFS/AppResources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -391,7 +435,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CAFS/Info.plist;
+				INFOPLIST_FILE = CAFS/AppResources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
