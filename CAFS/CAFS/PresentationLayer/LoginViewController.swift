@@ -40,8 +40,8 @@ class LoginViewController: UIViewController {
             passwordTextField.translatesAutoresizingMaskIntoConstraints = false
             
             emailTextField.heightAnchor.constraint(equalToConstant: 24.0).isActive = true
-            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24.0).isActive = true
-            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24.0).isActive = true
+            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
             emailTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -128.0).isActive = true
             
             emailTextField.placeholder = "Введите e-mail"
@@ -50,8 +50,8 @@ class LoginViewController: UIViewController {
             emailTextField.borderStyle = .none
             
             passwordTextField.heightAnchor.constraint(equalToConstant: 24.0).isActive = true
-            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24.0).isActive = true
-            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24.0).isActive = true
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
             passwordTextField.centerYAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 64.0).isActive = true
             
             passwordTextField.placeholder = "Введите пароль"
