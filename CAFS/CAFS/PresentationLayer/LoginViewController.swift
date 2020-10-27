@@ -3,6 +3,7 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // MARK: - Views
+    
     private let titleLabel = UILabel()
     private let emailTextField = UITextField()
     private let emailIndicatorView = UIView()
@@ -12,9 +13,14 @@ class LoginViewController: UIViewController {
     private let registerButton = HseStyleButton()
     
     // MARK: - Insets
+    
     private let leftInset: CGFloat = 24.0
     private let rightInset: CGFloat = 24.0
     private let buttonHeight: CGFloat = 48.0
+    private let textFieldHeight: CGFloat = 24.0
+    private let indicatorHeight: CGFloat = 2.0
+    private let topInsertIndicator: CGFloat = 3.0
+    private let fontSizeTextField: CGFloat = 20.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,23 +45,23 @@ class LoginViewController: UIViewController {
             emailTextField.translatesAutoresizingMaskIntoConstraints = false
             passwordTextField.translatesAutoresizingMaskIntoConstraints = false
             
-            emailTextField.heightAnchor.constraint(equalToConstant: 24.0).isActive = true
+            emailTextField.heightAnchor.constraint(equalToConstant: textFieldHeight).isActive = true
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
             emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
             emailTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -128.0).isActive = true
             
             emailTextField.placeholder = "Введите e-mail"
-            emailTextField.font = UIFont.systemFont(ofSize: 20.0, weight: .regular)
+            emailTextField.font = UIFont.systemFont(ofSize: fontSizeTextField, weight: .regular)
             emailTextField.textColor = .black
             emailTextField.borderStyle = .none
             
-            passwordTextField.heightAnchor.constraint(equalToConstant: 24.0).isActive = true
+            passwordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight).isActive = true
             passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
             passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
             passwordTextField.centerYAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 64.0).isActive = true
             
             passwordTextField.placeholder = "Введите пароль"
-            passwordTextField.font = UIFont.systemFont(ofSize: 20.0, weight: .regular)
+            passwordTextField.font = UIFont.systemFont(ofSize: fontSizeTextField, weight: .regular)
             passwordTextField.textColor = .black
             passwordTextField.borderStyle = .none
     }
@@ -69,15 +75,15 @@ class LoginViewController: UIViewController {
         emailIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         passwordIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         
-        emailIndicatorView.heightAnchor.constraint(equalToConstant: 2.0).isActive = true
+        emailIndicatorView.heightAnchor.constraint(equalToConstant: indicatorHeight).isActive = true
         emailIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
         emailIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
-        emailIndicatorView.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 3.0).isActive = true
+        emailIndicatorView.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: topInsertIndicator).isActive = true
         
-        passwordIndicatorView.heightAnchor.constraint(equalToConstant: 2.0).isActive = true
+        passwordIndicatorView.heightAnchor.constraint(equalToConstant: indicatorHeight).isActive = true
         passwordIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
         passwordIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
-        passwordIndicatorView.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 3.0).isActive = true
+        passwordIndicatorView.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: topInsertIndicator).isActive = true
     }
     private func setupLoginLabel() {
             view.addSubview(titleLabel)
