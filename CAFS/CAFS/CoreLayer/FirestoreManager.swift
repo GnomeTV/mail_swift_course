@@ -9,7 +9,14 @@ import Firebase
 
 class FirestoreManager: NSObject {
 
-    let db = Firestore.firestore()
+    let db : Firestore
+    
+    init(db : Firestore) {
+        self.db = db
+    }
+    
+    //To init class object
+    //a : FirestoreManager(db : Firestore.firestore())
     
     func addDocument(firstname : String,
                      lastname : String,
