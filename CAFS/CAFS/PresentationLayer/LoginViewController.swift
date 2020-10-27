@@ -70,13 +70,13 @@ class LoginViewController: UIViewController {
         passwordIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         
         emailIndicatorView.heightAnchor.constraint(equalToConstant: 2.0).isActive = true
-        emailIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24.0).isActive = true
-        emailIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24.0).isActive = true
+        emailIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
+        emailIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
         emailIndicatorView.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 3.0).isActive = true
         
         passwordIndicatorView.heightAnchor.constraint(equalToConstant: 2.0).isActive = true
-        passwordIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24.0).isActive = true
-        passwordIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24.0).isActive = true
+        passwordIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
+        passwordIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
         passwordIndicatorView.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 3.0).isActive = true
     }
     private func setupLoginLabel() {
