@@ -4,6 +4,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - Views
     
+    let registrationViewController = RegistrationViewController()
     private let titleLabel = UILabel()
     private let emailTextField = UITextField()
     private let emailIndicatorView = UIView()
@@ -19,7 +20,7 @@ class LoginViewController: UIViewController {
     private let buttonHeight: CGFloat = 48.0
     private let textFieldHeight: CGFloat = 24.0
     private let indicatorHeight: CGFloat = 2.0
-    private let topInsertIndicator: CGFloat = 3.0
+    private let topInsetTextFieldIndicator: CGFloat = 3.0
     private let fontSizeTextField: CGFloat = 20.0
     
     override func viewDidLoad() {
@@ -78,12 +79,12 @@ class LoginViewController: UIViewController {
         emailIndicatorView.heightAnchor.constraint(equalToConstant: indicatorHeight).isActive = true
         emailIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
         emailIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
-        emailIndicatorView.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: topInsertIndicator).isActive = true
+        emailIndicatorView.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: topInsetTextFieldIndicator).isActive = true
         
         passwordIndicatorView.heightAnchor.constraint(equalToConstant: indicatorHeight).isActive = true
         passwordIndicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
         passwordIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
-        passwordIndicatorView.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: topInsertIndicator).isActive = true
+        passwordIndicatorView.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: topInsetTextFieldIndicator).isActive = true
     }
     private func setupLoginLabel() {
             view.addSubview(titleLabel)
@@ -128,6 +129,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func registerButtonTapped() {
+        present(registrationViewController, animated: true, completion: nil)
         print("Register")
     }
     
