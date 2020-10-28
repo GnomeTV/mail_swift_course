@@ -14,6 +14,7 @@
 		BD109C352545EACC00EA76D6 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C342545EACC00EA76D6 /* UIColor+Utils.swift */; };
 		BD81095F2545EC00000CC4E4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD81095E2545EC00000CC4E4 /* LoginViewController.swift */; };
 		BD8109672545F54E000CC4E4 /* HseStyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8109662545F54E000CC4E4 /* HseStyleButton.swift */; };
+		F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1326E192548A67800D317DE /* RegistrationViewController.swift */; };
 		F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135D64E2534646F00D74201 /* AppDelegate.swift */; };
 		F135D6582534647000D74201 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F135D6572534647000D74201 /* Assets.xcassets */; };
 		F135D65B2534647000D74201 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F135D6592534647000D74201 /* LaunchScreen.storyboard */; };
@@ -46,6 +47,7 @@
 		BD109C342545EACC00EA76D6 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		BD81095E2545EC00000CC4E4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BD8109662545F54E000CC4E4 /* HseStyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HseStyleButton.swift; sourceTree = "<group>"; };
+		F1326E192548A67800D317DE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		F135D64B2534646F00D74201 /* CAFS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAFS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F135D64E2534646F00D74201 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F135D6572534647000D74201 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				BD81095E2545EC00000CC4E4 /* LoginViewController.swift */,
+				F1326E192548A67800D317DE /* RegistrationViewController.swift */,
 				BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */,
 				BD109C362545EAD900EA76D6 /* Utils */,
 				BD8109682545F558000CC4E4 /* CustomElements */,
@@ -286,6 +289,7 @@
 			files = (
 				BD81095F2545EC00000CC4E4 /* LoginViewController.swift in Sources */,
 				BD109C352545EACC00EA76D6 /* UIColor+Utils.swift in Sources */,
+				F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */,
 				BD109C2D2545EA2300EA76D6 /* ServiceAssembly.swift in Sources */,
 				BD8109672545F54E000CC4E4 /* HseStyleButton.swift in Sources */,
 				BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */,
