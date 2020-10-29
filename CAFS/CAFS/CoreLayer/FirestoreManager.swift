@@ -20,6 +20,7 @@ class FirestoreManager: NSObject {
     
     func addDocument(firstname : String,
                      lastname : String,
+                     password : String,
                      born : String,
                      university : String,
                      status : String){
@@ -29,6 +30,7 @@ class FirestoreManager: NSObject {
         newDocument.setData([
             "firstname" : firstname,
             "lastname" : lastname,
+            "password" : password,
             "born" : born,
             "university" : university,
             "status" : status,
@@ -57,6 +59,7 @@ class FirestoreManager: NSObject {
     func editDocument(id : String,
                       firstname : String = "",
                       lastname : String = "",
+                      password : String = "",
                       born : String = "",
                       university : String = "",
                       status : String = ""){
@@ -68,6 +71,9 @@ class FirestoreManager: NSObject {
         }
         if (lastname != "") {
             documentDataDictionary["lastname"] = lastname
+        }
+        if (password != "") {
+            documentDataDictionary["password"] = password
         }
         if (born != "") {
             documentDataDictionary["born"] = born
