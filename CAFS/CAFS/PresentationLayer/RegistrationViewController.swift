@@ -3,6 +3,8 @@ import UIKit
 class RegistrationViewController: UIViewController {
     
     // MARK: - Views
+    
+    let profileViewController = ProfileViewController()
     private let titleLabel = UILabel()
     private let emailTextField = UITextField()
     private let emailIndicatorView = UIView()
@@ -133,10 +135,13 @@ class RegistrationViewController: UIViewController {
         registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
         registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
         registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -54.0).isActive = true
+        
+        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
     }
     
     @objc private func registerButtonTapped() {
-        dismiss(animated: true, completion: {})
+        profileViewController.modalPresentationStyle = .fullScreen
+        present(profileViewController, animated: true, completion: nil)
         print("Register")
     }
 }
