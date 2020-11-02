@@ -4,6 +4,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - Views
     
+    let registrationViewController = RegistrationViewController()
     private let titleLabel = UILabel()
     private let emailTextField = UITextField()
     private let emailIndicatorView = UIView()
@@ -128,6 +129,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func registerButtonTapped() {
+        present(registrationViewController, animated: true, completion: nil)
         print("Register")
     }
     
