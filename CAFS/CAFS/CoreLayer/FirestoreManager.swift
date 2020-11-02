@@ -7,25 +7,41 @@
 import UIKit
 import Firebase
 
-class FirestoreManager: NSObject {
-
-    let db : Firestore
-    
-    init(db : Firestore) {
-        self.db = db
-    }
-    
-    //To init class object
-    //a : FirestoreManager(db : Firestore.firestore())
-    
-    func addDocument(firstname : String,
+protocol IFirestoreManager{
+    func addDocument(collection : String,
+                     firstname : String,
                      lastname : String,
                      password : String,
                      born : String,
                      university : String,
-                     status : String){
+                     status : String) -> String
+    
+    func deleteDocument(collection : String, id : String) -> String
+    
+    func editDocument(collection : String,
+                      id : String,
+                      firstname : String,
+                      lastname : String,
+                      password : String,
+                      born : String,
+                      university : String,
+                      status : String) -> String
+}
+
+
+class FirestoreManager: NSObject, IFirestoreManager, ICoreAssembly {
+
+    private let db = Firestore.firestore()
+    
+    func addDocument(collection : String,
+                     firstname : String,
+                     lastname : String,
+                     password : String,
+                     born : String,
+                     university : String,
+                     status : String) -> String {
         
-        let newDocument = db.collection("users").document()
+        let newDocument = db.collection(collection).document()
         
         newDocument.setData([
             "firstname" : firstname,
@@ -37,61 +53,62 @@ class FirestoreManager: NSObject {
             "id" : newDocument.documentID
         ]) { err in
             if let err = err {
-                print("Error adding document: \(err)")
+                return "Error adding document: \(err)"
             } else {
-                print("Document added with ID: \(newDocument.documentID)")
+                return "Document added with ID: \(newDocument.documentID)"
             }
         }
         
     }
     
-    func deleteDocument(id : String){
+    func deleteDocument(collection : String, id : String) -> String{
         
-        db.collection("users").document(id).delete() { err in
+        db.collection(collection).document(id).delete() { err in
             if let err = err {
-                print("Error removing document: \(err)")
+                return "Error removing document: \(err)"
             } else {
-                print("Document successfully removed!")
+                return "Document successfully removed!"
             }
         }
     }
     
-    func editDocument(id : String,
+    func editDocument(collection : String,
+                      id : String,
                       firstname : String = "",
                       lastname : String = "",
                       password : String = "",
                       born : String = "",
                       university : String = "",
-                      status : String = ""){
+                      status : String = "") -> String {
         
         var documentDataDictionary: [String: String] = [:]
         
-        if (firstname != "") {
+        if (firstname.isEmpty) {
             documentDataDictionary["firstname"] = firstname
         }
-        if (lastname != "") {
+        if (lastname.isEmpty) {
             documentDataDictionary["lastname"] = lastname
         }
-        if (password != "") {
+        if (password.isEmpty) {
             documentDataDictionary["password"] = password
         }
-        if (born != "") {
+        if (born.isEmpty) {
             documentDataDictionary["born"] = born
         }
-        if (university != "") {
+        if (university.isEmpty) {
             documentDataDictionary["university"] = university
         }
-        if (status != "") {
+        if (status.isEmpty) {
             documentDataDictionary["status"] = status
         }
         
         documentDataDictionary["id"] = id
         
-        db.collection("users").document(id).setData(documentDataDictionary) { err in
+        db.collection(collection).document(id).setData(documentDataDictionary) { err in
             if let err = err {
-                print("Error editing document: \(err)")
+                return "Error editing document: \(err)"
             } else {
-                print("Document successfully edited!")
+                return "Document successfully edited!"
             }
         }
         
