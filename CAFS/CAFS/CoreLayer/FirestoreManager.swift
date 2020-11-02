@@ -9,6 +9,7 @@ import Firebase
 
 protocol IFirestoreManager{
     func addDocument(collection : String,
+                     params : [String],
                      firstname : String,
                      lastname : String,
                      password : String,
@@ -29,7 +30,7 @@ protocol IFirestoreManager{
 }
 
 
-class FirestoreManager: NSObject, IFirestoreManager, ICoreAssembly {
+class FirestoreManager: IFirestoreManager {
 
     private let db = Firestore.firestore()
     
