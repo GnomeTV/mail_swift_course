@@ -6,7 +6,6 @@ protocol ICoreAssembly {
 
 class CoreAssembly: ICoreAssembly {
     
-    var firestoreManager : FirestoreManager
-    
+    var firestoreManager = FirestoreManager()
     
 }
