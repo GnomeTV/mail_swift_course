@@ -16,10 +16,22 @@ class LoginViewController: UIViewController {
     private let rightInset: CGFloat = 24.0
     private let buttonHeight: CGFloat = 40.0
     
+    private let model = viewModels.loginViewModel
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
+    }
+    
+    // MARK: - Button actions
+    
+    @objc private func loginButtonTapped() {
+        model.login()
+    }
+    
+    @objc private func registerButtonTapped() {
+        model.register()
     }
     
     // MARK: - Private methods
@@ -51,13 +63,5 @@ class LoginViewController: UIViewController {
         registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
         registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
         registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32.0).isActive = true
-    }
-    
-    @objc private func loginButtonTapped() {
-        print("Login")
-    }
-    
-    @objc private func registerButtonTapped() {
-        print("Register")
     }
 }
