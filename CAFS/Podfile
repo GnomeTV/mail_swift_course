@@ -9,6 +9,5 @@ target 'CAFS' do
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Auth'
-  pod 'FirebaseFirestoreSwift'
 
 end
