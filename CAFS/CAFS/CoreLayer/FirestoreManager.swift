@@ -12,7 +12,12 @@ protocol IFirestoreManager{
 
 class FirestoreManager: IFirestoreManager {
 
-    private let db = Firestore.firestore()
+    private let db: Firestore
+    
+    init() {
+        FirebaseApp.configure()
+        db = Firestore.firestore()
+    }
     
     func saveObject<Object: Encodable>(_ objectToSave: Object, toCollection collection: String, _ completion: @escaping (_ error: Error?) -> Void) {
         let document = db.collection(collection).document()
