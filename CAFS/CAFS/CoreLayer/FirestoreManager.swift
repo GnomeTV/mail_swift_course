@@ -1,9 +1,3 @@
-//
-//  FirestoreManager.swift
-//  CAFS
-//
-//  Created by Павел Травкин on 27.10.2020.
-//
 import UIKit
 import Firebase
 
