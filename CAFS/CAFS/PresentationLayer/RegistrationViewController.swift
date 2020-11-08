@@ -5,7 +5,7 @@ class RegistrationViewController: UIViewController {
     
     // MARK: - Views
     
-    let registrationStackView = UIStackView()
+    private let registrationStackView = UIStackView()
     private let titleLabel = UILabel()
     private let emailTextField = UnderlineTextField()
     private let passwordTextField = UnderlineTextField()
@@ -15,6 +15,10 @@ class RegistrationViewController: UIViewController {
     private let universityiTextField = UnderlineTextField()
     private let loginButton = HseStyleButton()
     private let registerButton = HseStyleButton()
+    
+    private let checkBoxView = UIView()
+    private let statusStudentButton = CheckBoxButton()
+    private let statusTeacherButton = CheckBoxButton()
     
     // MARK: - Insets
     
@@ -51,9 +55,13 @@ class RegistrationViewController: UIViewController {
         passwordTextField.placeholder = "Введите пароль"
         repeatPasswordTextField.placeholder = "Повторите пароль"
         
+        checkBoxView.addSubview(statusTeacherButton)
+        checkBoxView.addSubview(statusStudentButton)
+        
         registrationStackView.addArrangedSubview(firstNameTextField)
         registrationStackView.addArrangedSubview(secondNameTextField)
         registrationStackView.addArrangedSubview(universityiTextField)
+        registrationStackView.addArrangedSubview(checkBoxView)
         registrationStackView.addArrangedSubview(emailTextField)
         registrationStackView.addArrangedSubview(passwordTextField)
         registrationStackView.addArrangedSubview(repeatPasswordTextField)

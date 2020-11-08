@@ -21,6 +21,7 @@
 		F135D65B2534647000D74201 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F135D6592534647000D74201 /* LaunchScreen.storyboard */; };
 		F17B3C1A2538BFDB004767D0 /* Pods_CAFS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DD20CBEF5B2D5055914C2D /* Pods_CAFS.framework */; };
 		F17B3C1B2538BFDB004767D0 /* Pods_CAFS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 58DD20CBEF5B2D5055914C2D /* Pods_CAFS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F18367D525546CC100664294 /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18367D425546CC100664294 /* CheckBoxButton.swift */; };
 		F1AB3195253999BA00F8172D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1AB3194253999BA00F8172D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		F135D6572534647000D74201 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F135D65A2534647000D74201 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F135D65C2534647000D74201 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F18367D425546CC100664294 /* CheckBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
 		F1AB3194253999BA00F8172D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F68302174D511A9DD34B24C7 /* Pods-CAFS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CAFS.release.xcconfig"; path = "Target Support Files/Pods-CAFS/Pods-CAFS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +135,7 @@
 			children = (
 				BD8109662545F54E000CC4E4 /* HseStyleButton.swift */,
 				F12C2EFE2553328600C26AED /* UnderlineTextField.swift */,
+				F18367D425546CC100664294 /* CheckBoxButton.swift */,
 			);
 			path = CustomElements;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				BD8109672545F54E000CC4E4 /* HseStyleButton.swift in Sources */,
 				BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */,
 				F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */,
+				F18367D525546CC100664294 /* CheckBoxButton.swift in Sources */,
 				BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */,
 				F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */,
 				79186C27254819BF00B084E2 /* FirestoreManager.swift in Sources */,
