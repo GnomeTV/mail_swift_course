@@ -29,8 +29,18 @@ class FirestoreManager: IFirestoreManager {
         }
     }
     
+    private func addDocument(collection: String, id: String, data : [String : String]) {
+        db.collection(collection).document(id).setData(data)
+    }
+    
     func deleteDocument(collection: String, id: String, _ completion: @escaping (_ error: Error?) -> Void) {
         db.collection(collection).document(id).delete(completion: completion)
+    }
+    
+    func addNewUser(personalData : [String : String]) {
+        let collection = "users"
+        let id = String(UInt16.random(in: 0...100))
+        self.addDocument(collection: collection, id: id, data: personalData)
     }
     
     func editObject<Object: Encodable>(_ objectToEdit: Object, inCollection collection: String, withId id: String, _ completion: @escaping (_ error: Error?) -> Void) {
