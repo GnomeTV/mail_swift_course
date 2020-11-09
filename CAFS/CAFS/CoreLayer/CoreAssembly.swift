@@ -1,9 +1,9 @@
 import Foundation
 
 protocol ICoreAssembly {
-    
+    var firestoreManager : IFirestoreManager { get }
 }
 
-class CoreAssembly: ICoreAssembly {
-    
+final class CoreAssembly: ICoreAssembly {
+    let firestoreManager: IFirestoreManager = FirestoreManager()
 }
