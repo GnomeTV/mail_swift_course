@@ -16,6 +16,7 @@
 		BD89ED4125570CCC00F20B4B /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD89ED4025570CCC00F20B4B /* RootAssembly.swift */; };
 		BD89ED432557119A00F20B4B /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD89ED422557119A00F20B4B /* UIViewController+Utils.swift */; };
 		BD89ED462557125000F20B4B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD89ED452557125000F20B4B /* LoginViewModel.swift */; };
+		C23F0E792559B632008EC202 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F0E782559B632008EC202 /* LoginViewController.swift */; };
 		F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12C2EFE2553328600C26AED /* UnderlineTextField.swift */; };
 		F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1326E192548A67800D317DE /* RegistrationViewController.swift */; };
 		F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135D64E2534646F00D74201 /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 		BD89ED4025570CCC00F20B4B /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
 		BD89ED422557119A00F20B4B /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		BD89ED452557125000F20B4B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C23F0E782559B632008EC202 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F12C2EFE2553328600C26AED /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
 		F1326E192548A67800D317DE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		F135D64B2534646F00D74201 /* CAFS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAFS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				BD89ED452557125000F20B4B /* LoginViewModel.swift */,
+				C23F0E782559B632008EC202 /* LoginViewController.swift */,
 			);
 			path = LoginScreen;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C23F0E792559B632008EC202 /* LoginViewController.swift in Sources */,
 				BD109C352545EACC00EA76D6 /* UIColor+Utils.swift in Sources */,
 				BD89ED462557125000F20B4B /* LoginViewModel.swift in Sources */,
 				F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */,

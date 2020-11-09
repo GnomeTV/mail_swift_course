@@ -1,3 +1,4 @@
+
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -18,22 +19,10 @@ class LoginViewController: UIViewController {
     private let rightInset: CGFloat = 24.0
     private let buttonHeight: CGFloat = 48.0
     
-    private let model = viewModels.loginViewModel
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
-    }
-    
-    // MARK: - Button actions
-    
-    @objc private func loginButtonTapped() {
-        model.login()
-    }
-    
-    @objc private func registerButtonTapped() {
-        model.register()
     }
     
     // MARK: - Private methods
