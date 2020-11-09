@@ -12,7 +12,6 @@
 		BD109C2D2545EA2300EA76D6 /* ServicesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2C2545EA2300EA76D6 /* ServicesAssembly.swift */; };
 		BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */; };
 		BD109C352545EACC00EA76D6 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C342545EACC00EA76D6 /* UIColor+Utils.swift */; };
-		BD81095F2545EC00000CC4E4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD81095E2545EC00000CC4E4 /* LoginViewController.swift */; };
 		BD8109672545F54E000CC4E4 /* HseStyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8109662545F54E000CC4E4 /* HseStyleButton.swift */; };
 		BD89ED4125570CCC00F20B4B /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD89ED4025570CCC00F20B4B /* RootAssembly.swift */; };
 		BD89ED432557119A00F20B4B /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD89ED422557119A00F20B4B /* UIViewController+Utils.swift */; };
@@ -50,7 +49,6 @@
 		BD109C2C2545EA2300EA76D6 /* ServicesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesAssembly.swift; sourceTree = "<group>"; };
 		BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAssembly.swift; sourceTree = "<group>"; };
 		BD109C342545EACC00EA76D6 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
-		BD81095E2545EC00000CC4E4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BD8109662545F54E000CC4E4 /* HseStyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HseStyleButton.swift; sourceTree = "<group>"; };
 		BD89ED4025570CCC00F20B4B /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
 		BD89ED422557119A00F20B4B /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				BD89ED442557123C00F20B4B /* LoginScreen */,
-				BD81095E2545EC00000CC4E4 /* LoginViewController.swift */,
 				F1326E192548A67800D317DE /* RegistrationViewController.swift */,
 				BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */,
 				BD109C362545EAD900EA76D6 /* Utils */,
@@ -151,7 +148,6 @@
 		BD89ED442557123C00F20B4B /* LoginScreen */ = {
 			isa = PBXGroup;
 			children = (
-				BD81095E2545EC00000CC4E4 /* LoginViewController.swift */,
 				BD89ED452557125000F20B4B /* LoginViewModel.swift */,
 			);
 			path = LoginScreen;
@@ -311,11 +307,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD81095F2545EC00000CC4E4 /* LoginViewController.swift in Sources */,
 				BD109C352545EACC00EA76D6 /* UIColor+Utils.swift in Sources */,
 				BD89ED462557125000F20B4B /* LoginViewModel.swift in Sources */,
 				F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */,
-				BD109C2D2545EA2300EA76D6 /* ServiceAssembly.swift in Sources */,
+				BD109C2D2545EA2300EA76D6 /* ServicesAssembly.swift in Sources */,
 				BD8109672545F54E000CC4E4 /* HseStyleButton.swift in Sources */,
 				BD89ED432557119A00F20B4B /* UIViewController+Utils.swift in Sources */,
 				BD89ED4125570CCC00F20B4B /* RootAssembly.swift in Sources */,
