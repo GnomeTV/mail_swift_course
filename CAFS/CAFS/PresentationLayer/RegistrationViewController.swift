@@ -97,6 +97,14 @@ class RegistrationViewController: UIViewController {
     
     @objc private func registerButtonTapped() {
         dismiss(animated: true, completion: {})
+        let firestoreManager = FirestoreManager()
+        var personalData : [String : String] = [:]
+        personalData["firstname"] = firstNameTextField.text
+        personalData["lastname"] = secondNameTextField.text
+        personalData["university"] = universityiTextField.text
+        personalData["email"] = emailTextField.text
+        personalData["hashPassword"] = passwordTextField.text
+        firestoreManager.addNewUser(personalData: personalData)
         print("Register")
     }
 }
