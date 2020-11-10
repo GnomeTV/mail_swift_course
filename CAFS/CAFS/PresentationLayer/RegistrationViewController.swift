@@ -4,12 +4,13 @@ import UIKit
 class RegistrationViewController: UIViewController {
     
     // MARK: - Views
-    
+
     private let registrationStackView = UIStackView()
     private let titleLabel = UILabel()
     private let emailTextField = UnderlineTextField()
     private let passwordTextField = UnderlineTextField()
     private let repeatPasswordTextField = UnderlineTextField()
+    private let errorLabel = UILabel()
     private let firstNameTextField = UnderlineTextField()
     private let secondNameTextField = UnderlineTextField()
     private let universityiTextField = UnderlineTextField()
@@ -42,6 +43,7 @@ class RegistrationViewController: UIViewController {
     
     private func setupStackView() {
         view.addSubview(registrationStackView)
+        
         registrationStackView.translatesAutoresizingMaskIntoConstraints = false
         
         registrationStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
@@ -54,6 +56,7 @@ class RegistrationViewController: UIViewController {
         emailTextField.placeholder = "Введите e-mail"
         passwordTextField.placeholder = "Введите пароль"
         repeatPasswordTextField.placeholder = "Повторите пароль"
+        errorLabel.textColor = UIColor.systemRed
         
         checkBoxView.addSubview(statusTeacherButton)
         checkBoxView.addSubview(statusStudentButton)
@@ -65,6 +68,7 @@ class RegistrationViewController: UIViewController {
         registrationStackView.addArrangedSubview(emailTextField)
         registrationStackView.addArrangedSubview(passwordTextField)
         registrationStackView.addArrangedSubview(repeatPasswordTextField)
+        registrationStackView.addArrangedSubview(errorLabel)
         registrationStackView.axis = .vertical
         registrationStackView.spacing = 50.0
     }
@@ -96,15 +100,38 @@ class RegistrationViewController: UIViewController {
     }
     
     @objc private func registerButtonTapped() {
-        dismiss(animated: true, completion: {})
-        let firestoreManager = FirestoreManager()
-        var personalData : [String : String] = [:]
-        personalData["firstname"] = firstNameTextField.text
-        personalData["lastname"] = secondNameTextField.text
-        personalData["university"] = universityiTextField.text
-        personalData["email"] = emailTextField.text
-        personalData["hashPassword"] = passwordTextField.text
-        firestoreManager.addNewUser(personalData: personalData)
+        if firstNameTextField.text == "" {
+            firstNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваше имя", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+        }
+        
+        if secondNameTextField.text == "" {
+            secondNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите вашу фамилию", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+        }
+        
+        if universityiTextField.text == "" {
+            universityiTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш университет", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+        }
+        
+        if emailTextField.text == "" {
+            emailTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+        }
+        
+        if passwordTextField.text == repeatPasswordTextField.text {
+            let firestoreManager = FirestoreManager()
+            var personalData : [String : String] = [:]
+            personalData["firstname"] = firstNameTextField.text
+            personalData["lastname"] = secondNameTextField.text
+            personalData["university"] = universityiTextField.text
+            personalData["email"] = emailTextField.text
+            personalData["hashPassword"] = passwordTextField.text
+            firestoreManager.addNewUser(personalData: personalData)
+            dismiss(animated: true, completion: {})
+        }
+        else
+        {
+            errorLabel.text = "Пароли не совпадают"
+        }
+        
         print("Register")
     }
 }
