@@ -116,7 +116,11 @@ class RegistrationViewController: UIViewController {
             emailTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
         
-        if passwordTextField.text == repeatPasswordTextField.text {
+        if passwordTextField.text == "" {
+            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+        }
+        
+        if passwordTextField.text == repeatPasswordTextField.text && passwordTextField.text != "" {
             let firestoreManager = FirestoreManager()
             var personalData : [String : String] = [:]
             personalData["firstname"] = firstNameTextField.text
@@ -125,12 +129,13 @@ class RegistrationViewController: UIViewController {
             personalData["email"] = emailTextField.text
             personalData["hashPassword"] = passwordTextField.text
             firestoreManager.addNewUser(personalData: personalData)
-            dismiss(animated: true, completion: {})
+            
+            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
         }
-        else
-        {
+        else {
             errorLabel.text = "Пароли не совпадают"
         }
+        
         
         print("Register")
     }

@@ -37,6 +37,15 @@ class FirestoreManager: IFirestoreManager {
         db.collection(collection).document(id).delete(completion: completion)
     }
     
+    func findDocument(collection: String, email: String, password: String, _ completion: @escaping (_ error: Error?) -> Void) -> String{
+        
+        var id: String = ""
+        
+        /*Поиск id профиля по почте и паролю*/
+        
+        return id
+    }
+    
     func addNewUser(personalData : [String : String]) {
         let collection = "users"
         let id = String(UInt16.random(in: 0...100))

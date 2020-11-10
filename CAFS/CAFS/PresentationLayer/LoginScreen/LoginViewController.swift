@@ -10,6 +10,7 @@ class LoginViewController: UIViewController {
     private let titleLabel = UILabel()
     private let emailTextField = UnderlineTextField()
     private let passwordTextField = UnderlineTextField()
+    private let errorLabel = UILabel()
     private let loginButton = HseStyleButton()
     private let registerButton = HseStyleButton()
     
@@ -59,8 +60,11 @@ class LoginViewController: UIViewController {
         
         emailTextField.placeholder = "Введите e-mail"
         passwordTextField.placeholder = "Введите пароль"
+        errorLabel.textColor = UIColor.systemRed
+        
         loginStackiew.addArrangedSubview(emailTextField)
         loginStackiew.addArrangedSubview(passwordTextField)
+        loginStackiew.addArrangedSubview(errorLabel)
         loginStackiew.axis = .vertical
         loginStackiew.spacing = 50.0
         
@@ -91,11 +95,25 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func loginButtonTapped() {
+        if emailTextField.text == "" {
+            emailTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+        }
+        
+        if passwordTextField.text == "" {
+            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+        }
+        
+        if false /*Существует ли профиль*/ {
+            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+        }
+        else {
+            errorLabel.text = "Не верный логин или пароль"
+        }
         print("Login")
     }
     
     @objc private func registerButtonTapped() {
-        present(registrationViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
         print("Register")
     }
     
