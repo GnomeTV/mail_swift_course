@@ -1,6 +1,5 @@
 import UIKit
 
-
 class RegistrationViewController: UIViewController {
     
     // MARK: - Views
@@ -122,12 +121,12 @@ class RegistrationViewController: UIViewController {
         
         if passwordTextField.text == repeatPasswordTextField.text && passwordTextField.text != "" {
             let firestoreManager = FirestoreManager()
-            var personalData : [String : String] = [:]
-            personalData["firstname"] = firstNameTextField.text
-            personalData["lastname"] = secondNameTextField.text
-            personalData["university"] = universityiTextField.text
-            personalData["email"] = emailTextField.text
-            personalData["hashPassword"] = passwordTextField.text
+            let personalData = PersonalData()
+            personalData.setFirstname(firstname: firstNameTextField.text ?? "default")
+            personalData.setLastname(lastname: secondNameTextField.text ?? "default")
+            personalData.setUniversity(university: universityiTextField.text ?? "default")
+            personalData.setEmail(email: emailTextField.text ?? "default")
+            personalData.setPassword(password: passwordTextField.text ?? "default")
             firestoreManager.addNewUser(personalData: personalData)
             
             self.navigationController?.pushViewController(ProfileViewController(), animated: true)

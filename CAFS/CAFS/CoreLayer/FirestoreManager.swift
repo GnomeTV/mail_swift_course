@@ -29,8 +29,13 @@ class FirestoreManager: IFirestoreManager {
         }
     }
     
-    private func addDocument(collection: String, id: String, data : [String : String]) {
-        db.collection(collection).document(id).setData(data)
+    private func addNewUserDocument(collection: String, id: String, data : PersonalDataDoc, _ completion: @escaping (_ error: Error?) -> Void) {
+        do {
+            try db.collection(collection).document(id).setData(from: data)
+            completion(nil)
+        } catch {
+            completion(error)
+        }
     }
     
     func deleteDocument(collection: String, id: String, _ completion: @escaping (_ error: Error?) -> Void) {
@@ -44,12 +49,18 @@ class FirestoreManager: IFirestoreManager {
         return id
     }
     
-    func addNewUser(personalData : [String : String]) {
+    func addNewUser(personalData : PersonalData) {
         let collection = "users"
-        let id = String(UInt16.random(in: 0...100))
-        self.addDocument(collection: collection, id: id, data: personalData)
+        let id = genHash(string: personalData.getEmail())
+        self.addNewUserDocument(collection: collection, id: id, data: personalData.getDocForFirebase()) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Success adding document")
+            }
+        }
+        
     }
-    
     func editObject<Object: Encodable>(_ objectToEdit: Object, inCollection collection: String, withId id: String, _ completion: @escaping (_ error: Error?) -> Void) {
         do {
             try db.collection(collection).document(id).setData(from: objectToEdit)

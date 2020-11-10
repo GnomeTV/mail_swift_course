@@ -17,6 +17,8 @@
 		BD89ED4125570CCC00F20B4B /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD89ED4025570CCC00F20B4B /* RootAssembly.swift */; };
 		BD89ED432557119A00F20B4B /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD89ED422557119A00F20B4B /* UIViewController+Utils.swift */; };
 		BD89ED462557125000F20B4B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD89ED452557125000F20B4B /* LoginViewModel.swift */; };
+		C21113D5255AE795005CB68F /* PersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21113D4255AE795005CB68F /* PersonalData.swift */; };
+		C21113D7255B0840005CB68F /* Hasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21113D6255B0840005CB68F /* Hasher.swift */; };
 		C23F0E792559B632008EC202 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F0E782559B632008EC202 /* LoginViewController.swift */; };
 		F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12C2EFE2553328600C26AED /* UnderlineTextField.swift */; };
 		F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1326E192548A67800D317DE /* RegistrationViewController.swift */; };
@@ -56,6 +58,8 @@
 		BD89ED4025570CCC00F20B4B /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
 		BD89ED422557119A00F20B4B /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		BD89ED452557125000F20B4B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C21113D4255AE795005CB68F /* PersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalData.swift; sourceTree = "<group>"; };
+		C21113D6255B0840005CB68F /* Hasher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hasher.swift; sourceTree = "<group>"; };
 		C23F0E782559B632008EC202 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F12C2EFE2553328600C26AED /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
 		F1326E192548A67800D317DE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 				BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */,
 				BD109C362545EAD900EA76D6 /* Utils */,
 				BD8109682545F558000CC4E4 /* CustomElements */,
+				C21113D4255AE795005CB68F /* PersonalData.swift */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			children = (
 				79186C26254819BF00B084E2 /* FirestoreManager.swift */,
 				BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */,
+				C21113D6255B0840005CB68F /* Hasher.swift */,
 			);
 			path = CoreLayer;
 			sourceTree = "<group>";
@@ -324,7 +330,9 @@
 				BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */,
 				F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */,
 				F18367D525546CC100664294 /* CheckBoxButton.swift in Sources */,
+				C21113D5255AE795005CB68F /* PersonalData.swift in Sources */,
 				BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */,
+				C21113D7255B0840005CB68F /* Hasher.swift in Sources */,
 				799359C2255AC3D500D5A16D /* ProfileViewController.swift in Sources */,
 				F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */,
 				79186C27254819BF00B084E2 /* FirestoreManager.swift in Sources */,
