@@ -38,9 +38,7 @@ class FirestoreManager: IFirestoreManager {
     }
     
     func findDocument(collection: String, email: String, password: String, _ completion: @escaping (_ error: Error?) -> Void) -> String{
-        
-        var id: String = ""
-        
+        let id: String = "0"
         /*Поиск id профиля по почте и паролю*/
         
         return id
