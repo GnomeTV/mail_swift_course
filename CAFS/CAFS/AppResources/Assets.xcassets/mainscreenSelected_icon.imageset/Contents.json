@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "clipboard (1).png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "notepad (1).svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
