@@ -28,5 +28,4 @@ class MainTabBarController: UITabBarController {
         viewControllers = [mainScreenViewController, chatViewController, profileViewController]
     }
 
-
 }

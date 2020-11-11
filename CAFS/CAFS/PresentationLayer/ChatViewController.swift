@@ -16,6 +16,10 @@ class ChatViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
 
     /*
     // MARK: - Navigation

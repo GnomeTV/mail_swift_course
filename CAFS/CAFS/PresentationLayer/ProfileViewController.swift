@@ -18,6 +18,10 @@ class ProfileViewController: UIViewController {
         setupViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     // MARK: - Private methods
     private func setupViews() {
         setupProfileLabel()
