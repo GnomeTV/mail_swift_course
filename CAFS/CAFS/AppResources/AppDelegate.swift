@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let vc = LoginViewController()
         let navigationController = UINavigationController(rootViewController: vc)
-        navigationController.setNavigationBarHidden(true, animated: true)
+        navigationController.setNavigationBarHidden(true, animated: false)
         
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
