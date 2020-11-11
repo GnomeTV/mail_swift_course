@@ -129,7 +129,7 @@ class RegistrationViewController: UIViewController {
             personalData.setPassword(password: passwordTextField.text ?? "default")
             firestoreManager.addNewUser(personalData: personalData)
             
-            self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+            navigationController?.pushViewController(MainTabBarController(), animated: true)
         }
         else {
             errorLabel.text = "Пароли не совпадают"
