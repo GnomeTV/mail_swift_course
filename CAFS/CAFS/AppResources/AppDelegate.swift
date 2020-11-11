@@ -9,7 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow()
         
-        let vc = MainTabBarController()
+        let vc = LoginViewController()
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.setNavigationBarHidden(true, animated: true)
         
