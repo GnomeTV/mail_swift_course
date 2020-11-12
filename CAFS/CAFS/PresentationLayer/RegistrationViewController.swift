@@ -1,5 +1,13 @@
 import UIKit
 
+extension Optional where Wrapped == String {
+    func isValidEmail() -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: self) 
+    }
+}
+
 class RegistrationViewController: UIViewController {
     
     // MARK: - Views
@@ -39,13 +47,7 @@ class RegistrationViewController: UIViewController {
         setupRegisterButton()
         setupStackView()
     }
-    
-    private func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
-    }
-    
+        
     private func setupStackView() {
         view.addSubview(registrationStackView)
         
@@ -128,10 +130,11 @@ class RegistrationViewController: UIViewController {
         if passwordTextField.text == "" {
             passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
+
         
         if passwordTextField.text == repeatPasswordTextField.text &&
             passwordTextField.text != "" &&
-            isValidEmail(emailTextField.text ?? "") == true {
+            emailTextField.text.isValidEmail() {
             let firestoreManager = FirestoreManager()
             let personalData = PersonalData()
             personalData.setFirstname(firstname: firstNameTextField.text ?? "default")
@@ -147,7 +150,7 @@ class RegistrationViewController: UIViewController {
             errorLabel.text = "Пароли не совпадают"
         }
         
-        else if !isValidEmail(emailTextField.text ?? "") {
+        else if !emailTextField.text.isValidEmail() {
             errorLabel.text = "Некорректный email"
         }
         

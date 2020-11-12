@@ -114,6 +114,7 @@
 				BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */,
 				BD109C362545EAD900EA76D6 /* Utils */,
 				BD8109682545F558000CC4E4 /* CustomElements */,
+				C21113D4255AE795005CB68F /* PersonalData.swift */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -163,7 +164,6 @@
 				BD8109662545F54E000CC4E4 /* HseStyleButton.swift */,
 				F12C2EFE2553328600C26AED /* UnderlineTextField.swift */,
 				F18367D425546CC100664294 /* CheckBoxButton.swift */,
-				C21113D4255AE795005CB68F /* PersonalData.swift */,
 			);
 			path = CustomElements;
 			sourceTree = "<group>";
