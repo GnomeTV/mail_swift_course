@@ -16,13 +16,13 @@ class MainTabBarController: UITabBarController {
         UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().clipsToBounds = true
         
-        let profileViewController = UINavigationController(rootViewController: ProfileViewController())
+        let profileViewController = NavigationViewController(rootViewController: ProfileViewController())
         profileViewController.tabBarItem.image = UIImage(named: "profile_icon")
        
-        let chatViewController = UINavigationController(rootViewController: ChatViewController())
+        let chatViewController = NavigationViewController(rootViewController: ChatViewController())
         chatViewController.tabBarItem.image = UIImage(named: "chat_icon")
       
-        let mainScreenViewController = UINavigationController(rootViewController: MainScreenViewController())
+        let mainScreenViewController = NavigationViewController(rootViewController: MainScreenViewController())
         mainScreenViewController.tabBarItem.image = UIImage(named: "mainScreen_icon")
       
         viewControllers = [mainScreenViewController, chatViewController, profileViewController]

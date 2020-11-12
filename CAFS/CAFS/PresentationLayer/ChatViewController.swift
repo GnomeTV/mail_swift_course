@@ -13,13 +13,7 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .yellow
-        // Do any additional setup after loading the view.
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-
-
 }

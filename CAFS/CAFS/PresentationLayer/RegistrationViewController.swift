@@ -40,6 +40,12 @@ class RegistrationViewController: UIViewController {
         setupStackView()
     }
     
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
+    }
+    
     private func setupStackView() {
         view.addSubview(registrationStackView)
         
@@ -70,6 +76,9 @@ class RegistrationViewController: UIViewController {
         registrationStackView.addArrangedSubview(errorLabel)
         registrationStackView.axis = .vertical
         registrationStackView.spacing = 50.0
+        
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     private func setupRegistrationLabel() {
@@ -84,6 +93,7 @@ class RegistrationViewController: UIViewController {
         titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
+    
     }
     
     private func setupRegisterButton() {
@@ -119,7 +129,9 @@ class RegistrationViewController: UIViewController {
             passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
         
-        if passwordTextField.text == repeatPasswordTextField.text && passwordTextField.text != "" {
+        if passwordTextField.text == repeatPasswordTextField.text &&
+            passwordTextField.text != "" &&
+            isValidEmail(emailTextField.text ?? "") == true {
             let firestoreManager = FirestoreManager()
             let personalData = PersonalData()
             personalData.setFirstname(firstname: firstNameTextField.text ?? "default")
@@ -131,8 +143,12 @@ class RegistrationViewController: UIViewController {
             
             navigationController?.pushViewController(MainTabBarController(), animated: true)
         }
-        else {
+        else if passwordTextField.text != repeatPasswordTextField.text{
             errorLabel.text = "Пароли не совпадают"
+        }
+        
+        else if !isValidEmail(emailTextField.text ?? "") {
+            errorLabel.text = "Некорректный email"
         }
         
         

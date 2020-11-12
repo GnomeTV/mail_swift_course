@@ -60,6 +60,7 @@ class LoginViewController: UIViewController {
         
         emailTextField.placeholder = "Введите e-mail"
         passwordTextField.placeholder = "Введите пароль"
+        passwordTextField.isSecureTextEntry = true
         errorLabel.textColor = UIColor.systemRed
         
         loginStackiew.addArrangedSubview(emailTextField)
