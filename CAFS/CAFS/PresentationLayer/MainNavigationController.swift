@@ -1,13 +1,13 @@
 //
-//  NavigationViewController.swift
+//  MainNavigationController.swift
 //  CAFS
 //
-//  Created by Павел Травкин on 11.11.2020.
+//  Created by Павел Травкин on 12.11.2020.
 //
 
 import UIKit
 
-class NavigationViewController: UINavigationController {
+class MainNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,5 +19,4 @@ class NavigationViewController: UINavigationController {
     }
     
 
-   
 }

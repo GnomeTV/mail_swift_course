@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		79186C27254819BF00B084E2 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79186C26254819BF00B084E2 /* FirestoreManager.swift */; };
 		799359C2255AC3D500D5A16D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799359C1255AC3D500D5A16D /* ProfileViewController.swift */; };
+		799CFE72255D032A00301D7A /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CFE71255D032A00301D7A /* MainNavigationController.swift */; };
 		79A6079F255C324900EBF9AE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A6079E255C324900EBF9AE /* MainTabBarController.swift */; };
 		79A607A1255C38AE00EBF9AE /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A607A0255C38AE00EBF9AE /* ChatViewController.swift */; };
 		79A607A3255C393F00EBF9AE /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */; };
-		79EC01A9255C66C7006821D7 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EC01A8255C66C7006821D7 /* NavigationViewController.swift */; };
 		BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */; };
 		BD109C2D2545EA2300EA76D6 /* ServicesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2C2545EA2300EA76D6 /* ServicesAssembly.swift */; };
 		BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */; };
@@ -54,10 +54,10 @@
 		58DD20CBEF5B2D5055914C2D /* Pods_CAFS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CAFS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79186C26254819BF00B084E2 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirestoreManager.swift; path = CAFS/CoreLayer/FirestoreManager.swift; sourceTree = SOURCE_ROOT; };
 		799359C1255AC3D500D5A16D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		799CFE71255D032A00301D7A /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		79A6079E255C324900EBF9AE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		79A607A0255C38AE00EBF9AE /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
-		79EC01A8255C66C7006821D7 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
 		BD109C2C2545EA2300EA76D6 /* ServicesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesAssembly.swift; sourceTree = "<group>"; };
 		BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAssembly.swift; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 				BD89ED442557123C00F20B4B /* LoginScreen */,
 				F1326E192548A67800D317DE /* RegistrationViewController.swift */,
 				79A6079E255C324900EBF9AE /* MainTabBarController.swift */,
-				79EC01A8255C66C7006821D7 /* NavigationViewController.swift */,
+				799CFE71255D032A00301D7A /* MainNavigationController.swift */,
 				79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */,
 				79A607A0255C38AE00EBF9AE /* ChatViewController.swift */,
 				799359C1255AC3D500D5A16D /* ProfileViewController.swift */,
@@ -343,8 +343,8 @@
 				BD89ED4125570CCC00F20B4B /* RootAssembly.swift in Sources */,
 				BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */,
 				F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */,
-				79EC01A9255C66C7006821D7 /* NavigationViewController.swift in Sources */,
 				79A607A1255C38AE00EBF9AE /* ChatViewController.swift in Sources */,
+				799CFE72255D032A00301D7A /* MainNavigationController.swift in Sources */,
 				F18367D525546CC100664294 /* CheckBoxButton.swift in Sources */,
 				C21113D5255AE795005CB68F /* PersonalData.swift in Sources */,
 				BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */,
