@@ -110,7 +110,8 @@ class RegistrationViewController: UIViewController {
         registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -54.0).isActive = true
     }
     
-    @objc private func registerButtonTapped() {
+    private func isPersonalDataValid() -> Bool {
+        
         if firstNameTextField.text == "" {
             firstNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваше имя", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
@@ -144,16 +145,26 @@ class RegistrationViewController: UIViewController {
             personalData.setPassword(password: passwordTextField.text ?? "default")
             firestoreManager.addNewUser(personalData: personalData)
             
-            navigationController?.pushViewController(MainTabBarController(), animated: true)
+            return true
         }
         else if passwordTextField.text != repeatPasswordTextField.text{
             errorLabel.text = "Пароли не совпадают"
+            return false
         }
         
         else if !emailTextField.text.isValidEmail() {
             errorLabel.text = "Некорректный email"
+            return false
         }
         
+        return false
+    }
+    
+    @objc private func registerButtonTapped() {
+        
+        if isPersonalDataValid() {
+            navigationController?.pushViewController(MainTabBarController(), animated: true)
+        }
         
         print("Register")
     }
