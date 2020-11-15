@@ -1,5 +1,13 @@
 import UIKit
 
+extension Optional where Wrapped == String {
+    func isValidEmail() -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: self)
+    }
+}
+
 class RegistrationViewController: UIViewController {
     
     // MARK: - Views
@@ -39,7 +47,7 @@ class RegistrationViewController: UIViewController {
         setupRegisterButton()
         setupStackView()
     }
-    
+        
     private func setupStackView() {
         view.addSubview(registrationStackView)
         
@@ -70,6 +78,9 @@ class RegistrationViewController: UIViewController {
         registrationStackView.addArrangedSubview(errorLabel)
         registrationStackView.axis = .vertical
         registrationStackView.spacing = 50.0
+        
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     private func setupRegistrationLabel() {
@@ -84,6 +95,7 @@ class RegistrationViewController: UIViewController {
         titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
+    
     }
     
     private func setupRegisterButton() {
@@ -98,7 +110,8 @@ class RegistrationViewController: UIViewController {
         registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -54.0).isActive = true
     }
     
-    @objc private func registerButtonTapped() {
+    private func isPersonalDataValid() -> Bool {
+        
         if firstNameTextField.text == "" {
             firstNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваше имя", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
@@ -118,8 +131,11 @@ class RegistrationViewController: UIViewController {
         if passwordTextField.text == "" {
             passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
+
         
-        if passwordTextField.text == repeatPasswordTextField.text && passwordTextField.text != "" {
+        if passwordTextField.text == repeatPasswordTextField.text &&
+            passwordTextField.text != "" &&
+            emailTextField.text.isValidEmail() {
             let firestoreManager = FirestoreManager()
             let personalData = PersonalData()
             personalData.setFirstname(firstname: firstNameTextField.text ?? "default")
@@ -129,12 +145,26 @@ class RegistrationViewController: UIViewController {
             personalData.setPassword(password: passwordTextField.text ?? "default")
             firestoreManager.addNewUser(personalData: personalData)
             
-            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+            return true
         }
-        else {
+        else if passwordTextField.text != repeatPasswordTextField.text{
             errorLabel.text = "Пароли не совпадают"
+            return false
         }
         
+        else if !emailTextField.text.isValidEmail() {
+            errorLabel.text = "Некорректный email"
+            return false
+        }
+        
+        return false
+    }
+    
+    @objc private func registerButtonTapped() {
+        
+        if isPersonalDataValid() {
+            navigationController?.pushViewController(MainTabBarController(), animated: true)
+        }
         
         print("Register")
     }

@@ -8,14 +8,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let window = UIWindow()
-        
-        let vc = LoginViewController()
-        let navigationController = UINavigationController(rootViewController: vc)
-        navigationController.setNavigationBarHidden(true, animated: true)
-        
+        let navigationController = MainNavigationController(rootViewController: LoginViewController())
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
-        
+    
         self.window = window
         return true
     }

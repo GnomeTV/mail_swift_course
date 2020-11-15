@@ -11,7 +11,7 @@ class ProfileViewController: UIViewController {
     private let rightInset: CGFloat = 24.0
     private let buttonHeight: CGFloat = 48.0
     private let topInsetTextFieldIndicator: CGFloat = 3.0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
