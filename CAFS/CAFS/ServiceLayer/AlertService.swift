@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol IAlertService {
+    static func showAlert(style: UIAlertController.Style, title: String?, message: String?, actions: [UIAlertAction])
+}
+
+
 class AlertService {
     
     static func showAlert(style: UIAlertController.Style, title: String?, message: String?, actions: [UIAlertAction] = [UIAlertAction(title: "Ok", style: .cancel, handler: nil)], completion: (() -> Swift.Void)? = nil) {

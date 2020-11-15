@@ -1,10 +1,12 @@
 import Foundation
 
 protocol IServicesAssembly {
-    // TODO: - Add services here
+    var alertService : IAlertService { get }
 }
 
 final class ServicesAssembly: IServicesAssembly {
+    
+    let alertService: IAlertService = AlertService() as! IAlertService
     
     private let coreAssembly: ICoreAssembly
     
