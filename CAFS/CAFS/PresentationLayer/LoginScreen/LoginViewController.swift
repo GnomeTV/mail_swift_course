@@ -104,12 +104,12 @@ class LoginViewController: UIViewController {
             passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
         
-        /*if false {
-            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+        if true {
+            self.navigationController?.pushViewController(MainTabBarController(), animated: true)
         }
         else {
             errorLabel.text = "Не верный логин или пароль"
-        }*/
+        }
         print("Login")
     }
     

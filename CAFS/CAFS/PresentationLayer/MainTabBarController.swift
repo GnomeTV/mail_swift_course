@@ -23,7 +23,7 @@ class MainTabBarController: UITabBarController {
         chatViewController.tabBarItem.image = UIImage(named: "chat_icon")
       
         let mainScreenViewController = MainNavigationController(rootViewController: MainScreenViewController())
-        mainScreenViewController.tabBarItem.image = UIImage(named: "mainScreen_icon")
+        mainScreenViewController.tabBarItem.image = UIImage(named: "mainscreen_icon")
       
         viewControllers = [mainScreenViewController, chatViewController, profileViewController]
     }
