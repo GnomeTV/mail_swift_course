@@ -27,7 +27,7 @@ class FirestoreManager: IFirestoreManager {
         } catch {
             completion(error)
         }
-    }
+    } 
     
     private func addNewUserDocument(collection: String, id: String, data : PersonalDataDoc, _ completion: @escaping (_ error: Error?) -> Void) {
         do {
