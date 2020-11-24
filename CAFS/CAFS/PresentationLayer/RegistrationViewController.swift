@@ -136,15 +136,6 @@ class RegistrationViewController: UIViewController {
         if passwordTextField.text == repeatPasswordTextField.text &&
             passwordTextField.text != "" &&
             emailTextField.text.isValidEmail() {
-            let firestoreManager = FirestoreManager()
-            let personalData = PersonalData()
-            personalData.setFirstname(firstname: firstNameTextField.text ?? "default")
-            personalData.setLastname(lastname: secondNameTextField.text ?? "default")
-            personalData.setUniversity(university: universityiTextField.text ?? "default")
-            personalData.setEmail(email: emailTextField.text ?? "default")
-            personalData.setPassword(password: passwordTextField.text ?? "default")
-            firestoreManager.addNewUser(personalData: personalData)
-            
             return true
         }
         else if passwordTextField.text != repeatPasswordTextField.text{
@@ -163,7 +154,20 @@ class RegistrationViewController: UIViewController {
     @objc private func registerButtonTapped() {
         
         if isPersonalDataValid() {
-            navigationController?.pushViewController(MainTabBarController(), animated: true)
+            let userManager = UserManager()
+            let personalData = PersonalData()
+            personalData.firstname = firstNameTextField.text!
+            personalData.lastname = secondNameTextField.text!
+            personalData.university = universityiTextField.text!
+            personalData.setEmailAndPassword(email: emailTextField.text!, password: passwordTextField.text!)
+            userManager.addNewUser(personalData: personalData) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+                    print("Success adding document")
+                }
+            }
         }
         
         print("Register")
