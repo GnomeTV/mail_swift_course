@@ -3,13 +3,15 @@ import Foundation
 class UserManager : FirestoreManager {
     
     func addNewUser(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void) {
+        var pData = personalData
         let collection = "users"
         let id = personalData.getId()
-        do {
-            try db?.collection(collection).document(id).setData(from: personalData)
-            completion(nil)
-        } catch {
-            completion(error)
+        super.addNewDocument(collection: collection, id: id, data: &pData) { err in
+            if let err = err {
+                completion(err)
+            } else {
+                completion(nil)
+            }
         }
     }
 }
