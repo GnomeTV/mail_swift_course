@@ -50,9 +50,9 @@ class ProfileViewController: UIViewController {
     private let profileImageButton = UIButton()
     
     private let personalInfoStackView = UIStackView()
-    private let firstnameTextField = UnderlineTextField()
-    private let lastnameTextField = UnderlineTextField()
-    private let universityTextField = UnderlineTextField()
+    private let firstnameTextField = UnderlineTextLabel()
+    private let lastnameTextField = UnderlineTextLabel()
+    private let universityTextField = UnderlineTextLabel()
     
     private let infoStackView = UIStackView()
     private let infoScrollView = UIScrollView()

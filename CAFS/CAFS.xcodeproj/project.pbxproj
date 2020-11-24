@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		791322AC2561A92300D601E1 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791322AB2561A92300D601E1 /* AlertService.swift */; };
 		79186C27254819BF00B084E2 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79186C26254819BF00B084E2 /* FirestoreManager.swift */; };
+		798E1527256D80A8005938AA /* UnderlineTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798E1526256D80A8005938AA /* UnderlineTextLabel.swift */; };
 		799359C2255AC3D500D5A16D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799359C1255AC3D500D5A16D /* ProfileViewController.swift */; };
 		799CFE72255D032A00301D7A /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CFE71255D032A00301D7A /* MainNavigationController.swift */; };
 		79A6079F255C324900EBF9AE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A6079E255C324900EBF9AE /* MainTabBarController.swift */; };
@@ -55,6 +56,7 @@
 		58DD20CBEF5B2D5055914C2D /* Pods_CAFS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CAFS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		791322AB2561A92300D601E1 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		79186C26254819BF00B084E2 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirestoreManager.swift; path = CAFS/CoreLayer/FirestoreManager.swift; sourceTree = SOURCE_ROOT; };
+		798E1526256D80A8005938AA /* UnderlineTextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextLabel.swift; sourceTree = "<group>"; };
 		799359C1255AC3D500D5A16D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		799CFE71255D032A00301D7A /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		79A6079E255C324900EBF9AE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			children = (
 				BD8109662545F54E000CC4E4 /* HseStyleButton.swift */,
 				F12C2EFE2553328600C26AED /* UnderlineTextField.swift */,
+				798E1526256D80A8005938AA /* UnderlineTextLabel.swift */,
 				F18367D425546CC100664294 /* CheckBoxButton.swift */,
 			);
 			path = CustomElements;
@@ -356,6 +359,7 @@
 				799359C2255AC3D500D5A16D /* ProfileViewController.swift in Sources */,
 				F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */,
 				79186C27254819BF00B084E2 /* FirestoreManager.swift in Sources */,
+				798E1527256D80A8005938AA /* UnderlineTextLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
