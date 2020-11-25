@@ -1,7 +1,10 @@
 import Foundation
 import CryptoKit
 
-func genHash(string : String) -> String
-{
-    return String(format: "%02X", SHA512.hash(data: [UInt8](string.utf8)).hashValue)
+extension String {
+    func genHash() -> String
+    {
+        return String(format: "%02X", self.hash)
+        //return String(format: "%02X", SHA512.hash(data: [UInt8](self.utf8)).hashValue)
+    }
 }

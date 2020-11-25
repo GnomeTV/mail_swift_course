@@ -11,8 +11,8 @@ protocol IFirestoreManager{
 }
 
 class FirestoreManager: IFirestoreManager {
-
-    private let db: Firestore
+    
+    internal let db: Firestore
     
     init() {
         FirebaseApp.configure()
@@ -27,9 +27,9 @@ class FirestoreManager: IFirestoreManager {
         } catch {
             completion(error)
         }
-    } 
+    }
     
-    private func addNewUserDocument(collection: String, id: String, data : PersonalDataDoc, _ completion: @escaping (_ error: Error?) -> Void) {
+    func addNewDocument<T : Codable>(collection : String, id : String, data: inout T, _ completion: @escaping (_ error: Error?) -> Void) {
         do {
             try db.collection(collection).document(id).setData(from: data)
             completion(nil)
@@ -42,25 +42,19 @@ class FirestoreManager: IFirestoreManager {
         db.collection(collection).document(id).delete(completion: completion)
     }
     
-    func findDocument(collection: String, email: String, password: String, _ completion: @escaping (_ error: Error?) -> Void) -> String{
-        let id: String = "0"
-        /*Поиск id профиля по почте и паролю*/
-        
-        return id
-    }
-    
-    func addNewUser(personalData : PersonalData) {
-        let collection = "users"
-        let id = genHash(string: personalData.getEmail())
-        self.addNewUserDocument(collection: collection, id: id, data: personalData.getDocForFirebase()) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
+    func getDocument(collection: String, id: String, _ completion: @escaping (_ doc: DocumentSnapshot?, _ error: Error?) -> Void) {
+        db.collection(collection).document(id).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print("Document data: \(dataDescription)")
+                completion(document, nil)
             } else {
-                print("Success adding document")
+                completion(nil, error)
+                print("Document does not exist")
             }
         }
-        
     }
+    
     func editObject<Object: Encodable>(_ objectToEdit: Object, inCollection collection: String, withId id: String, _ completion: @escaping (_ error: Error?) -> Void) {
         do {
             try db.collection(collection).document(id).setData(from: objectToEdit)

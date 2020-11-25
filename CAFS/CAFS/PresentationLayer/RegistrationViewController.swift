@@ -11,7 +11,7 @@ extension Optional where Wrapped == String {
 class RegistrationViewController: UIViewController {
     
     // MARK: - Views
-
+    
     private let registrationStackView = UIStackView()
     private let titleLabel = UILabel()
     private let emailTextField = UnderlineTextField()
@@ -34,20 +34,22 @@ class RegistrationViewController: UIViewController {
     private let rightInset: CGFloat = 24.0
     private let buttonHeight: CGFloat = 48.0
     private let topInsetTextFieldIndicator: CGFloat = 3.0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
     }
     
+    lazy private var userManager = UserManager()
+    private var isEmailExists = true
     // MARK: - Private methods
     private func setupViews() {
         setupRegistrationLabel()
         setupRegisterButton()
         setupStackView()
     }
-        
+    
     private func setupStackView() {
         view.addSubview(registrationStackView)
         
@@ -86,16 +88,16 @@ class RegistrationViewController: UIViewController {
     private func setupRegistrationLabel() {
         view.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        
         titleLabel.text = "Регистрация"
         titleLabel.textColor = UIColor.hseBlue
         titleLabel.font = UIFont.systemFont(ofSize: 32.0, weight: .bold)
-
+        
         titleLabel.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
-    
+        
     }
     
     private func setupRegisterButton() {
@@ -110,7 +112,7 @@ class RegistrationViewController: UIViewController {
         registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -54.0).isActive = true
     }
     
-    private func isPersonalDataValid() -> Bool {
+    private func isPersonalDataValid(_ completion: @escaping (_ isUserDataValid: Bool?) -> Void) {
         
         if firstNameTextField.text == "" {
             firstNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваше имя", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
@@ -123,47 +125,70 @@ class RegistrationViewController: UIViewController {
         if universityiTextField.text == "" {
             universityiTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш университет", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
-        
         if emailTextField.text == "" {
             emailTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
-        }
-        
-        if passwordTextField.text == "" {
-            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
-        }
-
-        
-        if passwordTextField.text == repeatPasswordTextField.text &&
-            passwordTextField.text != "" &&
-            emailTextField.text.isValidEmail() {
-            let firestoreManager = FirestoreManager()
-            let personalData = PersonalData()
-            personalData.setFirstname(firstname: firstNameTextField.text ?? "default")
-            personalData.setLastname(lastname: secondNameTextField.text ?? "default")
-            personalData.setUniversity(university: universityiTextField.text ?? "default")
-            personalData.setEmail(email: emailTextField.text ?? "default")
-            personalData.setPassword(password: passwordTextField.text ?? "default")
-            firestoreManager.addNewUser(personalData: personalData)
+        } else {
+            do {
+                userManager.isUserExist(id: PersonalData.getId(email: emailTextField.text!)) { result in
+                    if let result = result {
+                        print("isUserExist in checkValid", result)
+                        self.errorLabel.text = "Данный пользователь уже существует"
+                        self.isEmailExists = true
+                        completion(nil)
+                    } else {
+                        self.isEmailExists = false
+                    }
+                }
+            }
             
-            return true
+            if passwordTextField.text == "" {
+                passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+            }
+            
+            
+            if passwordTextField.text == repeatPasswordTextField.text &&
+                passwordTextField.text != "" &&
+                emailTextField.text.isValidEmail() {
+                if (!self.isEmailExists) {
+                    completion(true)
+                } else {
+                    completion(nil)
+                }
+            }
+            else if passwordTextField.text != repeatPasswordTextField.text{
+                errorLabel.text = "Пароли не совпадают"
+                completion(nil)
+            }
+            
+            else if !emailTextField.text.isValidEmail() {
+                errorLabel.text = "Некорректный email"
+                completion(nil)
+            }
+            
+            completion(nil)
         }
-        else if passwordTextField.text != repeatPasswordTextField.text{
-            errorLabel.text = "Пароли не совпадают"
-            return false
-        }
-        
-        else if !emailTextField.text.isValidEmail() {
-            errorLabel.text = "Некорректный email"
-            return false
-        }
-        
-        return false
     }
     
     @objc private func registerButtonTapped() {
-        
-        if isPersonalDataValid() {
-            navigationController?.pushViewController(MainTabBarController(), animated: true)
+        do {
+            isPersonalDataValid() { [self] isValid in
+                if let isValid = isValid {
+                    print("Validating before adding", isValid)
+                    let personalData = PersonalData()
+                    personalData.firstname = firstNameTextField.text!
+                    personalData.lastname = secondNameTextField.text!
+                    personalData.university = universityiTextField.text!
+                    personalData.setEmailAndPassword(email: emailTextField.text!, password: passwordTextField.text!)
+                    userManager.addNewUser(personalData: personalData) { err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+                            print("Success adding document")
+                        }
+                    }
+                }
+            }
         }
         
         print("Register")
