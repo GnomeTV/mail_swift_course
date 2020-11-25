@@ -20,7 +20,7 @@ class RegistrationViewController: UIViewController {
     private let errorLabel = UILabel()
     private let firstNameTextField = UnderlineTextField()
     private let secondNameTextField = UnderlineTextField()
-    private let universityiTextField = UnderlineTextField()
+    private let universityTextField = UnderlineTextField()
     private let loginButton = HseStyleButton()
     private let registerButton = HseStyleButton()
     
@@ -61,7 +61,7 @@ class RegistrationViewController: UIViewController {
         
         firstNameTextField.placeholder = "Имя"
         secondNameTextField.placeholder = "Фамилия"
-        universityiTextField.placeholder = "Университет"
+        universityTextField.placeholder = "Университет"
         emailTextField.placeholder = "Введите e-mail"
         passwordTextField.placeholder = "Введите пароль"
         repeatPasswordTextField.placeholder = "Повторите пароль"
@@ -72,7 +72,7 @@ class RegistrationViewController: UIViewController {
         
         registrationStackView.addArrangedSubview(firstNameTextField)
         registrationStackView.addArrangedSubview(secondNameTextField)
-        registrationStackView.addArrangedSubview(universityiTextField)
+        registrationStackView.addArrangedSubview(universityTextField)
         registrationStackView.addArrangedSubview(checkBoxView)
         registrationStackView.addArrangedSubview(emailTextField)
         registrationStackView.addArrangedSubview(passwordTextField)
@@ -122,8 +122,8 @@ class RegistrationViewController: UIViewController {
             secondNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите вашу фамилию", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
         
-        if universityiTextField.text == "" {
-            universityiTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш университет", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+        if universityTextField.text == "" {
+            universityTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш университет", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
         if emailTextField.text == "" {
             emailTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
@@ -177,7 +177,7 @@ class RegistrationViewController: UIViewController {
                     let personalData = PersonalData()
                     personalData.firstname = firstNameTextField.text!
                     personalData.lastname = secondNameTextField.text!
-                    personalData.university = universityiTextField.text!
+                    personalData.university = universityTextField.text!
                     personalData.setEmailAndPassword(email: emailTextField.text!, password: passwordTextField.text!)
                     userManager.addNewUser(personalData: personalData) { err in
                         if let err = err {
