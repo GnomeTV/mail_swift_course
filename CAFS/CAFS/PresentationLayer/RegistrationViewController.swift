@@ -190,10 +190,10 @@ class RegistrationViewController: UIViewController {
                 personalData.setEmailAndPassword(email: emailTextField.text!, password: passwordTextField.text!)
                 userManager.addNewUser(personalData: personalData) { err in
                     if let err = err {
-                        print("Error adding document: \(err)")
+                        print("Error adding user: \(err)")
                     } else {
                         navigationController?.pushViewController(MainTabBarController(), animated: true)
-                        print("Success adding document")
+                        print("Success adding user")
                     }
                 }
             }
