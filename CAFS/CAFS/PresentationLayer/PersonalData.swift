@@ -15,17 +15,8 @@ final class PersonalData: Codable {
         case password
     }
     
-    /*init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        firstname = try values.decode(String.self, forKey: .firstname)
-        lastname = try values.decode(String.self, forKey: .lastname)
-        university = try values.decode(String.self, forKey: .university)
-        email = try values.decode(String.self, forKey: .email)
-        password = try values.decode(String.self, forKey: .password)
-    }*/
-    
-    private func generateHash() -> String {
-        return (email+password).genHash()
+    func checkPassword(email : String, password : String) -> Bool {
+        (String(format: "%02X", self.email.hash)+String(format: "%02X", self.password.hash)).genSecureHash() == (String(format: "%02X", email.hash)+String(format: "%02X", password.hash)).genSecureHash()
     }
     
     static func getId(email : String) -> String {
@@ -38,7 +29,7 @@ final class PersonalData: Codable {
     
     func setEmailAndPassword(email : String, password : String) {
         self.email = email
-        self.password = (email+password).genHash()
+        self.password = (String(format: "%02X", email.hash)+String(format: "%02X", password.hash)).genSecureHash()
     }
     
     func getEmail() -> String {
