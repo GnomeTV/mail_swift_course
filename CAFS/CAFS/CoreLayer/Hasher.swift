@@ -5,6 +5,5 @@ extension String {
     func genHash() -> String
     {
         return String(format: "%02X", self.hash)
-        //return String(format: "%02X", SHA512.hash(data: [UInt8](self.utf8)).hashValue)
     }
 }
