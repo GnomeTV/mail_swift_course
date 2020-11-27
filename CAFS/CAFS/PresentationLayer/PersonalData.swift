@@ -16,7 +16,7 @@ final class PersonalData: Codable {
     }
     
     func checkPassword(email : String, password : String) -> Bool {
-        (String(format: "%02X", self.email.hash)+String(format: "%02X", self.password.hash)).genSecureHash() == (String(format: "%02X", email.hash)+String(format: "%02X", password.hash)).genSecureHash()
+        (self.password) == (String(format: "%02X", email.hash)+String(format: "%02X", password.hash)).genSecureHash()
     }
     
     static func getId(email : String) -> String {
