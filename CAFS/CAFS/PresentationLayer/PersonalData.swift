@@ -4,10 +4,10 @@ final class PersonalData: Codable {
     var firstname = ""
     var lastname = ""
     var university = ""
-    private var email = ""
+    private(set) var email = ""
     private var password = ""
     
-    enum PersonalDataKeys: String, CodingKey { // declaring our keys
+    enum PersonalDataKeys: String, CodingKey {
         case firstname
         case lastname
         case university
@@ -30,9 +30,5 @@ final class PersonalData: Codable {
     func setEmailAndPassword(email : String, password : String) {
         self.email = email
         self.password = (String(format: "%02X", email.hash)+String(format: "%02X", password.hash)).genSecureHash()
-    }
-    
-    func getEmail() -> String {
-        return email
     }
 }
