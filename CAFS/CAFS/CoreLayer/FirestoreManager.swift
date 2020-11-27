@@ -45,12 +45,9 @@ class FirestoreManager: IFirestoreManager {
     func getDocument(collection: String, id: String, _ completion: @escaping (_ doc: DocumentSnapshot?, _ error: Error?) -> Void) {
         db.collection(collection).document(id).getDocument { (document, error) in
             if let document = document, document.exists {
-                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                print("Document data: \(dataDescription)")
                 completion(document, nil)
             } else {
                 completion(nil, error)
-                print("Document does not exist")
             }
         }
     }

@@ -5,13 +5,7 @@ class UserManager : FirestoreManager {
     
     func addNewUser(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void) {
         let id = personalData.getId()
-        super.addNewDocument(collection: collection, id: id, data: personalData) { err in
-            if let err = err {
-                completion(err)
-            } else {
-                completion(nil)
-            }
-        }
+        super.addNewDocument(collection: collection, id: id, data: personalData, completion)
     }
     
     func getUserData(id : String, _ completion: @escaping (_ userData: PersonalData?, _ error: Error?) -> Void) {
