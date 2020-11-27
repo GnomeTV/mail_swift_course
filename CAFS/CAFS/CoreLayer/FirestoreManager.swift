@@ -29,7 +29,7 @@ class FirestoreManager: IFirestoreManager {
         }
     }
     
-    func addNewDocument<T : Codable>(collection : String, id : String, data: inout T, _ completion: @escaping (_ error: Error?) -> Void) {
+    func addNewDocument<DataType : Codable>(collection : String, id : String, data: DataType, _ completion: @escaping (_ error: Error?) -> Void) {
         do {
             try db.collection(collection).document(id).setData(from: data)
             completion(nil)

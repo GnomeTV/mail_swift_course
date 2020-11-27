@@ -4,9 +4,8 @@ class UserManager : FirestoreManager {
     let collection = "users"
     
     func addNewUser(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void) {
-        var pData = personalData
         let id = PersonalData.getId(email: personalData.getEmail())
-        super.addNewDocument(collection: collection, id: id, data: &pData) { err in
+        super.addNewDocument(collection: collection, id: id, data: personalData) { err in
             if let err = err {
                 completion(err)
             } else {
