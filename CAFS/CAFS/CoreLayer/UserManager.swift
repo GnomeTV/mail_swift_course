@@ -8,33 +8,35 @@ class UserManager : FirestoreManager {
         super.addNewDocument(collection: collection, id: id, data: personalData, completion)
     }
     
-    func getUserData(id : String, _ completion: @escaping (_ userData: PersonalData?, _ error: Error?) -> Void) {
-        super.getDocument(collection: collection, id: id)  { uData, err in
-            if let err = err {
-                completion(nil, err)
-            } else {
+    func getUserData(id : String, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
+        super.getDocument(collection: collection, id: id)  { result in
+            switch result {
+            case .success(let documentSnapshot):
                 do {
-                    let pData = try uData?.data(as: PersonalData.self)
-                    completion(pData, nil)
+                    let pData = try documentSnapshot.data(as: PersonalData.self)
+                    completion(Result.success(pData!))
                 } catch {
-                    completion(nil, error)
+                    completion(Result.failure(error))
                 }
+            case .failure(let error):
+                completion(Result.failure(error))
             }
         }
     }
     
-    func isUserExist(id : String, _ completion: @escaping (_ result: Bool?) -> Void) {
+    func isUserExist(id : String, _ completion: @escaping (_ result: Bool) -> Void) {
         do {
-            getUserData(id: id) { pData, err in
+            getUserData(id: id) { result in
                 print("Check user")
-                if pData != nil {
+                switch result {
+                case .success(_):
                     print("User exists")
                     completion(true)
-                } else {
-                    completion(nil)
+                case .failure(_):
+                    print("User not exists")
+                    completion(false)
                 }
             }
-            
         }
     }
 }

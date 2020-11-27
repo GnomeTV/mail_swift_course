@@ -112,7 +112,7 @@ class RegistrationViewController: UIViewController {
         registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -54.0).isActive = true
     }
     
-    private func isPersonalDataValid(_ completion: @escaping (_ isUserDataValid: Bool?) -> Void) {
+    private func isPersonalDataValid(_ completion: @escaping (_ isUserDataValid: Bool) -> Void) {
         var isFreeEmail = false
         var isGoodPassword = false
         
@@ -123,14 +123,11 @@ class RegistrationViewController: UIViewController {
             }
         }
         
-        
-        
         if let secondname = self.secondNameTextField.text {
             if  secondname.isEmpty {
                 self.secondNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите вашу фамилию", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
             }
         }
-        
         
         if let university = self.universityTextField.text {
             if  university.isEmpty {
@@ -158,13 +155,9 @@ class RegistrationViewController: UIViewController {
                 self.errorLabel.text = "Некорректный email"
             } else {
                 self.userManager.isUserExist(id: PersonalData.getId(email: email)) { result in
-                    if let result = result {
-                        if result {
-                            print("isUserExist in checkValid", result)
-                            self.errorLabel.text = "Данный пользователь уже существует"
-                        } else {
-                            isFreeEmail = true
-                        }
+                    print("isUserExist in checkValid", result)
+                    if result {
+                        self.errorLabel.text = "Данный пользователь уже существует"
                     } else {
                         isFreeEmail = true
                     }
@@ -172,7 +165,7 @@ class RegistrationViewController: UIViewController {
                     if isFreeEmail && isGoodPassword {
                         completion(true)
                     } else {
-                        completion(nil)
+                        completion(false)
                     }
                 }
             }
@@ -181,8 +174,8 @@ class RegistrationViewController: UIViewController {
     
     @objc private func registerButtonTapped() {
         isPersonalDataValid() { [self] isValid in
-            if let isValid = isValid {
-                print("Validating before adding", isValid)
+            print("Can user register?", isValid)
+            if isValid {
                 let personalData = PersonalData()
                 personalData.firstname = firstNameTextField.text!
                 personalData.lastname = secondNameTextField.text!

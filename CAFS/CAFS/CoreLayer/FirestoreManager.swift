@@ -14,6 +14,10 @@ class FirestoreManager: IFirestoreManager {
     
     internal let db: Firestore
     
+    enum CustomError : Error {
+        case CError
+    }
+    
     init() {
         FirebaseApp.configure()
         db = Firestore.firestore()
@@ -42,12 +46,13 @@ class FirestoreManager: IFirestoreManager {
         db.collection(collection).document(id).delete(completion: completion)
     }
     
-    func getDocument(collection: String, id: String, _ completion: @escaping (_ doc: DocumentSnapshot?, _ error: Error?) -> Void) {
+    func getDocument(collection: String, id: String, _ completion: @escaping (Result<DocumentSnapshot, Error>) -> Void) {
         db.collection(collection).document(id).getDocument { (document, error) in
             if let document = document, document.exists {
-                completion(document, nil)
+                completion(Result.success(document))
             } else {
-                completion(nil, error)
+                completion(Result.failure(error ?? CustomError.CError))
+                
             }
         }
     }
