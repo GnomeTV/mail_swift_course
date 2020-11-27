@@ -180,22 +180,20 @@ class RegistrationViewController: UIViewController {
     }
     
     @objc private func registerButtonTapped() {
-        do {
-            isPersonalDataValid() { [self] isValid in
-                if let isValid = isValid {
-                    print("Validating before adding", isValid)
-                    let personalData = PersonalData()
-                    personalData.firstname = firstNameTextField.text!
-                    personalData.lastname = secondNameTextField.text!
-                    personalData.university = universityTextField.text!
-                    personalData.setEmailAndPassword(email: emailTextField.text!, password: passwordTextField.text!)
-                    userManager.addNewUser(personalData: personalData) { err in
-                        if let err = err {
-                            print("Error adding document: \(err)")
-                        } else {
-                            navigationController?.pushViewController(MainTabBarController(), animated: true)
-                            print("Success adding document")
-                        }
+        isPersonalDataValid() { [self] isValid in
+            if let isValid = isValid {
+                print("Validating before adding", isValid)
+                let personalData = PersonalData()
+                personalData.firstname = firstNameTextField.text!
+                personalData.lastname = secondNameTextField.text!
+                personalData.university = universityTextField.text!
+                personalData.setEmailAndPassword(email: emailTextField.text!, password: passwordTextField.text!)
+                userManager.addNewUser(personalData: personalData) { err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                    } else {
+                        navigationController?.pushViewController(MainTabBarController(), animated: true)
+                        print("Success adding document")
                     }
                 }
             }
