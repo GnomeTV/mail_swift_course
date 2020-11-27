@@ -66,8 +66,8 @@ class ProfileViewController: UIViewController {
     private let topInsetTextFieldIndicator: CGFloat = 3.0
     
     private let screenRect = UIScreen.main.bounds
-    lazy var screenWidth = screenRect.size.width
-    lazy var screenHeight = screenRect.size.height
+    var screenWidth = screenRect.size.width
+    var screenHeight = screenRect.size.height
     
     override func viewDidLoad() {
         super.viewDidLoad()
