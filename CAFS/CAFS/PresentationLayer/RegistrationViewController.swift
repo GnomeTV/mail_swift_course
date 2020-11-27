@@ -183,7 +183,7 @@ class RegistrationViewController: UIViewController {
                         if let err = err {
                             print("Error adding document: \(err)")
                         } else {
-                            self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+                            navigationController?.pushViewController(MainTabBarController(), animated: true)
                             print("Success adding document")
                         }
                     }
