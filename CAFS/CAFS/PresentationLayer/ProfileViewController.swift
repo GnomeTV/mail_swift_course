@@ -66,8 +66,6 @@ class ProfileViewController: UIViewController {
     private let topInsetTextFieldIndicator: CGFloat = 3.0
     
     private let screenRect = UIScreen.main.bounds
-    var screenWidth = screenRect.size.width
-    var screenHeight = screenRect.size.height
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +82,8 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupProfileImageStackView() {
+        let screenWidth = screenRect.size.width
+        let screenHeight = screenRect.size.height
         view.addSubview(profileImageStackView)
         profileImageStackView.addArrangedSubview(profileImageView)
         profileImageStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -112,7 +112,7 @@ class ProfileViewController: UIViewController {
     
     private func setupPersonalInfoStackView() {
         view.addSubview(personalInfoStackView)
-        
+        let screenWidth = screenRect.size.width
         personalInfoStackView.translatesAutoresizingMaskIntoConstraints = false
         personalInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: screenWidth - rightInset - 150).isActive = true
         personalInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
