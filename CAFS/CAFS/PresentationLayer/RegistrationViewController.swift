@@ -1,6 +1,6 @@
 import UIKit
 
-extension Optional where Wrapped == String {
+extension String {
     func isValidEmail() -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -42,7 +42,7 @@ class RegistrationViewController: UIViewController {
     }
     
     lazy private var userManager = UserManager()
-    private var isEmailExists = true
+    
     // MARK: - Private methods
     private func setupViews() {
         setupRegistrationLabel()
@@ -113,59 +113,69 @@ class RegistrationViewController: UIViewController {
     }
     
     private func isPersonalDataValid(_ completion: @escaping (_ isUserDataValid: Bool?) -> Void) {
+        var isFreeEmail = false
+        var isGoodPassword = false
         
-        if firstNameTextField.text == "" {
-            firstNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваше имя", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+        
+        if let firstname = self.firstNameTextField.text {
+            if firstname.isEmpty {
+                self.firstNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваше имя", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+            }
         }
         
-        if secondNameTextField.text == "" {
-            secondNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите вашу фамилию", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+        
+        
+        if let secondname = self.secondNameTextField.text {
+            if  secondname.isEmpty {
+                self.secondNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите вашу фамилию", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+            }
         }
         
-        if universityTextField.text == "" {
-            universityTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш университет", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+        
+        if let university = self.universityTextField.text {
+            if  university.isEmpty {
+                self.universityTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш университет", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+            }
         }
-        if emailTextField.text == "" {
-            emailTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
-        } else {
-            do {
-                userManager.isUserExist(id: PersonalData.getId(email: emailTextField.text!)) { result in
+        
+        if let password = self.passwordTextField.text {
+            if  password.isEmpty {
+                self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+            } else if let repeatPassword = self.repeatPasswordTextField.text {
+                if password == repeatPassword {
+                    isGoodPassword = true
+                }
+                else {
+                    self.errorLabel.text = "Пароли не совпадают"
+                }
+            }
+        }
+        
+        if let email = self.emailTextField.text {
+            if  email.isEmpty {
+                self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+            } else if !email.isValidEmail() {
+                self.errorLabel.text = "Некорректный email"
+            } else {
+                self.userManager.isUserExist(id: PersonalData.getId(email: email)) { result in
                     if let result = result {
-                        print("isUserExist in checkValid", result)
-                        self.errorLabel.text = "Данный пользователь уже существует"
-                        self.isEmailExists = true
-                        completion(nil)
+                        if result {
+                            print("isUserExist in checkValid", result)
+                            self.errorLabel.text = "Данный пользователь уже существует"
+                        } else {
+                            isFreeEmail = true
+                        }
                     } else {
-                        self.isEmailExists = false
+                        isFreeEmail = true
+                    }
+                    
+                    if isFreeEmail && isGoodPassword {
+                        completion(true)
+                    } else {
+                        completion(nil)
                     }
                 }
             }
-            
-            if passwordTextField.text == "" {
-                passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
-            }
-            
-            
-            if passwordTextField.text == repeatPasswordTextField.text &&
-                passwordTextField.text != "" &&
-                emailTextField.text.isValidEmail() {
-                if (!self.isEmailExists) {
-                    completion(true)
-                } else {
-                    completion(nil)
-                }
-            }
-            else if passwordTextField.text != repeatPasswordTextField.text{
-                errorLabel.text = "Пароли не совпадают"
-                completion(nil)
-            }
-            
-            else if !emailTextField.text.isValidEmail() {
-                errorLabel.text = "Некорректный email"
-                completion(nil)
-            }
-            
-            completion(nil)
         }
     }
     
