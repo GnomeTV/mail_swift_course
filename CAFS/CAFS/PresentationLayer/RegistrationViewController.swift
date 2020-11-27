@@ -28,6 +28,7 @@ class RegistrationViewController: UIViewController {
     private let statusStudentButton = CheckBoxButton()
     private let statusTeacherButton = CheckBoxButton()
     
+    private var spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
     // MARK: - Insets
     
     private let leftInset: CGFloat = 24.0
@@ -39,6 +40,7 @@ class RegistrationViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
+        setupSpinner()
     }
     
     lazy private var userManager = UserManager()
@@ -112,6 +114,16 @@ class RegistrationViewController: UIViewController {
         registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -54.0).isActive = true
     }
     
+    private func setupSpinner() {
+        view.addSubview(spinner)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        spinner.sizeToFit()
+        spinner.hidesWhenStopped = true
+        spinner.transform = CGAffineTransform(scaleX: 5, y: 5)
+    }
+    
     private func isPersonalDataValid(_ completion: @escaping (_ isUserDataValid: Bool) -> Void) {
         var isFreeEmail = false
         var isGoodPassword = false
@@ -173,25 +185,29 @@ class RegistrationViewController: UIViewController {
     }
     
     @objc private func registerButtonTapped() {
-        isPersonalDataValid() { [self] isValid in
-            print("Can user register?", isValid)
-            if isValid {
-                let personalData = PersonalData()
-                personalData.firstname = firstNameTextField.text!
-                personalData.lastname = secondNameTextField.text!
-                personalData.university = universityTextField.text!
-                personalData.setEmailAndPassword(email: emailTextField.text!, password: passwordTextField.text!)
-                userManager.addNewUser(personalData: personalData) { err in
-                    if let err = err {
-                        print("Error adding user: \(err)")
-                    } else {
-                        navigationController?.pushViewController(MainTabBarController(), animated: true)
-                        print("Success adding user")
+        spinner.startAnimating()
+        DispatchQueue.main.async {
+            self.isPersonalDataValid() { [self] isValid in
+                print("Can user register?", isValid)
+                if isValid {
+                    let personalData = PersonalData()
+                    personalData.firstname = firstNameTextField.text!
+                    personalData.lastname = secondNameTextField.text!
+                    personalData.university = universityTextField.text!
+                    personalData.setEmailAndPassword(email: emailTextField.text!, password: passwordTextField.text!)
+                    userManager.addNewUser(personalData: personalData) { err in
+                        if let err = err {
+                            print("Error adding user: \(err)")
+                        } else {
+                            navigationController?.pushViewController(MainTabBarController(), animated: true)
+                            print("Success adding user")
+                        }
                     }
                 }
+                sleep(5)
+                spinner.stopAnimating()
             }
         }
-        
-        print("Register")
+        print("registerButtonTappedHandler ended")
     }
 }
