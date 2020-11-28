@@ -1,13 +1,5 @@
 import UIKit
 
-extension String {
-    func isValidEmail() -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: self)
-    }
-}
-
 class RegistrationViewController: UIViewController {
     
     // MARK: - Views
@@ -28,13 +20,16 @@ class RegistrationViewController: UIViewController {
     private let statusStudentButton = CheckBoxButton()
     private let statusTeacherButton = CheckBoxButton()
     
-    private var spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
-    // MARK: - Insets
+    private var spinner = UIActivityIndicatorView(style: .medium)
     
+    // MARK: - Insets
     private let leftInset: CGFloat = 24.0
     private let rightInset: CGFloat = 24.0
     private let buttonHeight: CGFloat = 48.0
     private let topInsetTextFieldIndicator: CGFloat = 3.0
+    
+    // MARK: - ViewModel
+    private let model = viewModels.registrationViewModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +37,6 @@ class RegistrationViewController: UIViewController {
         setupViews()
         setupSpinner()
     }
-    
-    lazy private var userManager = UserManager()
     
     // MARK: - Private methods
     private func setupViews() {
@@ -99,7 +92,6 @@ class RegistrationViewController: UIViewController {
         titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
-        
     }
     
     private func setupRegisterButton() {
@@ -124,90 +116,71 @@ class RegistrationViewController: UIViewController {
         spinner.transform = CGAffineTransform(scaleX: 5, y: 5)
     }
     
-    private func isPersonalDataValid(_ completion: @escaping (_ isUserDataValid: Bool) -> Void) {
+    private func isPersonalDataValid(_ data: PersonalData, _ completion: @escaping (_ isUserDataValid: Bool) -> Void) {
+        
+        if data.firstName.isEmpty {
+            let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите ваше имя")
+            firstNameTextField.attributedPlaceholder = attrString
+        }
+        
+        if data.lastName.isEmpty {
+            let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите вашу фамилию")
+            secondNameTextField.attributedPlaceholder = attrString
+        }
+        
+        if  data.university.isEmpty {
+            let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите ваш университет")
+            universityTextField.attributedPlaceholder = attrString
+        }
+        
         var isFreeEmail = false
         var isGoodPassword = false
         
-        
-        if let firstname = self.firstNameTextField.text {
-            if firstname.isEmpty {
-                self.firstNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваше имя", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+        let repeatPassword = repeatPasswordTextField.text ?? ""
+        if data.password.isEmpty {
+            let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите ваш пароль")
+            passwordTextField.attributedPlaceholder = attrString
+        } else if !repeatPassword.isEmpty {
+            if data.password == repeatPassword {
+                isGoodPassword = true
             }
+        } else {
+            errorLabel.text = "Пароли не совпадают"
         }
         
-        if let secondname = self.secondNameTextField.text {
-            if  secondname.isEmpty {
-                self.secondNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите вашу фамилию", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
-            }
-        }
-        
-        if let university = self.universityTextField.text {
-            if  university.isEmpty {
-                self.universityTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш университет", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
-            }
-        }
-        
-        if let password = self.passwordTextField.text {
-            if  password.isEmpty {
-                self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
-            } else if let repeatPassword = self.repeatPasswordTextField.text {
-                if password == repeatPassword {
-                    isGoodPassword = true
+        if data.email.isEmpty {
+            let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите ваш email")
+            emailTextField.attributedPlaceholder = attrString
+            completion(false)
+        } else if !data.email.isValidEmail() {
+            errorLabel.text = "Некорректный email"
+            completion(false)
+        } else {
+            model.userExist(email: data.email) { [self] userExists in
+                isFreeEmail = !userExists
+                if !userExists {
+                    self.errorLabel.text = "Данный пользователь уже существует"
                 }
-                else {
-                    self.errorLabel.text = "Пароли не совпадают"
-                }
-            }
-        }
-        
-        if let email = self.emailTextField.text {
-            if  email.isEmpty {
-                self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
-            } else if !email.isValidEmail() {
-                self.errorLabel.text = "Некорректный email"
-            } else {
-                self.userManager.isUserExist(id: PersonalData.getId(email: email)) { result in
-                    print("isUserExist in checkValid", result)
-                    if result {
-                        self.errorLabel.text = "Данный пользователь уже существует"
-                    } else {
-                        isFreeEmail = true
-                    }
-                    
-                    if isFreeEmail && isGoodPassword {
-                        completion(true)
-                    } else {
-                        completion(false)
-                    }
-                }
+                completion(isFreeEmail && isGoodPassword)
             }
         }
     }
     
     @objc private func registerButtonTapped() {
         spinner.startAnimating()
-        DispatchQueue.main.async {
-            self.isPersonalDataValid() { [self] isValid in
-                print("Can user register?", isValid)
-                if isValid {
-                    let personalData = PersonalData()
-                    personalData.firstname = firstNameTextField.text!
-                    personalData.lastname = secondNameTextField.text!
-                    personalData.university = universityTextField.text!
-                    personalData.setEmailAndPassword(email: emailTextField.text!, password: passwordTextField.text!)
-                    userManager.addNewUser(personalData: personalData) { err in
-                        if let err = err {
-                            print("Error adding user: \(err)")
-                        } else {
-                            navigationController?.pushViewController(MainTabBarController(), animated: true)
-                            print("Success adding user")
-                        }
-                    }
-                }
-                sleep(5)
-                spinner.stopAnimating()
+        
+        let firstname = firstNameTextField.text ?? ""
+        let secondname = secondNameTextField.text ?? ""
+        let university = universityTextField.text ?? ""
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        let personalData = PersonalData(firstName: firstname, lastName: secondname, university: university, email: email, password: password)
+        
+        isPersonalDataValid(personalData) { [self] isValid in
+            if isValid {
+                navigationController?.pushViewController(MainTabBarController(), animated: true)
             }
+            spinner.stopAnimating()
         }
-        print("registerButtonTappedHandler ended")
     }
 }

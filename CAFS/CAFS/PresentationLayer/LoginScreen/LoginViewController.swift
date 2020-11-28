@@ -33,20 +33,19 @@ class LoginViewController: UIViewController {
         setupLoginButton()
         setupLoginLabel()
         setupStackView()
-        
     }
 
     private func setupLoginLabel() {
-            view.addSubview(titleLabel)
-            titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
             
-            titleLabel.text = "Вход"
-            titleLabel.textColor = UIColor.hseBlue
-            titleLabel.font = UIFont.systemFont(ofSize: 32.0, weight: .bold)
+        titleLabel.text = "Вход"
+        titleLabel.textColor = UIColor.hseBlue
+        titleLabel.font = UIFont.systemFont(ofSize: 32.0, weight: .bold)
             
-            titleLabel.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
     }
     
@@ -68,7 +67,6 @@ class LoginViewController: UIViewController {
         loginStackiew.addArrangedSubview(errorLabel)
         loginStackiew.axis = .vertical
         loginStackiew.spacing = 50.0
-        
     }
     
     private func setupLoginButton() {
@@ -96,26 +94,26 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func loginButtonTapped() {
-        if emailTextField.text == "" {
+        let email = emailTextField.text ?? ""
+        if email.isEmpty {
             emailTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
         
-        if passwordTextField.text == "" {
+        let password = passwordTextField.text ?? ""
+        if  password.isEmpty {
             passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
         
-        if true {
+        let success = true // TODO: - Set normal condition
+        if success {
             self.navigationController?.pushViewController(MainTabBarController(), animated: true)
         }
         else {
             errorLabel.text = "Не верный логин или пароль"
         }
-        print("Login")
     }
     
     @objc private func registerButtonTapped() {
         self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
-        print("Register")
     }
-    
 }

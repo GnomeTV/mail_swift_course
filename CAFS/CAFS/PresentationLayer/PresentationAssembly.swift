@@ -2,12 +2,15 @@ import Foundation
 
 protocol IPresentationAssembly {
     var loginViewModel: ILoginViewModel { get }
-    // TODO: - Add view models here
+    var registrationViewModel: IRegistrationViewModel { get }
 }
 
 final class PresentationAssembly: IPresentationAssembly {
     
-    var loginViewModel: ILoginViewModel = LoginViewModel()
+    lazy var loginViewModel: ILoginViewModel = { LoginViewModel() }()
+    lazy var registrationViewModel: IRegistrationViewModel = {
+        RegistrationViewModel(userManager: servicesAssembly.userManager)
+    }()
     
     private let servicesAssembly: IServicesAssembly
     

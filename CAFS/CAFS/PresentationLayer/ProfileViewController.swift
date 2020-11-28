@@ -13,7 +13,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         }
         let cancelAction = UIAlertAction(title: "Отменить", style: .cancel, handler: nil)
         
-        AlertService.showAlert(style: .actionSheet, title: "Выберете фото", message: nil, actions: [photoLibraryAction, cameraAction, cancelAction], completion: nil)
+        UIAlertController.showAlert(style: .actionSheet, title: "Выберете фото", message: nil, actions: [photoLibraryAction, cameraAction, cancelAction], completion: nil)
         
     }
     

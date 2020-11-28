@@ -1,5 +1,4 @@
 import Foundation
-import CryptoKit
 
 extension String {
     func genHash() -> String {
