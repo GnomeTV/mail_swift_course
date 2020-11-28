@@ -24,4 +24,9 @@ struct PersonalData: Codable {
         let passwordHash = String(format: "%02X", password.hash)
         return (emailHash + passwordHash).genSecureHash()
     }
+    
+    func checkPassword( _ email: String, _ password: String) -> Bool {
+        let checkingPassword = Self.safePassword(password, email)
+        return self.password == checkingPassword
+    }
 }

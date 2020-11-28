@@ -117,7 +117,6 @@ class RegistrationViewController: UIViewController {
     }
     
     private func isPersonalDataValid(_ data: PersonalData, _ completion: @escaping (_ isUserDataValid: Bool) -> Void) {
-        
         if data.firstName.isEmpty {
             let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите ваше имя")
             firstNameTextField.attributedPlaceholder = attrString
@@ -136,12 +135,12 @@ class RegistrationViewController: UIViewController {
         var isFreeEmail = false
         var isGoodPassword = false
         
-        let repeatPassword = repeatPasswordTextField.text ?? ""
+        let repeatPassword =  repeatPasswordTextField.text ?? ""
         if data.password.isEmpty {
             let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите ваш пароль")
             passwordTextField.attributedPlaceholder = attrString
         } else if !repeatPassword.isEmpty {
-            if data.password == repeatPassword {
+            if data.checkPassword(data.email, repeatPassword) {
                 isGoodPassword = true
             }
         } else {
@@ -158,8 +157,8 @@ class RegistrationViewController: UIViewController {
         } else {
             model.userExist(email: data.email) { [self] userExists in
                 isFreeEmail = !userExists
-                if !userExists {
-                    self.errorLabel.text = "Данный пользователь уже существует"
+                if userExists {
+                    errorLabel.text = "Данный пользователь уже существует"
                 }
                 completion(isFreeEmail && isGoodPassword)
             }
@@ -178,7 +177,13 @@ class RegistrationViewController: UIViewController {
         
         isPersonalDataValid(personalData) { [self] isValid in
             if isValid {
-                navigationController?.pushViewController(MainTabBarController(), animated: true)
+                model.addNewUser(personalData: personalData) { isDone in
+                    if isDone {
+                        navigationController?.pushViewController(MainTabBarController(), animated: true)
+                    } else {
+                        errorLabel.text = "Что-то пошло не так, попробуйте позже"
+                    }
+                }
             }
             spinner.stopAnimating()
         }
