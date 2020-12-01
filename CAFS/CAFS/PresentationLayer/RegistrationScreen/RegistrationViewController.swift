@@ -177,11 +177,13 @@ class RegistrationViewController: UIViewController {
         
         isPersonalDataValid(personalData) { [self] isValid in
             if isValid {
-                model.addNewUser(personalData: personalData) { isDone in
-                    if isDone {
-                        navigationController?.pushViewController(MainTabBarController(), animated: true)
-                    } else {
-                        errorLabel.text = "Что-то пошло не так, попробуйте позже"
+                DispatchQueue.main.async {
+                    model.addNewUser(personalData: personalData) { isDone in
+                        if isDone {
+                            navigationController?.pushViewController(MainTabBarController(), animated: true)
+                        } else {
+                            errorLabel.text = "Что-то пошло не так, попробуйте позже"
+                        }
                     }
                 }
             }
