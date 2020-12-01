@@ -1,5 +1,7 @@
 
 import UIKit
+import Firebase
+import FirebaseFirestoreSwift
 
 class LoginViewController: UIViewController {
     
@@ -26,7 +28,17 @@ class LoginViewController: UIViewController {
         setupViews()
     }
     
+    // MARK: - ViewModel
+    private let model = viewModels.loginViewModel
+
     // MARK: - Private methods
+    
+    private func isUserExist(_ email : String) -> Bool {
+        return true
+    }
+    private func isPasswordValid(_ email : String, _ password : String) -> Bool {
+        return true
+    }
     
     private func setupViews() {
         setupRegisterButton()
