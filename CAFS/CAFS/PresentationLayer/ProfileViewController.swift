@@ -54,7 +54,7 @@ class ProfileViewController: UIViewController {
     private let lastnameTextField = UnderlineTextLabel()
     private let universityTextField = UnderlineTextLabel()
     
-    private let infoStackView = UIStackView()
+    private let infoView = UIView()
     private let infoScrollView = UIScrollView()
     private let infoTextView = UITextView()
     
@@ -154,18 +154,18 @@ class ProfileViewController: UIViewController {
         infoScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 400).isActive = true
         infoScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
         
-        infoScrollView.addSubview(infoStackView)
-        infoStackView.translatesAutoresizingMaskIntoConstraints = false
-        infoStackView.axis = .vertical
-        infoStackView.spacing = 10
+        infoScrollView.addSubview(infoView)
+        infoTextView.translatesAutoresizingMaskIntoConstraints = false
+        //infoTextView.axis = .vertical
+        //infoTextView.spacing = 10
         
-        infoStackView.leadingAnchor.constraint(equalTo: infoScrollView.leadingAnchor).isActive = true
-        infoStackView.topAnchor.constraint(equalTo: infoScrollView.topAnchor).isActive = true
-        infoStackView.trailingAnchor.constraint(equalTo: infoScrollView.trailingAnchor).isActive = true
-        infoStackView.bottomAnchor.constraint(equalTo: infoScrollView.bottomAnchor).isActive = true
-        infoStackView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        infoView.leadingAnchor.constraint(equalTo: infoScrollView.leadingAnchor).isActive = true
+        infoView.topAnchor.constraint(equalTo: infoScrollView.topAnchor).isActive = true
+        infoView.trailingAnchor.constraint(equalTo: infoScrollView.trailingAnchor).isActive = true
+        infoView.bottomAnchor.constraint(equalTo: infoScrollView.bottomAnchor).isActive = true
+        infoView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         
-        infoStackView.addArrangedSubview(infoTextView)
+        infoView.addSubview(infoTextView)
         infoTextView.text = "Здесь вы можете кратко описать выши научные работы и прочие достижения"
 
     }
