@@ -48,11 +48,13 @@ class ProfileViewController: UIViewController {
     private let profileImageStackView = UIStackView()
     private let profileImageView = UIImageView(image: UIImage(named: "defaultProfilePhoto_image"))
     private let profileImageButton = UIButton()
+    private let preferencesButton = UIButton()
     
     private let personalInfoStackView = UIStackView()
     private let firstnameTextField = UnderlineTextLabel()
     private let lastnameTextField = UnderlineTextLabel()
     private let universityTextField = UnderlineTextLabel()
+    private let statusTextField = UnderlineTextLabel()
     
     private let infoView = UIView()
     private let infoScrollView = UIScrollView()
@@ -121,10 +123,12 @@ class ProfileViewController: UIViewController {
         firstnameTextField.text = "Павел"
         lastnameTextField.text = "Травкин"
         universityTextField.text = "HSE"
+        statusTextField.text = "Student"
         
         personalInfoStackView.addArrangedSubview(firstnameTextField)
         personalInfoStackView.addArrangedSubview(lastnameTextField)
         personalInfoStackView.addArrangedSubview(universityTextField)
+        personalInfoStackView.addArrangedSubview(statusTextField)
         personalInfoStackView.axis = .vertical
         personalInfoStackView.spacing = 50.0
         
@@ -132,6 +136,7 @@ class ProfileViewController: UIViewController {
     
     private func setupProfileLabel() {
         view.addSubview(titleLabel)
+        view.addSubview(preferencesButton)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.text = "Профиль"
@@ -142,6 +147,16 @@ class ProfileViewController: UIViewController {
         titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
+        
+        preferencesButton.translatesAutoresizingMaskIntoConstraints = false
+        preferencesButton.setImage(UIImage(named: "preferences_icon"), for: .normal)
+        preferencesButton.layer.masksToBounds = true
+        preferencesButton.addTarget(self, action: #selector(preferencesButtonTapped), for: .touchUpInside)
+        
+        preferencesButton.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
+        preferencesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
+        preferencesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset + 360).isActive = true
+        preferencesButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
     
     }
     
@@ -174,6 +189,13 @@ class ProfileViewController: UIViewController {
         
         print("Add profile photo")
         showImagePickerControllerActionSheet()
+
+    }
+    
+    @objc private func preferencesButtonTapped() {
+        
+        print("preferencesButton tapped")
+        navigationController?.pushViewController(PreferencesViewController(), animated: true)
 
     }
 }
