@@ -134,7 +134,7 @@ class LoginViewController: UIViewController {
             model.userExist(email: data.email) { userExists in
                 isUserExists = userExists
                 if userExists {
-                    
+                    completion(isUserExists, nil)
                 } else {
                     completion(isUserExists, nil)
                 }
