@@ -35,13 +35,6 @@ class LoginViewController: UIViewController {
 
     // MARK: - Private methods
     
-    private func isUserExist(_ email : String) -> Bool {
-        return true
-    }
-    private func isPasswordValid(_ email : String, _ password : String) -> Bool {
-        return true
-    }
-    
     private func setupViews() {
         setupRegisterButton()
         setupLoginButton()
