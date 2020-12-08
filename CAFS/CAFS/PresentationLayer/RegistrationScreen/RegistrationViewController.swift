@@ -186,6 +186,10 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
             universityTextField.attributedPlaceholder = attrString
         }
         
+        if data.status.isEmpty {
+            errorLabel.text = "Что-то пошло не так"
+        }
+        
         var isFreeEmail = false
         var isGoodPassword = false
         
@@ -225,9 +229,10 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
         let firstname = firstNameTextField.text ?? ""
         let secondname = secondNameTextField.text ?? ""
         let university = universityTextField.text ?? ""
+        let status = statusStudentButton.isChecked ? statusStudentLabel.text ?? "" : statusTeacherLabel.text ?? ""
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-        let personalData = PersonalData(firstName: firstname, lastName: secondname, university: university, email: email, password: password)
+        let personalData = PersonalData(firstName: firstname, lastName: secondname, university: university, status: status, email: email, password: password)
         
         isPersonalDataValid(personalData) { [self] isValid in
             if isValid {
