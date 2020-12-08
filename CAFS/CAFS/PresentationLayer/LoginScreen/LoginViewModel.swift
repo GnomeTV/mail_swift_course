@@ -2,17 +2,14 @@ import Foundation
 
 protocol ILoginViewModel {
     func userExist(email: String, _ completion: @escaping (_ userExists: Bool) -> Void)
-    func updateUserPersonalData(personalData: PersonalData)
-    var userPersonalData: PersonalData { get set }
+    func getUserData(email: String, _ completion: @escaping (Result<PersonalData, Error>) -> Void)
 }
 
 class LoginViewModel: ILoginViewModel {
     private let userManager: IUserManager
-    internal var userPersonalData: PersonalData
     
-    init(userManager: IUserManager, personalData: PersonalData) {
+    init(userManager: IUserManager) {
         self.userManager = userManager
-        self.userPersonalData = personalData
     }
 
     
@@ -20,7 +17,8 @@ class LoginViewModel: ILoginViewModel {
         userManager.userExist(email: email, completion)
     }
     
-    func updateUserPersonalData(personalData: PersonalData) {
-        self.userPersonalData = personalData
+    func getUserData(email: String, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
+        let id = email.genHash()
+        userManager.getUserData(id: id, completion)
     }
 }

@@ -47,6 +47,7 @@ class LoginViewController: UIViewController {
         setupLoginButton()
         setupLoginLabel()
         setupStackView()
+        setupSpinner()
     }
 
     private func setupLoginLabel() {
@@ -116,8 +117,19 @@ class LoginViewController: UIViewController {
         registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42.0).isActive = true
     }
     
-    private func isPersonalDataValid(_ data: PersonalData, _ completion: @escaping (_ isUserDataValid: Bool, _ personalData: PersonalData?) -> Void) {
-        var isUserExists = false
+    private func setupSpinner() {
+        view.addSubview(spinner)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        spinner.sizeToFit()
+        spinner.hidesWhenStopped = true
+        spinner.transform = CGAffineTransform(scaleX: 5, y: 5)
+    }
+    
+    private func isPersonalDataValid(_ email: String, _ password: String, _ completion: @escaping (_ isUserDataValid: Bool, _ personalData: PersonalData?) -> Void) {
+        let data = PersonalData(firstName: "", lastName: "", university: "", status: "", email: email, password: password)
+        
         if data.password.isEmpty {
             let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите ваш пароль")
             passwordTextField.attributedPlaceholder = attrString
@@ -131,12 +143,12 @@ class LoginViewController: UIViewController {
             errorLabel.text = "Некорректный email"
             completion(false, nil)
         } else {
-            model.userExist(email: data.email) { userExists in
-                isUserExists = userExists
-                if userExists {
-                    completion(isUserExists, nil)
-                } else {
-                    completion(isUserExists, nil)
+            model.getUserData(email: data.email) { result in
+                switch result {
+                case .success(let personalData):
+                    completion(true, personalData)
+                case .failure(_):
+                    completion(false, nil)
                 }
             }
         }
@@ -147,11 +159,10 @@ class LoginViewController: UIViewController {
         
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-        let personalData = PersonalData(firstName: "", lastName: "", university: "", status: "", email: email, password: password)
         
-        isPersonalDataValid(personalData) { [self] isValid, userData in
+        isPersonalDataValid(email, password) { [self] isValid, userData in
             if isValid {
-                model.updateUserPersonalData(personalData: personalData)
+                LoginViewController.userPersonalData = userData!
                 self.navigationController?.pushViewController(MainTabBarController(), animated: true)
             } else {
                 errorLabel.text = "Не верный логин или пароль"

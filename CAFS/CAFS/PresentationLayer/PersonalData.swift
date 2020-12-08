@@ -24,6 +24,18 @@ struct PersonalData: Codable {
         self.password = Self.safePassword(password, email)
     }
     
+    init() {
+        self.firstName = ""
+        self.lastName = ""
+        self.university = ""
+        self.status = ""
+        self.avatar = ""
+        self.works = [""]
+        self.matches = [""]
+        self.email = ""
+        self.password = ""
+    }
+    
     init(personalData: PersonalData) {
         self.firstName = personalData.firstName
         self.lastName = personalData.lastName
