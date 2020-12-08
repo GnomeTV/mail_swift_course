@@ -75,6 +75,19 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
         repeatPasswordTextField.placeholder = "Повторите пароль"
         errorLabel.textColor = UIColor.systemRed
         
+        emailTextField.spellCheckingType = .no
+        emailTextField.autocorrectionType = .no
+        emailTextField.autocapitalizationType = .none
+        
+        
+        passwordTextField.spellCheckingType = .no
+        passwordTextField.autocorrectionType = .no
+        passwordTextField.autocapitalizationType = .none
+        
+        repeatPasswordTextField.spellCheckingType = .no
+        repeatPasswordTextField.autocorrectionType = .no
+        repeatPasswordTextField.autocapitalizationType = .none
+        
         checkBoxView.addSubview(statusStudentButton)
         statusStudentButton.translatesAutoresizingMaskIntoConstraints = false
         statusStudentButton.topAnchor.constraint(equalTo: checkBoxView.topAnchor, constant: topInsetCheckBoxButton).isActive = true
@@ -171,6 +184,11 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
     }
     
     private func isPersonalDataValid(_ data: PersonalData, _ completion: @escaping (_ isUserDataValid: Bool) -> Void) {
+        var isFreeEmail = false
+        var isGoodPassword = false
+        let isAllBaseFieldsNotEmpty = !data.isAnyBaseFieldsEmpty()
+        print("isAllBaseFieldsNotEmpty?", isAllBaseFieldsNotEmpty)
+        print("Status: ", data.status)
         if data.firstName.isEmpty {
             let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите ваше имя")
             firstNameTextField.attributedPlaceholder = attrString
@@ -187,11 +205,8 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
         }
         
         if data.status.isEmpty {
-            errorLabel.text = "Что-то пошло не так"
+            errorLabel.text = "Укажите свой статус"
         }
-        
-        var isFreeEmail = false
-        var isGoodPassword = false
         
         let repeatPassword =  repeatPasswordTextField.text ?? ""
         if data.password.isEmpty {
@@ -218,8 +233,18 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
                 if userExists {
                     errorLabel.text = "Данный пользователь уже существует"
                 }
-                completion(isFreeEmail && isGoodPassword)
+                completion(isFreeEmail && isGoodPassword && isAllBaseFieldsNotEmpty)
             }
+        }
+    }
+    
+    private func getStatus() -> String {
+        let statusStudent = statusStudentLabel.text ?? ""
+        let statusTeacher = statusTeacherLabel.text ?? ""
+        if (!statusStudentButton.isChecked && !statusTeacherButton.isChecked) {
+            return ""
+        } else {
+            return statusStudentButton.isChecked ? statusStudent : statusTeacher
         }
     }
     
@@ -229,7 +254,7 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
         let firstname = firstNameTextField.text ?? ""
         let secondname = secondNameTextField.text ?? ""
         let university = universityTextField.text ?? ""
-        let status = statusStudentButton.isChecked ? statusStudentLabel.text ?? "" : statusTeacherLabel.text ?? ""
+        let status = getStatus()
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         let personalData = PersonalData(firstName: firstname, lastName: secondname, university: university, status: status, email: email, password: password)

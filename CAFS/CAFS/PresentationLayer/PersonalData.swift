@@ -11,7 +11,7 @@ struct PersonalData: Codable {
     var email: String
     private(set) var password: String
     
-    init(firstName: String, lastName: String, university: String, status: String = "",
+    init(firstName: String, lastName: String, university: String, status: String,
          avatar: String = "", works: [String] = [""], matches: [String] = [""], email: String, password: String) {
         self.firstName = firstName
         self.lastName = lastName
@@ -37,5 +37,9 @@ struct PersonalData: Codable {
     func checkPassword( _ email: String, _ password: String) -> Bool {
         let checkingPassword = Self.safePassword(password, email)
         return self.password == checkingPassword
+    }
+    
+    func isAnyBaseFieldsEmpty() -> Bool {
+        return firstName.isEmpty || lastName.isEmpty || university.isEmpty || status.isEmpty
     }
 }
