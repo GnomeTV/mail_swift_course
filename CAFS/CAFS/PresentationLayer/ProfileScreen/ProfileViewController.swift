@@ -75,7 +75,7 @@ class ProfileViewController: UIViewController {
         setupViews()
     }
     
-    private let model = viewModels.registrationViewModel
+    private let model = viewModels.profileViewModel
     
     // MARK: - Private methods
     private func setupViews() {
