@@ -4,13 +4,22 @@ struct PersonalData: Codable {
     var firstName: String
     var lastName: String
     var university: String
+    var status: String
+    var avatar: String
+    var works: [String]
+    var matches: [String]
     var email: String
     private(set) var password: String
     
-    init(firstName: String, lastName: String, university: String, email: String, password: String) {
+    init(firstName: String, lastName: String, university: String, status: String = "",
+         avatar: String = "", works: [String] = [""], matches: [String] = [""], email: String, password: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.university = university
+        self.status = status
+        self.avatar = avatar
+        self.works = works
+        self.matches = matches
         self.email = email
         self.password = Self.safePassword(password, email)
     }
