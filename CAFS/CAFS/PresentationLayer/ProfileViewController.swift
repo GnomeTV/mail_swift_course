@@ -75,6 +75,8 @@ class ProfileViewController: UIViewController {
         setupViews()
     }
     
+    private let model = viewModels.registrationViewModel
+    
     // MARK: - Private methods
     private func setupViews() {
         setupProfileLabel()
@@ -120,10 +122,10 @@ class ProfileViewController: UIViewController {
         personalInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         personalInfoStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
         
-        firstnameTextField.text = "Павел"
-        lastnameTextField.text = "Травкин"
-        universityTextField.text = "HSE"
-        statusTextField.text = "Student"
+        firstnameTextField.text = model.userPersonalData.firstName
+        lastnameTextField.text = model.userPersonalData.lastName
+        universityTextField.text = model.userPersonalData.university
+        statusTextField.text = model.userPersonalData.status
         
         personalInfoStackView.addArrangedSubview(firstnameTextField)
         personalInfoStackView.addArrangedSubview(lastnameTextField)

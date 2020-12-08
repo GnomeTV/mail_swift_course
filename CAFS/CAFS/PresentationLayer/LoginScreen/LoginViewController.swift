@@ -116,7 +116,7 @@ class LoginViewController: UIViewController {
         registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42.0).isActive = true
     }
     
-    private func isPersonalDataValid(_ data: PersonalData, _ completion: @escaping (_ isUserDataValid: Bool) -> Void) {
+    private func isPersonalDataValid(_ data: PersonalData, _ completion: @escaping (_ isUserDataValid: Bool, _ personalData: PersonalData?) -> Void) {
         var isUserExists = false
         if data.password.isEmpty {
             let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите ваш пароль")
@@ -126,17 +126,18 @@ class LoginViewController: UIViewController {
         if data.email.isEmpty {
             let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите ваш email")
             emailTextField.attributedPlaceholder = attrString
-            completion(false)
+            completion(false, nil)
         } else if !data.email.isValidEmail() {
             errorLabel.text = "Некорректный email"
-            completion(false)
+            completion(false, nil)
         } else {
-            model.userExist(email: data.email) { [self] userExists in
+            model.userExist(email: data.email) { userExists in
                 isUserExists = userExists
                 if userExists {
-                    errorLabel.text = "Данный пользователь уже существует"
+                    
+                } else {
+                    completion(isUserExists, nil)
                 }
-                completion(isUserExists)
             }
         }
     }
@@ -148,8 +149,9 @@ class LoginViewController: UIViewController {
         let password = passwordTextField.text ?? ""
         let personalData = PersonalData(firstName: "", lastName: "", university: "", status: "", email: email, password: password)
         
-        isPersonalDataValid(personalData) { [self] isValid in
+        isPersonalDataValid(personalData) { [self] isValid, userData in
             if isValid {
+                model.updateUserPersonalData(personalData: personalData)
                 self.navigationController?.pushViewController(MainTabBarController(), animated: true)
             } else {
                 errorLabel.text = "Не верный логин или пароль"
