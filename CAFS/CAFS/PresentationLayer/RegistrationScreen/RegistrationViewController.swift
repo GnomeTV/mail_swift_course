@@ -106,7 +106,6 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
 
         statusStudentLabel.heightAnchor.constraint(equalToConstant: 25.0).isActive = true
         statusStudentLabel.leadingAnchor.constraint(equalTo: statusStudentButton.leadingAnchor, constant: 40.0).isActive = true
-//        statusStudentLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         statusStudentLabel.topAnchor.constraint(equalTo: checkBoxView.topAnchor, constant: 27.0).isActive = true
         
         checkBoxView.addSubview(statusTeacherButton)
@@ -263,6 +262,7 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
                 DispatchQueue.main.async {
                     model.addNewUser(personalData: personalData) { isDone in
                         if isDone {
+                            model.updateUserPersonalData(personalData: personalData)
                             navigationController?.pushViewController(MainTabBarController(), animated: true)
                         } else {
                             errorLabel.text = "Что-то пошло не так, попробуйте позже"

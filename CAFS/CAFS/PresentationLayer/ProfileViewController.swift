@@ -48,13 +48,15 @@ class ProfileViewController: UIViewController {
     private let profileImageStackView = UIStackView()
     private let profileImageView = UIImageView(image: UIImage(named: "defaultProfilePhoto_image"))
     private let profileImageButton = UIButton()
+    private let preferencesButton = UIButton()
     
     private let personalInfoStackView = UIStackView()
     private let firstnameTextField = UnderlineTextLabel()
     private let lastnameTextField = UnderlineTextLabel()
     private let universityTextField = UnderlineTextLabel()
+    private let statusTextField = UnderlineTextLabel()
     
-    private let infoStackView = UIStackView()
+    private let infoView = UIView()
     private let infoScrollView = UIScrollView()
     private let infoTextView = UITextView()
     
@@ -72,6 +74,8 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .white
         setupViews()
     }
+    
+    private let model = viewModels.registrationViewModel
     
     // MARK: - Private methods
     private func setupViews() {
@@ -118,13 +122,15 @@ class ProfileViewController: UIViewController {
         personalInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         personalInfoStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
         
-        firstnameTextField.text = "Павел"
-        lastnameTextField.text = "Травкин"
-        universityTextField.text = "HSE"
+        firstnameTextField.text = model.userPersonalData.firstName
+        lastnameTextField.text = model.userPersonalData.lastName
+        universityTextField.text = model.userPersonalData.university
+        statusTextField.text = model.userPersonalData.status
         
         personalInfoStackView.addArrangedSubview(firstnameTextField)
         personalInfoStackView.addArrangedSubview(lastnameTextField)
         personalInfoStackView.addArrangedSubview(universityTextField)
+        personalInfoStackView.addArrangedSubview(statusTextField)
         personalInfoStackView.axis = .vertical
         personalInfoStackView.spacing = 50.0
         
@@ -132,6 +138,7 @@ class ProfileViewController: UIViewController {
     
     private func setupProfileLabel() {
         view.addSubview(titleLabel)
+        view.addSubview(preferencesButton)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.text = "Профиль"
@@ -142,6 +149,16 @@ class ProfileViewController: UIViewController {
         titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
+        
+        preferencesButton.translatesAutoresizingMaskIntoConstraints = false
+        preferencesButton.setImage(UIImage(named: "preferences_icon"), for: .normal)
+        preferencesButton.layer.masksToBounds = true
+        preferencesButton.addTarget(self, action: #selector(preferencesButtonTapped), for: .touchUpInside)
+        
+        preferencesButton.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
+        preferencesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
+        preferencesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset + 360).isActive = true
+        preferencesButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
     
     }
     
@@ -154,18 +171,18 @@ class ProfileViewController: UIViewController {
         infoScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 400).isActive = true
         infoScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
         
-        infoScrollView.addSubview(infoStackView)
-        infoStackView.translatesAutoresizingMaskIntoConstraints = false
-        infoStackView.axis = .vertical
-        infoStackView.spacing = 10
+        infoScrollView.addSubview(infoView)
+        infoTextView.translatesAutoresizingMaskIntoConstraints = false
+        //infoTextView.axis = .vertical
+        //infoTextView.spacing = 10
         
-        infoStackView.leadingAnchor.constraint(equalTo: infoScrollView.leadingAnchor).isActive = true
-        infoStackView.topAnchor.constraint(equalTo: infoScrollView.topAnchor).isActive = true
-        infoStackView.trailingAnchor.constraint(equalTo: infoScrollView.trailingAnchor).isActive = true
-        infoStackView.bottomAnchor.constraint(equalTo: infoScrollView.bottomAnchor).isActive = true
-        infoStackView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        infoView.leadingAnchor.constraint(equalTo: infoScrollView.leadingAnchor).isActive = true
+        infoView.topAnchor.constraint(equalTo: infoScrollView.topAnchor).isActive = true
+        infoView.trailingAnchor.constraint(equalTo: infoScrollView.trailingAnchor).isActive = true
+        infoView.bottomAnchor.constraint(equalTo: infoScrollView.bottomAnchor).isActive = true
+        infoView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         
-        infoStackView.addArrangedSubview(infoTextView)
+        infoView.addSubview(infoTextView)
         infoTextView.text = "Здесь вы можете кратко описать выши научные работы и прочие достижения"
 
     }
@@ -174,6 +191,13 @@ class ProfileViewController: UIViewController {
         
         print("Add profile photo")
         showImagePickerControllerActionSheet()
+
+    }
+    
+    @objc private func preferencesButtonTapped() {
+        
+        print("preferencesButton tapped")
+        navigationController?.pushViewController(PreferencesViewController(), animated: true)
 
     }
 }
