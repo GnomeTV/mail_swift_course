@@ -100,7 +100,6 @@ class ProfileViewController: UIViewController {
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.masksToBounds = true
-        //profileImageView.isUserInteractionEnabled = true
         
         profileImageButton.translatesAutoresizingMaskIntoConstraints = false
         profileImageButton.setImage(UIImage(named: "addimage_icon"), for: .normal)
