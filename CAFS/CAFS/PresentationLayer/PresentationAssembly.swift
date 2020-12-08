@@ -3,6 +3,7 @@ import Foundation
 protocol IPresentationAssembly {
     var loginViewModel: ILoginViewModel { get }
     var registrationViewModel: IRegistrationViewModel { get }
+    var profileViewModel: IProfileViewModel { get }
 }
 
 final class PresentationAssembly: IPresentationAssembly {
@@ -13,6 +14,10 @@ final class PresentationAssembly: IPresentationAssembly {
     
     lazy var registrationViewModel: IRegistrationViewModel = {
         RegistrationViewModel(userManager: servicesAssembly.userManager)
+    }()
+    
+    lazy var profileViewModel: IProfileViewModel = {
+        ProfileViewModel(userManager: servicesAssembly.userManager)
     }()
     
     private let servicesAssembly: IServicesAssembly
