@@ -79,14 +79,15 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
         emailTextField.autocorrectionType = .no
         emailTextField.autocapitalizationType = .none
         
-        
         passwordTextField.spellCheckingType = .no
         passwordTextField.autocorrectionType = .no
         passwordTextField.autocapitalizationType = .none
+        passwordTextField.isSecureTextEntry = true
         
         repeatPasswordTextField.spellCheckingType = .no
         repeatPasswordTextField.autocorrectionType = .no
         repeatPasswordTextField.autocapitalizationType = .none
+        repeatPasswordTextField.isSecureTextEntry = true
         
         checkBoxView.addSubview(statusStudentButton)
         statusStudentButton.translatesAutoresizingMaskIntoConstraints = false
@@ -187,8 +188,6 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
         var isFreeEmail = false
         var isGoodPassword = false
         let isAllBaseFieldsNotEmpty = !data.isAnyBaseFieldsEmpty()
-        print("isAllBaseFieldsNotEmpty?", isAllBaseFieldsNotEmpty)
-        print("Status: ", data.status)
         if data.firstName.isEmpty {
             let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите ваше имя")
             firstNameTextField.attributedPlaceholder = attrString
