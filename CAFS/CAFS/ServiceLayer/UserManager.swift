@@ -27,6 +27,11 @@ class UserManager : IUserManager {
         firestoreManager.addNewDocument(collection: Self.collection, id: id, data: personalData, completion)
     }
     
+    func updateUserAvatar(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void) {
+        let id = personalData.email.genHash()
+        firestoreManager.editObject(personalData, inCollection: Self.collection, withId: id, completion)
+    }
+    
     func getUserData(id : String, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
         firestoreManager.getDocument(collection: Self.collection, id: id)  { result in
             switch result {

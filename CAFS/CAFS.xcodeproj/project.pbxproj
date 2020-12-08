@@ -31,6 +31,7 @@
 		BDC99E18257251BB00B08A74 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC99E17257251BB00B08A74 /* RegistrationViewModel.swift */; };
 		C21113D5255AE795005CB68F /* PersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21113D4255AE795005CB68F /* PersonalData.swift */; };
 		C23F0E792559B632008EC202 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F0E782559B632008EC202 /* LoginViewController.swift */; };
+		C28143F4257FE81400363B31 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28143F3257FE81400363B31 /* ProfileViewModel.swift */; };
 		C294C2CD256D7D740052A08E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294C2CC256D7D740052A08E /* UserManager.swift */; };
 		F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12C2EFE2553328600C26AED /* UnderlineTextField.swift */; };
 		F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1326E192548A67800D317DE /* RegistrationViewController.swift */; };
@@ -84,6 +85,7 @@
 		BDC99E17257251BB00B08A74 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		C21113D4255AE795005CB68F /* PersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalData.swift; sourceTree = "<group>"; };
 		C23F0E782559B632008EC202 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C28143F3257FE81400363B31 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C294C2CC256D7D740052A08E /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		F12C2EFE2553328600C26AED /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
 		F1326E192548A67800D317DE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 		BD109C302545EA3A00EA76D6 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				C28143F2257FE70C00363B31 /* ProfileScreen */,
 				79A6079E255C324900EBF9AE /* MainTabBarController.swift */,
 				799CFE71255D032A00301D7A /* MainNavigationController.swift */,
 				BD89ED442557123C00F20B4B /* LoginScreen */,
@@ -127,7 +130,6 @@
 				79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */,
 				79A607A0255C38AE00EBF9AE /* ChatViewController.swift */,
 				791984802578CB7B001CF6ED /* PreferencesViewController.swift */,
-				799359C1255AC3D500D5A16D /* ProfileViewController.swift */,
 				BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */,
 				BD109C362545EAD900EA76D6 /* Utils */,
 				BD8109682545F558000CC4E4 /* CustomElements */,
@@ -215,6 +217,15 @@
 				BDC99E17257251BB00B08A74 /* RegistrationViewModel.swift */,
 			);
 			path = RegistrationScreen;
+			sourceTree = "<group>";
+		};
+		C28143F2257FE70C00363B31 /* ProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				799359C1255AC3D500D5A16D /* ProfileViewController.swift */,
+				C28143F3257FE81400363B31 /* ProfileViewModel.swift */,
+			);
+			path = ProfileScreen;
 			sourceTree = "<group>";
 		};
 		EE11FB2331BCB59B6FE89A67 /* Pods */ = {
@@ -395,6 +406,7 @@
 				BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */,
 				BDC99E18257251BB00B08A74 /* RegistrationViewModel.swift in Sources */,
 				799359C2255AC3D500D5A16D /* ProfileViewController.swift in Sources */,
+				C28143F4257FE81400363B31 /* ProfileViewModel.swift in Sources */,
 				791984812578CB7B001CF6ED /* PreferencesViewController.swift in Sources */,
 				F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */,
 				BD926652257254D200E0FDDD /* NSAttributedString+Utils.swift in Sources */,
