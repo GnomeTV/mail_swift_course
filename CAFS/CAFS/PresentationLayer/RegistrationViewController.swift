@@ -8,7 +8,19 @@ extension Optional where Wrapped == String {
     }
 }
 
-class RegistrationViewController: UIViewController {
+class RegistrationViewController: UIViewController, checkBoxDelegate {
+    func didTapCheckbox(isChecked: Bool, type: String) {
+        switch type {
+        case "student":
+            print("student")
+            statusTeacherButton.isChecked = false
+        default:
+            print("teacher")
+            statusStudentButton.isChecked = false
+        }
+        
+    }
+    
     
     // MARK: - Views
 
@@ -26,7 +38,9 @@ class RegistrationViewController: UIViewController {
     
     private let checkBoxView = UIView()
     private let statusStudentButton = CheckBoxButton()
+    private let statusStudentLabel = UILabel()
     private let statusTeacherButton = CheckBoxButton()
+    private let statusTeacherLabel = UILabel()
     
     // MARK: - Insets
     
@@ -34,6 +48,7 @@ class RegistrationViewController: UIViewController {
     private let rightInset: CGFloat = 24.0
     private let buttonHeight: CGFloat = 48.0
     private let topInsetTextFieldIndicator: CGFloat = 3.0
+    private let topInsetCheckBoxButton: CGFloat = 20.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,8 +80,49 @@ class RegistrationViewController: UIViewController {
         repeatPasswordTextField.placeholder = "Повторите пароль"
         errorLabel.textColor = UIColor.systemRed
         
-        checkBoxView.addSubview(statusTeacherButton)
         checkBoxView.addSubview(statusStudentButton)
+        statusStudentButton.translatesAutoresizingMaskIntoConstraints = false
+        statusStudentButton.topAnchor.constraint(equalTo: checkBoxView.topAnchor, constant: topInsetCheckBoxButton).isActive = true
+        statusStudentButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        statusStudentButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        statusStudentButton.delegate = self
+        statusStudentButton.type = "student"
+        statusStudentButton.isChecked = false
+
+        checkBoxView.addSubview(statusStudentLabel)
+        statusStudentLabel.translatesAutoresizingMaskIntoConstraints = false
+        statusStudentLabel.text = "Студент"
+        statusStudentLabel.textColor = UIColor.hseBlue
+        statusStudentLabel.font = UIFont.systemFont(ofSize: 18.0, weight: .bold)
+
+        statusStudentLabel.heightAnchor.constraint(equalToConstant: 25.0).isActive = true
+        statusStudentLabel.leadingAnchor.constraint(equalTo: statusStudentButton.leadingAnchor, constant: 40.0).isActive = true
+//        statusStudentLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
+        statusStudentLabel.topAnchor.constraint(equalTo: checkBoxView.topAnchor, constant: 27.0).isActive = true
+        
+        checkBoxView.addSubview(statusTeacherButton)
+        statusTeacherButton.translatesAutoresizingMaskIntoConstraints = false
+        statusTeacherButton.topAnchor.constraint(equalTo: checkBoxView.topAnchor, constant: topInsetCheckBoxButton).isActive = true
+        statusTeacherButton.leadingAnchor.constraint(equalTo: statusStudentLabel.trailingAnchor, constant: 40.0).isActive = true
+        statusTeacherButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        statusTeacherButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        statusTeacherButton.delegate = self
+        statusTeacherButton.type = "teacher"
+        statusTeacherButton.isChecked = false
+        
+        checkBoxView.addSubview(statusTeacherLabel)
+        statusTeacherLabel.translatesAutoresizingMaskIntoConstraints = false
+        statusTeacherLabel.text = "Преподаватель"
+        statusTeacherLabel.textColor = UIColor.hseBlue
+        statusTeacherLabel.font = UIFont.systemFont(ofSize: 18.0, weight: .bold)
+
+        statusTeacherLabel.heightAnchor.constraint(equalToConstant: 25.0).isActive = true
+        statusTeacherLabel.leadingAnchor.constraint(equalTo: statusTeacherButton.leadingAnchor, constant: 40.0).isActive = true
+        statusTeacherLabel.topAnchor.constraint(equalTo: checkBoxView.topAnchor, constant: 27.0).isActive = true
+        
+        checkBoxView.translatesAutoresizingMaskIntoConstraints = false
+        checkBoxView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+
         
         registrationStackView.addArrangedSubview(firstNameTextField)
         registrationStackView.addArrangedSubview(secondNameTextField)
@@ -113,29 +169,27 @@ class RegistrationViewController: UIViewController {
     private func isPersonalDataValid() -> Bool {
         
         if firstNameTextField.text == "" {
-            firstNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваше имя", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+            firstNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите имя", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
         
         if secondNameTextField.text == "" {
-            secondNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите вашу фамилию", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+            secondNameTextField.attributedPlaceholder = NSAttributedString(string: "Введите фамилию", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
         
         if universityiTextField.text == "" {
-            universityiTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш университет", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+            universityiTextField.attributedPlaceholder = NSAttributedString(string: "Введите университет", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
         
         if emailTextField.text == "" {
-            emailTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+            emailTextField.attributedPlaceholder = NSAttributedString(string: "Введите email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
         
         if passwordTextField.text == "" {
-            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
+            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
         }
 
         
-        if passwordTextField.text == repeatPasswordTextField.text &&
-            passwordTextField.text != "" &&
-            emailTextField.text.isValidEmail() {
+        if passwordTextField.text == repeatPasswordTextField.text && passwordTextField.text != "" && emailTextField.text.isValidEmail() {
             let firestoreManager = FirestoreManager()
             let personalData = PersonalData()
             personalData.setFirstname(firstname: firstNameTextField.text ?? "default")
