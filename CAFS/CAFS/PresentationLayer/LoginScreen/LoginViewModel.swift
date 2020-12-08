@@ -15,6 +15,7 @@ class LoginViewModel: ILoginViewModel {
         self.userPersonalData = personalData
     }
 
+    
     func userExist(email: String, _ completion: @escaping (_ userExists: Bool) -> Void) {
         userManager.userExist(email: email, completion)
     }
