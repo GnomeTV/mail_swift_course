@@ -262,7 +262,7 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
                 DispatchQueue.main.async {
                     model.addNewUser(personalData: personalData) { isDone in
                         if isDone {
-                            model.updateUserPersonalData(personalData: personalData)
+                            RegistrationViewController.userPersonalData = personalData
                             navigationController?.pushViewController(MainTabBarController(), animated: true)
                         } else {
                             errorLabel.text = "Что-то пошло не так, попробуйте позже"

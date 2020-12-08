@@ -122,10 +122,10 @@ class ProfileViewController: UIViewController {
         personalInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         personalInfoStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
         
-        firstnameTextField.text = model.userPersonalData.firstName
-        lastnameTextField.text = model.userPersonalData.lastName
-        universityTextField.text = model.userPersonalData.university
-        statusTextField.text = model.userPersonalData.status
+        firstnameTextField.text = ProfileViewController.userPersonalData.firstName
+        lastnameTextField.text = ProfileViewController.userPersonalData.lastName
+        universityTextField.text = ProfileViewController.userPersonalData.university
+        statusTextField.text = ProfileViewController.userPersonalData.status
         
         personalInfoStackView.addArrangedSubview(firstnameTextField)
         personalInfoStackView.addArrangedSubview(lastnameTextField)
