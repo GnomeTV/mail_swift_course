@@ -16,6 +16,8 @@ class LoginViewController: UIViewController {
     private let loginButton = HseStyleButton()
     private let registerButton = HseStyleButton()
     
+    private var spinner = UIActivityIndicatorView(style: .medium)
+    
     // MARK: - Insets
     
     private let leftInset: CGFloat = 24.0
@@ -74,6 +76,15 @@ class LoginViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
         errorLabel.textColor = UIColor.systemRed
         
+        emailTextField.spellCheckingType = .no
+        emailTextField.autocorrectionType = .no
+        emailTextField.autocapitalizationType = .none
+        
+        passwordTextField.spellCheckingType = .no
+        passwordTextField.autocorrectionType = .no
+        passwordTextField.autocapitalizationType = .none
+        passwordTextField.isSecureTextEntry = true
+        
         loginStackiew.addArrangedSubview(emailTextField)
         loginStackiew.addArrangedSubview(passwordTextField)
         loginStackiew.addArrangedSubview(errorLabel)
@@ -105,23 +116,45 @@ class LoginViewController: UIViewController {
         registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42.0).isActive = true
     }
     
+    private func isPersonalDataValid(_ data: PersonalData, _ completion: @escaping (_ isUserDataValid: Bool) -> Void) {
+        var isUserExists = false
+        if data.password.isEmpty {
+            let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите ваш пароль")
+            passwordTextField.attributedPlaceholder = attrString
+        }
+        
+        if data.email.isEmpty {
+            let attrString = NSAttributedString.getAttributedErrorPlaceholder(for: "Введите ваш email")
+            emailTextField.attributedPlaceholder = attrString
+            completion(false)
+        } else if !data.email.isValidEmail() {
+            errorLabel.text = "Некорректный email"
+            completion(false)
+        } else {
+            model.userExist(email: data.email) { [self] userExists in
+                isUserExists = userExists
+                if userExists {
+                    errorLabel.text = "Данный пользователь уже существует"
+                }
+                completion(isUserExists)
+            }
+        }
+    }
+    
     @objc private func loginButtonTapped() {
+        spinner.startAnimating()
+        
         let email = emailTextField.text ?? ""
-        if email.isEmpty {
-            emailTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
-        }
-        
         let password = passwordTextField.text ?? ""
-        if  password.isEmpty {
-            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Введите ваш пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemRed])
-        }
+        let personalData = PersonalData(firstName: "", lastName: "", university: "", status: "", email: email, password: password)
         
-        let success = true // TODO: - Set normal condition
-        if success {
-            self.navigationController?.pushViewController(MainTabBarController(), animated: true)
-        }
-        else {
-            errorLabel.text = "Не верный логин или пароль"
+        isPersonalDataValid(personalData) { [self] isValid in
+            if isValid {
+                self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+            } else {
+                errorLabel.text = "Не верный логин или пароль"
+            }
+            spinner.stopAnimating()
         }
     }
     
