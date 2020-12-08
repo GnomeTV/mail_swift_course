@@ -7,7 +7,10 @@ protocol IPresentationAssembly {
 
 final class PresentationAssembly: IPresentationAssembly {
     
-    lazy var loginViewModel: ILoginViewModel = { LoginViewModel() }()
+    lazy var loginViewModel: ILoginViewModel = {
+        LoginViewModel(userManager: servicesAssembly.userManager)
+    }()
+    
     lazy var registrationViewModel: IRegistrationViewModel = {
         RegistrationViewModel(userManager: servicesAssembly.userManager)
     }()
