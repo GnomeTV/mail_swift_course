@@ -11,6 +11,7 @@ class UserDefaultsManager: IUserDeafaultsManager {
     let key = "userInfo"
     
     func updateUserInfo(userData: PersonalData) {
+        userInfo.set(true, forKey: "isLogged")
         let storageData = try? JSONEncoder().encode(userData)
         userInfo.set(storageData, forKey: key)
     }
