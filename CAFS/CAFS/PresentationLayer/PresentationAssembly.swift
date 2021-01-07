@@ -9,15 +9,15 @@ protocol IPresentationAssembly {
 final class PresentationAssembly: IPresentationAssembly {
     
     lazy var loginViewModel: ILoginViewModel = {
-        LoginViewModel(userManager: servicesAssembly.userManager)
+        LoginViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager)
     }()
     
     lazy var registrationViewModel: IRegistrationViewModel = {
-        RegistrationViewModel(userManager: servicesAssembly.userManager)
+        RegistrationViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager)
     }()
     
     lazy var profileViewModel: IProfileViewModel = {
-        ProfileViewModel(userManager: servicesAssembly.userManager)
+        ProfileViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager)
     }()
     
     private let servicesAssembly: IServicesAssembly

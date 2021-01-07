@@ -24,42 +24,6 @@ struct PersonalData: Codable {
         self.password = Self.safePassword(password, email)
     }
     
-    init() {
-        self.firstName = ""
-        self.lastName = ""
-        self.university = ""
-        self.status = ""
-        self.avatar = ""
-        self.works = [""]
-        self.matches = [""]
-        self.email = ""
-        self.password = ""
-    }
-    
-    init(personalData: PersonalData) {
-        self.firstName = personalData.firstName
-        self.lastName = personalData.lastName
-        self.university = personalData.university
-        self.status = personalData.status
-        self.avatar = personalData.avatar
-        self.works = personalData.works
-        self.matches = personalData.matches
-        self.email = personalData.email
-        self.password = personalData.password
-    }
-    
-    mutating func update(personalData: PersonalData) {
-        self.firstName = personalData.firstName
-        self.lastName = personalData.lastName
-        self.university = personalData.university
-        self.status = personalData.status
-        self.avatar = personalData.avatar
-        self.works = personalData.works
-        self.matches = personalData.matches
-        self.email = personalData.email
-        self.password = personalData.password
-    }
-    
     mutating func setPassword(_ password : String) {
         self.password = Self.safePassword(password, self.email)
     }

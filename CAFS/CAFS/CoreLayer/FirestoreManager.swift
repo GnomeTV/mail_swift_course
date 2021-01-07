@@ -1,8 +1,9 @@
 import UIKit
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
-protocol IFirestoreManager{
+protocol IFirestoreManager {
     func saveObject<Object: Encodable>(_ objectToSave: Object, toCollection collection: String, _ completion: @escaping (_ error: Error?) -> Void)
     
     func addNewDocument<DataType: Codable>(collection : String, id : String, data: DataType, _ completion: @escaping (_ error: Error?) -> Void)
@@ -12,19 +13,27 @@ protocol IFirestoreManager{
     func getDocument(collection: String, id: String, _ completion: @escaping (Result<DocumentSnapshot, Error>) -> Void)
     
     func editObject<Object: Codable>(_ objectToEdit: Object, inCollection collection: String, withId id: String, _ completion: @escaping (_ error: Error?) -> Void)
+    
+    func addStorageObject(path: String, name: String,  data: Data, _ completion: @escaping (Result< (StorageUploadTask, URL), Error>) -> Void)
+    
+    func getStorageObject(path: String, name: String, _ completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 class FirestoreManager: IFirestoreManager {
     
     enum FirestoreManagerError: Error {
         case documentMissing
+        case uploadMissing
+        case downloadMissing
     }
     
     private let db: Firestore
+    private let storage: Storage
     
     init() {
         FirebaseApp.configure()
         db = Firestore.firestore()
+        storage = Storage.storage()
     }
     
     func saveObject<Object: Encodable>(_ objectToSave: Object, toCollection collection: String, _ completion: @escaping (_ error: Error?) -> Void) {
@@ -70,6 +79,34 @@ class FirestoreManager: IFirestoreManager {
             completion(nil)
         } catch {
             completion(error)
+        }
+    }
+    
+    func addStorageObject(path: String, name: String,  data: Data, _ completion: @escaping (Result< (StorageUploadTask, URL), Error>) -> Void) {
+        let ref = storage.reference().child(path+name)
+        let uploadTask = ref.putData(data, metadata: nil) { metadata, error in
+            if error != nil {
+                completion(.failure(FirestoreManagerError.uploadMissing))
+                return
+            }
+        }
+        ref.downloadURL { (url, error) in
+            if let downloadURL = url {
+                completion(.success((uploadTask, downloadURL)))
+            } else {
+                completion(.failure(FirestoreManagerError.uploadMissing))
+            }
+        }
+    }
+    
+    func getStorageObject(path: String, name: String, _ completion: @escaping (Result<Data, Error>) -> Void) {
+        let ref = storage.reference().child(path+name)
+        ref.getData(maxSize: 100 * 1024 * 1024) { data, error in
+            if error != nil {
+                completion(.failure(FirestoreManagerError.downloadMissing))
+            } else {
+                completion(.success(data!))
+            }
         }
     }
 }

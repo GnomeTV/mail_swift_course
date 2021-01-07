@@ -33,8 +33,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profileImageView.image = originalImage
         }
-            
-        
         dismiss(animated: true, completion: nil)
     }
     
@@ -121,11 +119,23 @@ class ProfileViewController: UIViewController {
         personalInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         personalInfoStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
         
-        firstnameTextField.text = ProfileViewController.userPersonalData.firstName
-        lastnameTextField.text = ProfileViewController.userPersonalData.lastName
-        universityTextField.text = ProfileViewController.userPersonalData.university
-        statusTextField.text = ProfileViewController.userPersonalData.status
-        
+        if let userPersonalData = model.getUserInfo() {
+            
+            firstnameTextField.text = userPersonalData.firstName
+            lastnameTextField.text = userPersonalData.lastName
+            universityTextField.text = userPersonalData.university
+            statusTextField.text = userPersonalData.status
+            
+            model.getUserAvatar(user: userPersonalData) { result in
+                switch result {
+                case .success(let image):
+                    self.profileImageView.image = image
+                case .failure(_):
+                    print("Error download image")
+                }
+                
+            }
+        }
         personalInfoStackView.addArrangedSubview(firstnameTextField)
         personalInfoStackView.addArrangedSubview(lastnameTextField)
         personalInfoStackView.addArrangedSubview(universityTextField)
@@ -139,11 +149,11 @@ class ProfileViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(preferencesButton)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        
         titleLabel.text = "Профиль"
         titleLabel.textColor = UIColor.hseBlue
         titleLabel.font = UIFont.systemFont(ofSize: 32.0, weight: .bold)
-
+        
         titleLabel.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
@@ -158,7 +168,7 @@ class ProfileViewController: UIViewController {
         preferencesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         preferencesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset + 360).isActive = true
         preferencesButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
-    
+        
     }
     
     private func setupInfoStackView() {
@@ -183,20 +193,36 @@ class ProfileViewController: UIViewController {
         
         infoView.addSubview(infoTextView)
         infoTextView.text = "Здесь вы можете кратко описать выши научные работы и прочие достижения"
-
+        
     }
     
     @objc private func profileImageButtonTapped() {
-        
-        print("Add profile photo")
         showImagePickerControllerActionSheet()
-
+        let avatar = profileImageView.image?.pngData() ?? Data()
+        if avatar.isEmpty {
+            print("Empty image")
+        } else {
+            if var userInfo = model.getUserInfo() {
+                model.addUserAvatar(user: userInfo, avatar: avatar) { result in
+                    switch result {
+                    case .success((_, let url)):
+                        let imageURL = url.absoluteString
+                        if imageURL.isEmpty {
+                            userInfo.avatar = imageURL
+                            self.model.updateUserInfo(personalData: userInfo)
+                            print("Success upload image")
+                        }
+                    case .failure(_):
+                        print("Error upload image")
+                    }
+                }
+            }
+        }
     }
     
     @objc private func preferencesButtonTapped() {
         
-        print("preferencesButton tapped")
         navigationController?.pushViewController(PreferencesViewController(), animated: true)
-
+        
     }
 }

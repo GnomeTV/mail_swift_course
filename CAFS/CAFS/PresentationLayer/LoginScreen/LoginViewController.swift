@@ -155,7 +155,8 @@ class LoginViewController: UIViewController {
         
         isPersonalDataValid(email, password) { [self] isValid, userData in
             if isValid {
-                LoginViewController.userPersonalData = userData!
+                print("Before updating")
+                model.updateUserInfo(personalData: userData!)
                 self.navigationController?.pushViewController(MainTabBarController(), animated: true)
             } else {
                 errorLabel.text = "Не верный логин или пароль"

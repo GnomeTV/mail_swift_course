@@ -33,6 +33,7 @@
 		C23F0E792559B632008EC202 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F0E782559B632008EC202 /* LoginViewController.swift */; };
 		C28143F4257FE81400363B31 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28143F3257FE81400363B31 /* ProfileViewModel.swift */; };
 		C294C2CD256D7D740052A08E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294C2CC256D7D740052A08E /* UserManager.swift */; };
+		C2971E7C25A7359C00235E94 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2971E7B25A7359C00235E94 /* UserDefaultsManager.swift */; };
 		F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12C2EFE2553328600C26AED /* UnderlineTextField.swift */; };
 		F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1326E192548A67800D317DE /* RegistrationViewController.swift */; };
 		F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135D64E2534646F00D74201 /* AppDelegate.swift */; };
@@ -87,6 +88,7 @@
 		C23F0E782559B632008EC202 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C28143F3257FE81400363B31 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C294C2CC256D7D740052A08E /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		C2971E7B25A7359C00235E94 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		F12C2EFE2553328600C26AED /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
 		F1326E192548A67800D317DE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		F135D64B2534646F00D74201 /* CAFS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAFS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +155,7 @@
 			children = (
 				79186C26254819BF00B084E2 /* FirestoreManager.swift */,
 				BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */,
+				C2971E7B25A7359C00235E94 /* UserDefaultsManager.swift */,
 			);
 			path = CoreLayer;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				BD109C352545EACC00EA76D6 /* UIColor+Utils.swift in Sources */,
 				BDC99E1425724EB600B08A74 /* String+Hash.swift in Sources */,
 				79A6079F255C324900EBF9AE /* MainTabBarController.swift in Sources */,
+				C2971E7C25A7359C00235E94 /* UserDefaultsManager.swift in Sources */,
 				BD89ED462557125000F20B4B /* LoginViewModel.swift in Sources */,
 				F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */,
 				BD92666825725E0600E0FDDD /* UIAlertController+Utils.swift in Sources */,
