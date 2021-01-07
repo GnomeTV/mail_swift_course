@@ -24,6 +24,7 @@ class PreferencesViewController: UIViewController {
         setupViews()
     }
     
+    private let model = viewModels.preferencesViewModel
     
     // MARK: - Private methods
     private func setupViews() {

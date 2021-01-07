@@ -34,6 +34,7 @@
 		C28143F4257FE81400363B31 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28143F3257FE81400363B31 /* ProfileViewModel.swift */; };
 		C294C2CD256D7D740052A08E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294C2CC256D7D740052A08E /* UserManager.swift */; };
 		C2971E7C25A7359C00235E94 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2971E7B25A7359C00235E94 /* UserDefaultsManager.swift */; };
+		C2CC21EA25A7828600EE2D11 /* PreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CC21E925A7828600EE2D11 /* PreferencesViewModel.swift */; };
 		F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12C2EFE2553328600C26AED /* UnderlineTextField.swift */; };
 		F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1326E192548A67800D317DE /* RegistrationViewController.swift */; };
 		F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135D64E2534646F00D74201 /* AppDelegate.swift */; };
@@ -89,6 +90,7 @@
 		C28143F3257FE81400363B31 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C294C2CC256D7D740052A08E /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		C2971E7B25A7359C00235E94 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		C2CC21E925A7828600EE2D11 /* PreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewModel.swift; sourceTree = "<group>"; };
 		F12C2EFE2553328600C26AED /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
 		F1326E192548A67800D317DE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		F135D64B2534646F00D74201 /* CAFS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAFS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +126,7 @@
 		BD109C302545EA3A00EA76D6 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				C2971EA325A781C100235E94 /* PreferencesScreen */,
 				C28143F2257FE70C00363B31 /* ProfileScreen */,
 				79A6079E255C324900EBF9AE /* MainTabBarController.swift */,
 				799CFE71255D032A00301D7A /* MainNavigationController.swift */,
@@ -131,7 +134,6 @@
 				BDC99E152572514A00B08A74 /* RegistrationScreen */,
 				79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */,
 				79A607A0255C38AE00EBF9AE /* ChatViewController.swift */,
-				791984802578CB7B001CF6ED /* PreferencesViewController.swift */,
 				BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */,
 				BD109C362545EAD900EA76D6 /* Utils */,
 				BD8109682545F558000CC4E4 /* CustomElements */,
@@ -229,6 +231,15 @@
 				C28143F3257FE81400363B31 /* ProfileViewModel.swift */,
 			);
 			path = ProfileScreen;
+			sourceTree = "<group>";
+		};
+		C2971EA325A781C100235E94 /* PreferencesScreen */ = {
+			isa = PBXGroup;
+			children = (
+				791984802578CB7B001CF6ED /* PreferencesViewController.swift */,
+				C2CC21E925A7828600EE2D11 /* PreferencesViewModel.swift */,
+			);
+			path = PreferencesScreen;
 			sourceTree = "<group>";
 		};
 		EE11FB2331BCB59B6FE89A67 /* Pods */ = {
@@ -404,6 +415,7 @@
 				79A607A1255C38AE00EBF9AE /* ChatViewController.swift in Sources */,
 				BD9F6AB2257248BB00035412 /* String+Utils.swift in Sources */,
 				799CFE72255D032A00301D7A /* MainNavigationController.swift in Sources */,
+				C2CC21EA25A7828600EE2D11 /* PreferencesViewModel.swift in Sources */,
 				F18367D525546CC100664294 /* CheckBoxButton.swift in Sources */,
 				BD92666625725D6C00E0FDDD /* UIApplication+Utils.swift in Sources */,
 				C21113D5255AE795005CB68F /* PersonalData.swift in Sources */,
