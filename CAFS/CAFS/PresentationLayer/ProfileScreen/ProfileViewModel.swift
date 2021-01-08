@@ -5,7 +5,7 @@ protocol IProfileViewModel {
     func addUserAvatar(user: PersonalData, avatar: Data, _ completion: @escaping (Result< (StorageUploadTask, URL), Error>) -> Void)
     func getUserAvatar(user: PersonalData, _ completion: @escaping (Result<UIImage, Error>) -> Void)
     func getUserInfo() -> PersonalData?
-    func updateUserInfo(personalData: PersonalData)
+    func updateUserInfo(personalData: PersonalData, _ completion: @escaping (_ success: Bool) -> Void)
 }
 
 class ProfileViewModel: IProfileViewModel {
@@ -29,7 +29,12 @@ class ProfileViewModel: IProfileViewModel {
         return userDefaultsManager.getUserInfo()
     }
     
-    func updateUserInfo(personalData: PersonalData) {
+    func updateUserInfo(personalData: PersonalData, _ completion: @escaping (_ success: Bool) -> Void) {
         userDefaultsManager.updateUserInfo(userData: personalData)
+        userManager.updateUserData(personalData: personalData) { error in
+            DispatchQueue.main.async {
+                completion(error == nil)
+            }
+        }
     }
 }
