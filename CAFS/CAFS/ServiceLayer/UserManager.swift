@@ -8,7 +8,7 @@ protocol IUserManager {
     
     func userExist(email: String, _ completion: @escaping (_ userExists: Bool) -> Void)
     
-    func updateUserAvatar(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void)
+    func updateUserData(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void)
     
     func addImage(user: PersonalData, avatar: Data, _ completion: @escaping (Result< (StorageUploadTask, URL), Error>) -> Void)
     
@@ -34,7 +34,7 @@ class UserManager : IUserManager {
         firestoreManager.addNewDocument(collection: Self.collection, id: id, data: personalData, completion)
     }
     
-    func updateUserAvatar(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void) {
+    func updateUserData(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void) {
         let id = personalData.email.genHash()
         firestoreManager.updateDocument(collection: Self.collection, id: id, data: personalData, completion)
     }
