@@ -14,6 +14,8 @@ protocol IFirestoreManager {
     
     func getDocument(collection: String, id: String, _ completion: @escaping (Result<DocumentSnapshot, Error>) -> Void)
     
+    func getDocuments(collection: String, field: String, equalTo: String, _ completion: @escaping (Result<QuerySnapshot, Error>) -> Void)
+    
     func addStorageObject(path: String, name: String,  data: Data, _ completion: @escaping (Result< (StorageUploadTask, URL), Error>) -> Void)
     
     func getStorageObject(path: String, name: String, _ completion: @escaping (Result<Data, Error>) -> Void)
@@ -73,6 +75,16 @@ class FirestoreManager: IFirestoreManager {
                 completion(.success(document))
             } else {
                 completion(.failure(FirestoreManagerError.documentMissing))
+            }
+        }
+    }
+    
+    func getDocuments(collection: String, field: String, equalTo: String, _ completion: @escaping (Result<QuerySnapshot, Error>) -> Void) {
+        db.collection(collection).whereField(field, isEqualTo: equalTo).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                completion(.failure(err))
+            } else {
+                completion(.success(querySnapshot!))
             }
         }
     }
