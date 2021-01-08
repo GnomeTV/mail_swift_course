@@ -1,7 +1,7 @@
 import Foundation
 
 protocol IPreferencesViewModel {
-    
+    func clearUser()
 }
 
 class PreferencesViewModel: IPreferencesViewModel {
@@ -13,5 +13,7 @@ class PreferencesViewModel: IPreferencesViewModel {
         self.userDefaultsManager = userDefaultsManager
     }
     
-    
+    func clearUser() {
+        userDefaultsManager.clearUserInfo()
+    }
 }

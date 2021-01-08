@@ -28,11 +28,28 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
     
     // MARK: - ViewModel
     private let model = viewModels.loginViewModel
-
+    
     // MARK: - Private methods
     
     private func setupViews() {
@@ -42,15 +59,15 @@ class LoginViewController: UIViewController {
         setupStackView()
         setupSpinner()
     }
-
+    
     private func setupLoginLabel() {
         view.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-            
+        
         titleLabel.text = "Вход"
         titleLabel.textColor = UIColor.hseBlue
         titleLabel.font = UIFont.systemFont(ofSize: 32.0, weight: .bold)
-            
+        
         titleLabel.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
