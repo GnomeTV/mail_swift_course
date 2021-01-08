@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainScreenViewController: UIViewController {
+class SelectionViewController: UIViewController {
 
     private let titleLabel = UILabel()
     
@@ -20,9 +20,11 @@ class MainScreenViewController: UIViewController {
     private let universityTextField = UnderlineTextLabel()
     private let statusTextField = UnderlineTextLabel()
     
-    private let infoView = UIView()
-    private let infoScrollView = UIScrollView()
-    private let infoTextView = UITextView()
+    private let extraInfoStackView = UIStackView()
+    private let extraContactTextField = UITextView()
+    private let firstWorkNameTextField = UITextView()
+    private let secondWorkNameTextField = UITextView()
+    private let thirdWorkNameTextField = UITextView()
     
     // MARK: - Insets
     
@@ -36,10 +38,11 @@ class MainScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        self.hideKeyboardWhenTappedAround()
         view.backgroundColor = .white
     }
     
-    private let model = viewModels.mainScreenViewModel
+    private let model = viewModels.selectionViewModel
     
     // MARK: - Private methods
     private func setupViews() {
@@ -78,6 +81,7 @@ class MainScreenViewController: UIViewController {
         personalInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: screenWidth - rightInset - 150).isActive = true
         personalInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         personalInfoStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
+        personalInfoStackView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 360).isActive = true
         
         if let userPersonalData = model.getUserInfo() {
             
@@ -121,28 +125,26 @@ class MainScreenViewController: UIViewController {
     }
     
     private func setupInfoStackView() {
-        view.addSubview(infoScrollView)
-        infoScrollView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(extraInfoStackView)
         
-        infoScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
-        infoScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
-        infoScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 400).isActive = true
-        infoScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+        extraInfoStackView.translatesAutoresizingMaskIntoConstraints = false
+        extraInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
+        extraInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
+        extraInfoStackView.topAnchor.constraint(equalTo: personalInfoStackView.bottomAnchor, constant: 20).isActive = true
+        extraInfoStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -300).isActive = true
         
-        infoScrollView.addSubview(infoView)
-        infoTextView.translatesAutoresizingMaskIntoConstraints = false
-        //infoTextView.axis = .vertical
-        //infoTextView.spacing = 10
+        extraContactTextField.text = "Дополнительный контакт"
+        firstWorkNameTextField.text = "Название первой работы"
+        secondWorkNameTextField.text = "Название второй работы"
+        thirdWorkNameTextField.text = "Название третьей работы"
         
-        infoView.leadingAnchor.constraint(equalTo: infoScrollView.leadingAnchor).isActive = true
-        infoView.topAnchor.constraint(equalTo: infoScrollView.topAnchor).isActive = true
-        infoView.trailingAnchor.constraint(equalTo: infoScrollView.trailingAnchor).isActive = true
-        infoView.bottomAnchor.constraint(equalTo: infoScrollView.bottomAnchor).isActive = true
-        infoView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        extraInfoStackView.addArrangedSubview(extraContactTextField)
+        extraInfoStackView.addArrangedSubview(firstWorkNameTextField)
+        extraInfoStackView.addArrangedSubview(secondWorkNameTextField)
+        extraInfoStackView.addArrangedSubview(thirdWorkNameTextField)
         
-        infoView.addSubview(infoTextView)
-        infoTextView.text = "Здесь вы можете кратко описать выши научные работы и прочие достижения"
-        
+        extraInfoStackView.axis = .vertical
+        extraInfoStackView.spacing = 10.0
     }
 
     

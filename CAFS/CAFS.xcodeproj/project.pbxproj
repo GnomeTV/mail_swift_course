@@ -14,8 +14,8 @@
 		799CFE72255D032A00301D7A /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CFE71255D032A00301D7A /* MainNavigationController.swift */; };
 		79A6079F255C324900EBF9AE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A6079E255C324900EBF9AE /* MainTabBarController.swift */; };
 		79A607A1255C38AE00EBF9AE /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A607A0255C38AE00EBF9AE /* ChatViewController.swift */; };
-		79A607A3255C393F00EBF9AE /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */; };
-		79EA25D425A8AD10006DCFD7 /* MainScreeenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EA25D325A8AD10006DCFD7 /* MainScreeenViewModel.swift */; };
+		79A607A3255C393F00EBF9AE /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A607A2255C393F00EBF9AE /* SelectionViewController.swift */; };
+		79EA25D425A8AD10006DCFD7 /* SelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EA25D325A8AD10006DCFD7 /* SelectionViewModel.swift */; };
 		BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */; };
 		BD109C2D2545EA2300EA76D6 /* ServicesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2C2545EA2300EA76D6 /* ServicesAssembly.swift */; };
 		BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */; };
@@ -71,8 +71,8 @@
 		799CFE71255D032A00301D7A /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		79A6079E255C324900EBF9AE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		79A607A0255C38AE00EBF9AE /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainScreenViewController.swift; path = "../New Group/MainScreenViewController.swift"; sourceTree = "<group>"; };
-		79EA25D325A8AD10006DCFD7 /* MainScreeenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreeenViewModel.swift; sourceTree = "<group>"; };
+		79A607A2255C393F00EBF9AE /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectionViewController.swift; path = "../New Group/SelectionViewController.swift"; sourceTree = "<group>"; };
+		79EA25D325A8AD10006DCFD7 /* SelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewModel.swift; sourceTree = "<group>"; };
 		BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
 		BD109C2C2545EA2300EA76D6 /* ServicesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesAssembly.swift; sourceTree = "<group>"; };
 		BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAssembly.swift; sourceTree = "<group>"; };
@@ -120,8 +120,8 @@
 		79EA25D225A8ACEB006DCFD7 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
-				79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */,
-				79EA25D325A8AD10006DCFD7 /* MainScreeenViewModel.swift */,
+				79A607A2255C393F00EBF9AE /* SelectionViewController.swift */,
+				79EA25D325A8AD10006DCFD7 /* SelectionViewModel.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -415,14 +415,14 @@
 				BD89ED462557125000F20B4B /* LoginViewModel.swift in Sources */,
 				F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */,
 				BD92666825725E0600E0FDDD /* UIAlertController+Utils.swift in Sources */,
-				79A607A3255C393F00EBF9AE /* MainScreenViewController.swift in Sources */,
+				79A607A3255C393F00EBF9AE /* SelectionViewController.swift in Sources */,
 				C294C2CD256D7D740052A08E /* UserManager.swift in Sources */,
 				BD109C2D2545EA2300EA76D6 /* ServicesAssembly.swift in Sources */,
 				BD8109672545F54E000CC4E4 /* HseStyleButton.swift in Sources */,
 				BD89ED432557119A00F20B4B /* UIViewController+Utils.swift in Sources */,
 				BD89ED4125570CCC00F20B4B /* RootAssembly.swift in Sources */,
 				BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */,
-				79EA25D425A8AD10006DCFD7 /* MainScreeenViewModel.swift in Sources */,
+				79EA25D425A8AD10006DCFD7 /* SelectionViewModel.swift in Sources */,
 				F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */,
 				79A607A1255C38AE00EBF9AE /* ChatViewController.swift in Sources */,
 				BD9F6AB2257248BB00035412 /* String+Utils.swift in Sources */,

@@ -5,7 +5,7 @@ protocol IPresentationAssembly {
     var registrationViewModel: IRegistrationViewModel { get }
     var profileViewModel: IProfileViewModel { get }
     var preferencesViewModel: IPreferencesViewModel { get }
-    var mainScreenViewModel: IMainScreenViewModel { get }
+    var selectionViewModel: ISelectionViewModel { get }
 }
 
 final class PresentationAssembly: IPresentationAssembly {
@@ -26,8 +26,8 @@ final class PresentationAssembly: IPresentationAssembly {
         PreferencesViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager)
     }()
     
-    lazy var mainScreenViewModel: IMainScreenViewModel = {
-        MainScreenViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager)
+    lazy var selectionViewModel: ISelectionViewModel = {
+        SelectionViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager)
     }()
     
     private let servicesAssembly: IServicesAssembly

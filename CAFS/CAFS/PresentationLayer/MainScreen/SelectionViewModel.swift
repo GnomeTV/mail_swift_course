@@ -1,14 +1,14 @@
 import Foundation
 import FirebaseStorage
 
-protocol IMainScreenViewModel {
+protocol ISelectionViewModel {
     func addUserAvatar(user: PersonalData, avatar: Data, _ completion: @escaping (Result< (StorageUploadTask, URL), Error>) -> Void)
     func getUserAvatar(user: PersonalData, _ completion: @escaping (Result<UIImage, Error>) -> Void)
     func getUserInfo() -> PersonalData?
     func updateUserInfo(personalData: PersonalData)
 }
 
-class MainScreenViewModel: IMainScreenViewModel {
+class SelectionViewModel: ISelectionViewModel {
     private let userManager: IUserManager
     private let userDefaultsManager: IUserDeafaultsManager
     
