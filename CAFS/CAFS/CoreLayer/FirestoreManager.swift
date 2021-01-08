@@ -8,11 +8,11 @@ protocol IFirestoreManager {
     
     func addNewDocument<DataType: Codable>(collection : String, id : String, data: DataType, _ completion: @escaping (_ error: Error?) -> Void)
     
+    func updateDocument<DataType: Codable>(collection : String, id : String, data: DataType, _ completion: @escaping (_ error: Error?) -> Void)
+    
     func deleteDocument(collection: String, id: String, _ completion: @escaping (_ error: Error?) -> Void)
     
     func getDocument(collection: String, id: String, _ completion: @escaping (Result<DocumentSnapshot, Error>) -> Void)
-    
-    func editObject<Object: Codable>(_ objectToEdit: Object, inCollection collection: String, withId id: String, _ completion: @escaping (_ error: Error?) -> Void)
     
     func addStorageObject(path: String, name: String,  data: Data, _ completion: @escaping (Result< (StorageUploadTask, URL), Error>) -> Void)
     
@@ -55,6 +55,10 @@ class FirestoreManager: IFirestoreManager {
         }
     }
     
+    func updateDocument<DataType: Codable>(collection : String, id : String, data: DataType, _ completion: @escaping (_ error: Error?) -> Void) {
+        addNewDocument(collection: collection, id: id, data: data, completion)
+    }
+    
     func deleteDocument(collection: String, id: String, _ completion: @escaping (_ error: Error?) -> Void) {
         db.collection(collection).document(id).delete(completion: completion)
     }
@@ -70,15 +74,6 @@ class FirestoreManager: IFirestoreManager {
             } else {
                 completion(.failure(FirestoreManagerError.documentMissing))
             }
-        }
-    }
-    
-    func editObject<Object: Codable>(_ objectToEdit: Object, inCollection collection: String, withId id: String, _ completion: @escaping (_ error: Error?) -> Void) {
-        do {
-            try db.collection(collection).document(id).setData(from: objectToEdit)
-            completion(nil)
-        } catch {
-            completion(error)
         }
     }
     
