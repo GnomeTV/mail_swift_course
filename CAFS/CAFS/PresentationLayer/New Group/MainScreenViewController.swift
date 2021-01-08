@@ -1,0 +1,149 @@
+//
+//  MainScreenViewController.swift
+//  CAFS
+//
+//  Created by Павел Травкин on 11.11.2020.
+//
+
+import UIKit
+
+class MainScreenViewController: UIViewController {
+
+    private let titleLabel = UILabel()
+    
+    private let profileImageStackView = UIStackView()
+    private let profileImageView = UIImageView(image: UIImage(named: "defaultProfilePhoto_image"))
+    
+    private let personalInfoStackView = UIStackView()
+    private let firstnameTextField = UnderlineTextLabel()
+    private let lastnameTextField = UnderlineTextLabel()
+    private let universityTextField = UnderlineTextLabel()
+    private let statusTextField = UnderlineTextLabel()
+    
+    private let infoView = UIView()
+    private let infoScrollView = UIScrollView()
+    private let infoTextView = UITextView()
+    
+    // MARK: - Insets
+    
+    private let leftInset: CGFloat = 24.0
+    private let rightInset: CGFloat = 24.0
+    private let buttonHeight: CGFloat = 48.0
+    private let topInsetTextFieldIndicator: CGFloat = 3.0
+    
+    private let screenRect = UIScreen.main.bounds
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        view.backgroundColor = .white
+    }
+    
+    private let model = viewModels.mainScreenViewModel
+    
+    // MARK: - Private methods
+    private func setupViews() {
+        setupProfileLabel()
+        setupProfileImageStackView()
+        setupPersonalInfoStackView()
+        setupInfoStackView()
+    }
+    
+    private func setupProfileImageStackView() {
+        let screenWidth = screenRect.size.width
+        let screenHeight = screenRect.size.height
+        view.addSubview(profileImageStackView)
+        profileImageStackView.addArrangedSubview(profileImageView)
+        profileImageStackView.translatesAutoresizingMaskIntoConstraints = false
+        profileImageStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
+        profileImageStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -screenWidth + 200 + leftInset).isActive = true
+        profileImageStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
+        profileImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -screenHeight + 150 + 200).isActive = true
+            
+            
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.layer.masksToBounds = true
+        
+        profileImageStackView.addArrangedSubview(profileImageView)
+        profileImageStackView.axis = .vertical
+        profileImageStackView.spacing = 10.0
+            
+        }
+        
+    private func setupPersonalInfoStackView() {
+        view.addSubview(personalInfoStackView)
+        let screenWidth = screenRect.size.width
+        personalInfoStackView.translatesAutoresizingMaskIntoConstraints = false
+        personalInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: screenWidth - rightInset - 150).isActive = true
+        personalInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
+        personalInfoStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
+        
+        if let userPersonalData = model.getUserInfo() {
+            
+            firstnameTextField.text = userPersonalData.firstName
+            lastnameTextField.text = userPersonalData.lastName
+            universityTextField.text = userPersonalData.university
+            statusTextField.text = userPersonalData.status
+            
+            model.getUserAvatar(user: userPersonalData) { result in
+                switch result {
+                case .success(let image):
+                    self.profileImageView.image = image
+                case .failure(_):
+                    print("Error download image")
+                }
+                
+            }
+        }
+        personalInfoStackView.addArrangedSubview(firstnameTextField)
+        personalInfoStackView.addArrangedSubview(lastnameTextField)
+        personalInfoStackView.addArrangedSubview(universityTextField)
+        personalInfoStackView.addArrangedSubview(statusTextField)
+        personalInfoStackView.axis = .vertical
+        personalInfoStackView.spacing = 50.0
+        
+    }
+    
+    private func setupProfileLabel() {
+        view.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        titleLabel.text = "Свайпалка"
+        titleLabel.textColor = UIColor.hseBlue
+        titleLabel.font = UIFont.systemFont(ofSize: 32.0, weight: .bold)
+        
+        titleLabel.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
+        
+    }
+    
+    private func setupInfoStackView() {
+        view.addSubview(infoScrollView)
+        infoScrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        infoScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
+        infoScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
+        infoScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 400).isActive = true
+        infoScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+        
+        infoScrollView.addSubview(infoView)
+        infoTextView.translatesAutoresizingMaskIntoConstraints = false
+        //infoTextView.axis = .vertical
+        //infoTextView.spacing = 10
+        
+        infoView.leadingAnchor.constraint(equalTo: infoScrollView.leadingAnchor).isActive = true
+        infoView.topAnchor.constraint(equalTo: infoScrollView.topAnchor).isActive = true
+        infoView.trailingAnchor.constraint(equalTo: infoScrollView.trailingAnchor).isActive = true
+        infoView.bottomAnchor.constraint(equalTo: infoScrollView.bottomAnchor).isActive = true
+        infoView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        
+        infoView.addSubview(infoTextView)
+        infoTextView.text = "Здесь вы можете кратко описать выши научные работы и прочие достижения"
+        
+    }
+
+    
+}

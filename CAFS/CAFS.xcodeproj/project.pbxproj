@@ -15,6 +15,7 @@
 		79A6079F255C324900EBF9AE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A6079E255C324900EBF9AE /* MainTabBarController.swift */; };
 		79A607A1255C38AE00EBF9AE /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A607A0255C38AE00EBF9AE /* ChatViewController.swift */; };
 		79A607A3255C393F00EBF9AE /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */; };
+		79EA25D425A8AD10006DCFD7 /* MainScreeenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EA25D325A8AD10006DCFD7 /* MainScreeenViewModel.swift */; };
 		BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */; };
 		BD109C2D2545EA2300EA76D6 /* ServicesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2C2545EA2300EA76D6 /* ServicesAssembly.swift */; };
 		BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */; };
@@ -70,7 +71,8 @@
 		799CFE71255D032A00301D7A /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		79A6079E255C324900EBF9AE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		79A607A0255C38AE00EBF9AE /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainScreenViewController.swift; path = "../New Group/MainScreenViewController.swift"; sourceTree = "<group>"; };
+		79EA25D325A8AD10006DCFD7 /* MainScreeenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreeenViewModel.swift; sourceTree = "<group>"; };
 		BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
 		BD109C2C2545EA2300EA76D6 /* ServicesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesAssembly.swift; sourceTree = "<group>"; };
 		BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAssembly.swift; sourceTree = "<group>"; };
@@ -115,6 +117,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79EA25D225A8ACEB006DCFD7 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */,
+				79EA25D325A8AD10006DCFD7 /* MainScreeenViewModel.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
 		8BBAC995A5D38EBF4C5A6775 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,13 +137,13 @@
 		BD109C302545EA3A00EA76D6 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				C2971EA325A781C100235E94 /* PreferencesScreen */,
-				C28143F2257FE70C00363B31 /* ProfileScreen */,
 				79A6079E255C324900EBF9AE /* MainTabBarController.swift */,
 				799CFE71255D032A00301D7A /* MainNavigationController.swift */,
+				C2971EA325A781C100235E94 /* PreferencesScreen */,
+				C28143F2257FE70C00363B31 /* ProfileScreen */,
 				BD89ED442557123C00F20B4B /* LoginScreen */,
 				BDC99E152572514A00B08A74 /* RegistrationScreen */,
-				79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */,
+				79EA25D225A8ACEB006DCFD7 /* MainScreen */,
 				79A607A0255C38AE00EBF9AE /* ChatViewController.swift */,
 				BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */,
 				BD109C362545EAD900EA76D6 /* Utils */,
@@ -411,6 +422,7 @@
 				BD89ED432557119A00F20B4B /* UIViewController+Utils.swift in Sources */,
 				BD89ED4125570CCC00F20B4B /* RootAssembly.swift in Sources */,
 				BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */,
+				79EA25D425A8AD10006DCFD7 /* MainScreeenViewModel.swift in Sources */,
 				F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */,
 				79A607A1255C38AE00EBF9AE /* ChatViewController.swift in Sources */,
 				BD9F6AB2257248BB00035412 /* String+Utils.swift in Sources */,
