@@ -47,6 +47,11 @@ class LoginViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     // MARK: - ViewModel
     private let model = viewModels.loginViewModel
     
