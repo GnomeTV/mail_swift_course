@@ -2,7 +2,7 @@ import UIKit
 
 
 class SelectionViewController: UIViewController {
-
+    
     private let titleLabel = UILabel()
     
     private let profileImageStackView = UIStackView()
@@ -76,9 +76,9 @@ class SelectionViewController: UIViewController {
         profileImageStackView.addArrangedSubview(profileImageView)
         profileImageStackView.axis = .vertical
         profileImageStackView.spacing = 10.0
-            
-        }
         
+    }
+    
     private func setupPersonalInfoStackView() {
         view.addSubview(personalInfoStackView)
         let screenWidth = screenRect.size.width
@@ -88,7 +88,7 @@ class SelectionViewController: UIViewController {
         personalInfoStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
         personalInfoStackView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 360).isActive = true
         
-        updateSwipe()
+        updateSwipe(acceptUser: nil)
         
         personalInfoStackView.addArrangedSubview(firstnameTextField)
         personalInfoStackView.addArrangedSubview(lastnameTextField)
@@ -145,8 +145,13 @@ class SelectionViewController: UIViewController {
         thirdWorkNameTextField.backgroundColor = color
     }
     
-    private func updateSwipe() {
+    private func updateSwipe(acceptUser: Bool?) {
         if let userPersonalData = model.getCurrentUserInfo() {
+            if let acceptUser = acceptUser {
+                DispatchQueue.main.async {
+                    self.model.updateCurrentUserInfoAfterSwipe(personalData: userPersonalData, id: self.model.lastID, status: acceptUser) { _ in}
+                }
+            }
             model.nextSwipe(currentUser: userPersonalData) { [self] result in
                 switch result {
                 case .success(let userToSwipe):
@@ -172,12 +177,12 @@ class SelectionViewController: UIViewController {
     }
     
     @objc private func leftSwiped(_ gesture: UISwipeGestureRecognizer) {
-        updateColors(color: .green)
-        updateSwipe()
+        updateColors(color: .red)
+        updateSwipe(acceptUser: false)
     }
     
     @objc private func rightSwiped(_ gesture: UISwipeGestureRecognizer) {
-        updateColors(color: .red)
-        updateSwipe()
+        updateColors(color: .green)
+        updateSwipe(acceptUser: true)
     }
 }
