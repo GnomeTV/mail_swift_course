@@ -117,13 +117,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		79EA25D225A8ACEB006DCFD7 /* MainScreen */ = {
+		79EA25D225A8ACEB006DCFD7 /* SelectionScreen */ = {
 			isa = PBXGroup;
 			children = (
 				79A607A2255C393F00EBF9AE /* SelectionViewController.swift */,
 				79EA25D325A8AD10006DCFD7 /* SelectionViewModel.swift */,
 			);
-			path = MainScreen;
+			path = SelectionScreen;
 			sourceTree = "<group>";
 		};
 		8BBAC995A5D38EBF4C5A6775 /* Frameworks */ = {
@@ -143,7 +143,7 @@
 				C28143F2257FE70C00363B31 /* ProfileScreen */,
 				BD89ED442557123C00F20B4B /* LoginScreen */,
 				BDC99E152572514A00B08A74 /* RegistrationScreen */,
-				79EA25D225A8ACEB006DCFD7 /* MainScreen */,
+				79EA25D225A8ACEB006DCFD7 /* SelectionScreen */,
 				79A607A0255C38AE00EBF9AE /* ChatViewController.swift */,
 				BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */,
 				BD109C362545EAD900EA76D6 /* Utils */,

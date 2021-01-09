@@ -240,4 +240,5 @@ class ProfileViewController: UIViewController {
         navigationController?.pushViewController(PreferencesViewController(), animated: true)
         
     }
+    
 }

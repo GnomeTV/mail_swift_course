@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class SelectionViewController: UIViewController {
 
     private let titleLabel = UILabel()
@@ -40,6 +41,14 @@ class SelectionViewController: UIViewController {
         setupViews()
         self.hideKeyboardWhenTappedAround()
         view.backgroundColor = .white
+        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(leftSwiped(_:)))
+        leftSwipe.direction = .left
+        view.addGestureRecognizer(leftSwipe)
+        
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(rightSwiped(_:)))
+        rightSwipe.direction = .right
+        view.addGestureRecognizer(rightSwipe)
     }
     
     private let model = viewModels.selectionViewModel
@@ -147,5 +156,20 @@ class SelectionViewController: UIViewController {
         extraInfoStackView.spacing = 10.0
     }
 
+    @objc private func leftSwiped(_ gesture: UISwipeGestureRecognizer) {
+        view.backgroundColor = .green
+        extraContactTextField.backgroundColor = .green
+        firstWorkNameTextField.backgroundColor = .green
+        secondWorkNameTextField.backgroundColor = .green
+        thirdWorkNameTextField.backgroundColor = .green
+    }
     
+    @objc private func rightSwiped(_ gesture: UISwipeGestureRecognizer) {
+        view.backgroundColor = .red
+        extraContactTextField.backgroundColor = .red
+        firstWorkNameTextField.backgroundColor = .red
+        secondWorkNameTextField.backgroundColor = .red
+        thirdWorkNameTextField.backgroundColor = .red
+        
+    }
 }
