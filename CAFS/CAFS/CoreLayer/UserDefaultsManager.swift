@@ -4,6 +4,8 @@ protocol IUserDeafaultsManager {
     func updateUserInfo(userData: PersonalData)
     
     func getUserInfo() -> PersonalData?
+    
+    func clearUserInfo()
 }
 
 class UserDefaultsManager: IUserDeafaultsManager {
@@ -23,5 +25,11 @@ class UserDefaultsManager: IUserDeafaultsManager {
         } else {
             return nil
         }
+    }
+    
+    func clearUserInfo() {
+        let domain = Bundle.main.bundleIdentifier!
+        userInfo.removePersistentDomain(forName: domain)
+        userInfo.synchronize()
     }
 }

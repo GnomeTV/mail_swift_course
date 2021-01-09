@@ -52,6 +52,11 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
         setupSpinner()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     // MARK: - Private methods
     private func setupViews() {
         setupRegistrationLabel()

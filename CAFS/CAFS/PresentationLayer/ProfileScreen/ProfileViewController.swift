@@ -45,7 +45,35 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profileImageView.image = originalImage
         }
+        DispatchQueue.main.async {
+            self.updateProfilePhoto() { error in
+            }
+        }
         dismiss(animated: true, completion: nil)
+    }
+    
+    func updateProfilePhoto(_ completion: @escaping (Bool) -> Void) {
+        let avatar = profileImageView.image?.pngData() ?? Data()
+        if avatar.isEmpty {
+            completion(false)
+        } else {
+            if var userInfo = model.getUserInfo() {
+                model.addUserAvatar(user: userInfo, avatar: avatar) { result in
+                    switch result {
+                    case .success((_, let url)):
+                        let imageURL = url.absoluteString
+                        if imageURL.isEmpty {
+                            userInfo.avatar = imageURL
+                            self.model.updateUserInfo(personalData: userInfo) { _ in
+                            }
+                            completion(true)
+                        }
+                    case .failure(_):
+                        completion(false)
+                    }
+                }
+            }
+        }
     }
     
 }
@@ -213,30 +241,9 @@ class ProfileViewController: UIViewController {
     
     @objc private func profileImageButtonTapped() {
         showImagePickerControllerActionSheet()
-        let avatar = profileImageView.image?.pngData() ?? Data()
-        if avatar.isEmpty {
-            print("Empty image")
-        } else {
-            if var userInfo = model.getUserInfo() {
-                model.addUserAvatar(user: userInfo, avatar: avatar) { result in
-                    switch result {
-                    case .success((_, let url)):
-                        let imageURL = url.absoluteString
-                        if imageURL.isEmpty {
-                            userInfo.avatar = imageURL
-                            self.model.updateUserInfo(personalData: userInfo)
-                            print("Success upload image")
-                        }
-                    case .failure(_):
-                        print("Error upload image")
-                    }
-                }
-            }
-        }
     }
     
     @objc private func preferencesButtonTapped() {
-        
         navigationController?.pushViewController(PreferencesViewController(), animated: true)
         
     }
