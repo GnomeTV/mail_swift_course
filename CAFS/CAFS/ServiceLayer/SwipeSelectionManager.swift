@@ -3,6 +3,7 @@ import FirebaseStorage
 
 protocol ISwipeSelectionManager {
     func nextSwipe(currentUser: PersonalData, _ completion: @escaping (Result<PersonalData, Error>) -> Void)
+    func resetSwipeQueue()
 }
 
 class SwipeSelectionManager: ISwipeSelectionManager {
@@ -22,7 +23,7 @@ class SwipeSelectionManager: ISwipeSelectionManager {
     }
     
     func getSwipeIDs(status: String, _ completion: @escaping (Result<[String], Error>) -> Void) {
-        let statusNeeded = status == "student" ? "teacher" : "student"
+        let statusNeeded = status == "Студент" ? "Преподаватель" : "Студент"
         firestoreManager.getDocuments(collection: Self.collection, field: Self.statusField, equalTo: statusNeeded) { result in
             switch result {
             case .success(let querySnapshot):
@@ -33,6 +34,22 @@ class SwipeSelectionManager: ISwipeSelectionManager {
             case .failure(let err):
                 completion(.failure(err))
             }
+        }
+    }
+    
+    func initIDs(status: String, _ completion: @escaping (Result<[String], Error>) -> Void) {
+        if !self.isInit {
+            getSwipeIDs(status: status) { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let IDs):
+                    completion(.success(IDs))
+                    self.isInit = true
+                }
+            }
+        } else {
+            completion(.success(self.ids))
         }
     }
     
@@ -56,26 +73,23 @@ class SwipeSelectionManager: ISwipeSelectionManager {
     }
     
     func nextSwipe(currentUser: PersonalData, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
-        if !self.isInit {
-            DispatchQueue.main.sync {
-                getSwipeIDs(status: currentUser.status) { result in
-                    switch result {
-                    case .failure(_):
-                        print("Failed getIDs")
-                    case .success(_):
-                        print("Success getIDs")
-                    }
+        initIDs(status: currentUser.status) { [self] result in
+            switch result {
+            case .success(_):
+                if !ids.isEmpty {
+                    getUserData(id: ids[0], completion)
+                    ids.removeFirst()
+                } else {
+                    completion(.failure(SwipeSelectionManagerError.emptyQueue))
                 }
-                self.isInit = true
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
-        DispatchQueue.main.sync {
-            if !ids.isEmpty {
-                getUserData(id: ids[0], completion)
-                ids.removeFirst()
-            } else {
-                completion(.failure(SwipeSelectionManagerError.emptyQueue))
-            }
-        }
+    }
+    
+    func resetSwipeQueue() {
+        isInit = false
+        ids = []
     }
 }

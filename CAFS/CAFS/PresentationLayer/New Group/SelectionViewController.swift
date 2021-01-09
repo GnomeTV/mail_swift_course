@@ -1,10 +1,3 @@
-//
-//  MainScreenViewController.swift
-//  CAFS
-//
-//  Created by Павел Травкин on 11.11.2020.
-//
-
 import UIKit
 
 
@@ -51,6 +44,10 @@ class SelectionViewController: UIViewController {
         view.addGestureRecognizer(rightSwipe)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     private let model = viewModels.selectionViewModel
     
     // MARK: - Private methods
@@ -71,8 +68,7 @@ class SelectionViewController: UIViewController {
         profileImageStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -screenWidth + 200 + leftInset).isActive = true
         profileImageStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
         profileImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -screenHeight + 150 + 200).isActive = true
-            
-            
+        
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.masksToBounds = true
@@ -92,23 +88,8 @@ class SelectionViewController: UIViewController {
         personalInfoStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
         personalInfoStackView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 360).isActive = true
         
-        if let userPersonalData = model.getUserInfo() {
-            
-            firstnameTextField.text = userPersonalData.firstName
-            lastnameTextField.text = userPersonalData.lastName
-            universityTextField.text = userPersonalData.university
-            statusTextField.text = userPersonalData.status
-            
-            model.getUserAvatar(user: userPersonalData) { result in
-                switch result {
-                case .success(let image):
-                    self.profileImageView.image = image
-                case .failure(_):
-                    print("Error download image")
-                }
-                
-            }
-        }
+        updateSwipe()
+        
         personalInfoStackView.addArrangedSubview(firstnameTextField)
         personalInfoStackView.addArrangedSubview(lastnameTextField)
         personalInfoStackView.addArrangedSubview(universityTextField)
@@ -155,21 +136,48 @@ class SelectionViewController: UIViewController {
         extraInfoStackView.axis = .vertical
         extraInfoStackView.spacing = 10.0
     }
-
+    
+    private func updateColors(color: UIColor) {
+        view.backgroundColor = color
+        extraContactTextField.backgroundColor = color
+        firstWorkNameTextField.backgroundColor = color
+        secondWorkNameTextField.backgroundColor = color
+        thirdWorkNameTextField.backgroundColor = color
+    }
+    
+    private func updateSwipe() {
+        if let userPersonalData = model.getCurrentUserInfo() {
+            model.nextSwipe(currentUser: userPersonalData) { [self] result in
+                switch result {
+                case .success(let userToSwipe):
+                    updateColors(color: .white)
+                    profileImageView.image = UIImage(named: "defaultProfilePhoto_image")
+                    firstnameTextField.text = userToSwipe.firstName
+                    lastnameTextField.text = userToSwipe.lastName
+                    universityTextField.text = userToSwipe.university
+                    statusTextField.text = userToSwipe.status
+                    model.getSwipeUserAvatar(user: userToSwipe) { result in
+                        switch result {
+                        case .success(let image):
+                            self.profileImageView.image = image
+                        case .failure(_):
+                            print("Error download image")
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+    
     @objc private func leftSwiped(_ gesture: UISwipeGestureRecognizer) {
-        view.backgroundColor = .green
-        extraContactTextField.backgroundColor = .green
-        firstWorkNameTextField.backgroundColor = .green
-        secondWorkNameTextField.backgroundColor = .green
-        thirdWorkNameTextField.backgroundColor = .green
+        updateColors(color: .green)
+        updateSwipe()
     }
     
     @objc private func rightSwiped(_ gesture: UISwipeGestureRecognizer) {
-        view.backgroundColor = .red
-        extraContactTextField.backgroundColor = .red
-        firstWorkNameTextField.backgroundColor = .red
-        secondWorkNameTextField.backgroundColor = .red
-        thirdWorkNameTextField.backgroundColor = .red
-        
+        updateColors(color: .red)
+        updateSwipe()
     }
 }

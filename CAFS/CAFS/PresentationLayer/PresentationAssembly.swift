@@ -23,11 +23,11 @@ final class PresentationAssembly: IPresentationAssembly {
     }()
     
     lazy var preferencesViewModel: IPreferencesViewModel = {
-        PreferencesViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager)
+        PreferencesViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager, swipeSelectionManager: servicesAssembly.swipeSelectionManager)
     }()
     
     lazy var selectionViewModel: ISelectionViewModel = {
-        SelectionViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager)
+        SelectionViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager, swipeSelectionManager: servicesAssembly.swipeSelectionManager)
     }()
     
     private let servicesAssembly: IServicesAssembly
