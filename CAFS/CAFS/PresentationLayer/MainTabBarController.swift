@@ -1,10 +1,3 @@
-//
-//  MainTabBarController.swift
-//  CAFS
-//
-//  Created by Павел Травкин on 11.11.2020.
-//
-
 import UIKit
 
 class MainTabBarController: UITabBarController {
@@ -19,9 +12,9 @@ class MainTabBarController: UITabBarController {
         let profileViewController = MainNavigationController(rootViewController: ProfileViewController())
         profileViewController.tabBarItem.image = UIImage(named: "profile_icon")
        
-        let chatViewController = MainNavigationController(rootViewController: ChatViewController())
-        chatViewController.tabBarItem.image = UIImage(named: "chat_icon")
-      
+        let chatViewController = MainNavigationController(rootViewController: MatchViewController())
+        chatViewController.tabBarItem.image = UIImage(named: "match_icon")
+        
         let mainScreenViewController = MainNavigationController(rootViewController: SelectionViewController())
         mainScreenViewController.tabBarItem.image = UIImage(named: "mainscreen_icon")
       
