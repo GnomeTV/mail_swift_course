@@ -57,7 +57,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         if avatar.isEmpty {
             completion(false)
         } else {
-            if var userInfo = model.getUserInfo() {
+            if var userInfo = model.getUserInfoFromCache() {
                 model.addUserAvatar(user: userInfo, avatar: avatar) { result in
                     switch result {
                     case .success((_, let url)):
@@ -114,6 +114,7 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .white
         self.hideKeyboardWhenTappedAround()
         setupViews()
+        updateUserInfoFields()
     }
     
     private let model = viewModels.profileViewModel
@@ -163,23 +164,8 @@ class ProfileViewController: UIViewController {
         personalInfoStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
         personalInfoStackView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 360).isActive = true
         
-        if let userPersonalData = model.getUserInfo() {
-            
-            firstnameTextField.text = userPersonalData.firstName
-            lastnameTextField.text = userPersonalData.lastName
-            universityTextField.text = userPersonalData.university
-            statusTextField.text = userPersonalData.status
-            
-            model.getUserAvatar(user: userPersonalData) { result in
-                switch result {
-                case .success(let image):
-                    self.profileImageView.image = image
-                case .failure(_):
-                    print("Error download image")
-                }
-                
-            }
-        }
+        updateUserInfoFields()
+        
         personalInfoStackView.addArrangedSubview(firstnameTextField)
         personalInfoStackView.addArrangedSubview(lastnameTextField)
         personalInfoStackView.addArrangedSubview(universityTextField)
@@ -237,6 +223,41 @@ class ProfileViewController: UIViewController {
         extraInfoStackView.axis = .vertical
         extraInfoStackView.spacing = 10.0
         
+    }
+    
+    private func updateUserInfoFields() {
+        if let userPersonalData = model.getUserInfoFromCache() {
+            
+            firstnameTextField.text = userPersonalData.firstName
+            lastnameTextField.text = userPersonalData.lastName
+            universityTextField.text = userPersonalData.university
+            statusTextField.text = userPersonalData.status
+            
+            DispatchQueue.main.async {
+                self.model.getUserInfoFromServer(userData: userPersonalData) { [self] result in
+                    switch result {
+                    case .success(let pData):
+                        firstnameTextField.text = pData.firstName
+                        lastnameTextField.text = pData.lastName
+                        universityTextField.text = pData.university
+                        statusTextField.text = pData.status
+                    case .failure(let error):
+                        print("Error: ", error)
+                    }
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.model.getUserAvatar(user: userPersonalData) { result in
+                    switch result {
+                    case .success(let image):
+                        self.profileImageView.image = image
+                    case .failure(_):
+                        print("Error download image")
+                    }
+                }
+            }
+        }
     }
     
     @objc private func profileImageButtonTapped() {

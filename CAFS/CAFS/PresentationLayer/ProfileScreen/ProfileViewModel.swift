@@ -4,7 +4,8 @@ import FirebaseStorage
 protocol IProfileViewModel {
     func addUserAvatar(user: PersonalData, avatar: Data, _ completion: @escaping (Result< (StorageUploadTask, URL), Error>) -> Void)
     func getUserAvatar(user: PersonalData, _ completion: @escaping (Result<UIImage, Error>) -> Void)
-    func getUserInfo() -> PersonalData?
+    func getUserInfoFromCache() -> PersonalData?
+    func getUserInfoFromServer(userData: PersonalData, _ completion: @escaping (Result<PersonalData, Error>) -> Void)
     func updateUserInfo(personalData: PersonalData, _ completion: @escaping (_ success: Bool) -> Void)
 }
 
@@ -25,8 +26,13 @@ class ProfileViewModel: IProfileViewModel {
         userManager.getImage(user: user, completion)
     }
     
-    func getUserInfo() -> PersonalData? {
+    func getUserInfoFromCache() -> PersonalData? {
         return userDefaultsManager.getUserInfo()
+    }
+    
+    func getUserInfoFromServer(userData: PersonalData, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
+        let id = userData.email.genHash()
+        userManager.getUserData(id: id, completion)
     }
     
     func updateUserInfo(personalData: PersonalData, _ completion: @escaping (_ success: Bool) -> Void) {
