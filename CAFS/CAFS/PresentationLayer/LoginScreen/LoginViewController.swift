@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
     private let leftInset: CGFloat = 24.0
     private let rightInset: CGFloat = 24.0
     private let buttonHeight: CGFloat = 48.0
+    let screenHeight = UIScreen.main.bounds.height
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +36,30 @@ class LoginViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
+        var keyboardHeight : CGFloat = 0
+        if let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            keyboardHeight += keyboardRect.height
+        }
+        let duration: TimeInterval = 1.0
+        UIView.animate(withDuration: duration, animations: {
+            self.loginButton.frame.origin.y = self.screenHeight - keyboardHeight - 2 * self.buttonHeight - 20
+            self.registerButton.frame.origin.y = self.screenHeight - keyboardHeight - self.buttonHeight - 10
+            self.loginStackiew.frame.origin.y = (self.screenHeight - keyboardHeight - 2 * self.buttonHeight - 30) / 2
+            }, completion: nil)
+        if ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
             }
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
+        let duration: TimeInterval = 1.0
+        UIView.animate(withDuration: duration, animations: {
+            self.loginButton.frame.origin.y = self.screenHeight - self.buttonHeight - 110
+            self.registerButton.frame.origin.y = self.screenHeight - 100
+            self.loginStackiew.frame.origin.y = self.screenHeight / 2 -  self.buttonHeight - 90
+            }, completion: nil)
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
@@ -59,10 +76,10 @@ class LoginViewController: UIViewController {
     // MARK: - Private methods
     
     private func setupViews() {
-        setupRegisterButton()
+        setupRegisterButton(height: -42)
         setupLoginButton()
         setupLoginLabel()
-        setupStackView()
+        setupStackView(height: 326.0)
         setupSpinner()
     }
     
@@ -80,13 +97,13 @@ class LoginViewController: UIViewController {
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
     }
     
-    private func setupStackView() {
+    private func setupStackView(height : CGFloat) {
         view.addSubview(loginStackiew)
         loginStackiew.translatesAutoresizingMaskIntoConstraints = false
         
         loginStackiew.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         loginStackiew.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
-        loginStackiew.topAnchor.constraint(equalTo: view.topAnchor, constant: 326.0).isActive = true
+        loginStackiew.topAnchor.constraint(equalTo: view.topAnchor, constant: height).isActive = true
         
         emailTextField.placeholder = "Введите e-mail"
         passwordTextField.placeholder = "Введите пароль"
@@ -118,10 +135,10 @@ class LoginViewController: UIViewController {
         loginButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
         loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
         loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
-        loginButton.bottomAnchor.constraint(equalTo: registerButton.topAnchor, constant: -8.0).isActive = true
+        loginButton.bottomAnchor.constraint(equalTo: registerButton.topAnchor, constant: -10.0).isActive = true
     }
     
-    private func setupRegisterButton() {
+    private func setupRegisterButton(height: CGFloat) {
         view.addSubview(registerButton)
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         registerButton.setTitle("Зарегистрироваться", for: .normal)
@@ -130,7 +147,7 @@ class LoginViewController: UIViewController {
         registerButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
         registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
         registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
-        registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -42.0).isActive = true
+        registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: height).isActive = true
     }
     
     private func setupSpinner() {
