@@ -31,6 +31,8 @@
 		BDC99E1425724EB600B08A74 /* String+Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC99E1325724EB600B08A74 /* String+Hash.swift */; };
 		BDC99E18257251BB00B08A74 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC99E17257251BB00B08A74 /* RegistrationViewModel.swift */; };
 		C21113D5255AE795005CB68F /* PersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21113D4255AE795005CB68F /* PersonalData.swift */; };
+		C23A11CE25AB31A200687D2E /* SwipeStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23A11CD25AB31A200687D2E /* SwipeStateViewModel.swift */; };
+		C23A11D025AB31BB00687D2E /* SwipeStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23A11CF25AB31BB00687D2E /* SwipeStateViewController.swift */; };
 		C23F0E792559B632008EC202 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F0E782559B632008EC202 /* LoginViewController.swift */; };
 		C28143F4257FE81400363B31 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28143F3257FE81400363B31 /* ProfileViewModel.swift */; };
 		C294C2CD256D7D740052A08E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294C2CC256D7D740052A08E /* UserManager.swift */; };
@@ -89,6 +91,8 @@
 		BDC99E1325724EB600B08A74 /* String+Hash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Hash.swift"; sourceTree = "<group>"; };
 		BDC99E17257251BB00B08A74 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		C21113D4255AE795005CB68F /* PersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalData.swift; sourceTree = "<group>"; };
+		C23A11CD25AB31A200687D2E /* SwipeStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeStateViewModel.swift; sourceTree = "<group>"; };
+		C23A11CF25AB31BB00687D2E /* SwipeStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeStateViewController.swift; sourceTree = "<group>"; };
 		C23F0E782559B632008EC202 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C28143F3257FE81400363B31 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C294C2CC256D7D740052A08E /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 		BD109C302545EA3A00EA76D6 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				C23A11CC25AB317400687D2E /* SwipeStateScreen */,
 				79A6079E255C324900EBF9AE /* MainTabBarController.swift */,
 				799CFE71255D032A00301D7A /* MainNavigationController.swift */,
 				C2971EA325A781C100235E94 /* PreferencesScreen */,
@@ -236,6 +241,15 @@
 				BDC99E17257251BB00B08A74 /* RegistrationViewModel.swift */,
 			);
 			path = RegistrationScreen;
+			sourceTree = "<group>";
+		};
+		C23A11CC25AB317400687D2E /* SwipeStateScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C23A11CD25AB31A200687D2E /* SwipeStateViewModel.swift */,
+				C23A11CF25AB31BB00687D2E /* SwipeStateViewController.swift */,
+			);
+			path = SwipeStateScreen;
 			sourceTree = "<group>";
 		};
 		C28143F2257FE70C00363B31 /* ProfileScreen */ = {
@@ -431,6 +445,7 @@
 				79A607A1255C38AE00EBF9AE /* ChatViewController.swift in Sources */,
 				BD9F6AB2257248BB00035412 /* String+Utils.swift in Sources */,
 				799CFE72255D032A00301D7A /* MainNavigationController.swift in Sources */,
+				C23A11D025AB31BB00687D2E /* SwipeStateViewController.swift in Sources */,
 				C2CC21EA25A7828600EE2D11 /* PreferencesViewModel.swift in Sources */,
 				F18367D525546CC100664294 /* CheckBoxButton.swift in Sources */,
 				BD92666625725D6C00E0FDDD /* UIApplication+Utils.swift in Sources */,
@@ -438,6 +453,7 @@
 				BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */,
 				BDC99E18257251BB00B08A74 /* RegistrationViewModel.swift in Sources */,
 				799359C2255AC3D500D5A16D /* ProfileViewController.swift in Sources */,
+				C23A11CE25AB31A200687D2E /* SwipeStateViewModel.swift in Sources */,
 				C28143F4257FE81400363B31 /* ProfileViewModel.swift in Sources */,
 				791984812578CB7B001CF6ED /* PreferencesViewController.swift in Sources */,
 				F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */,
