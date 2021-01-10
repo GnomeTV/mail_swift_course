@@ -6,10 +6,10 @@ protocol IPresentationAssembly {
     var profileViewModel: IProfileViewModel { get }
     var preferencesViewModel: IPreferencesViewModel { get }
     var selectionViewModel: ISelectionViewModel { get }
+    var matchViewModel: IMatchViewModel { get }
 }
 
 final class PresentationAssembly: IPresentationAssembly {
-    
     lazy var loginViewModel: ILoginViewModel = {
         LoginViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager)
     }()

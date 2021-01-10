@@ -9,6 +9,7 @@ class MainTabBarController: UITabBarController {
         UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().clipsToBounds = true
         
+        
         let profileViewController = MainNavigationController(rootViewController: ProfileViewController())
         profileViewController.tabBarItem.image = UIImage(named: "profile_icon")
        
