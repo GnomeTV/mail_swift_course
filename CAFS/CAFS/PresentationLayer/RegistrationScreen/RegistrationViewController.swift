@@ -285,7 +285,7 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
     
     @objc private func registerButtonTapped() {
         spinner.startAnimating()
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        
         let firstname = firstNameTextField.text ?? ""
         let secondname = secondNameTextField.text ?? ""
         let university = universityTextField.text ?? ""
@@ -301,6 +301,7 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
                         if isDone {
                             model.updateUserInfo(personalData: personalData)
                             navigationController?.pushViewController(MainTabBarController(), animated: true)
+                            navigationController?.setNavigationBarHidden(true, animated: true)
                         } else {
                             errorLabel.text = "Что-то пошло не так, попробуйте позже"
                         }
