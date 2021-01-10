@@ -49,10 +49,10 @@ class MatchViewController: UIViewController, UITableViewDataSource, UITableViewD
             switch result {
             case .success(let matchUserData):
                 print(matchUserData.email)
+                cell.match = matchUserData
                 self.model.getUserAvatar(user: matchUserData) { result in
                     switch result {
                     case .success(let matchUserAvatar):
-                        cell.match = matchUserData
                         cell.profileImageView.image = matchUserAvatar
                     case .failure(_):
                         cell.profileImageView.image = UIImage(named: "profile_icon")
