@@ -6,6 +6,7 @@ protocol IProfileViewModel {
     func getUserAvatar(user: PersonalData, _ completion: @escaping (Result<UIImage, Error>) -> Void)
     func getUserInfoFromCache() -> PersonalData?
     func getUserInfoFromServer(userData: PersonalData, _ completion: @escaping (Result<PersonalData, Error>) -> Void)
+    func updateUserInfoInCache(personalData: PersonalData)
     func updateUserInfo(personalData: PersonalData, _ completion: @escaping (_ success: Bool) -> Void)
 }
 
@@ -33,6 +34,10 @@ class ProfileViewModel: IProfileViewModel {
     func getUserInfoFromServer(userData: PersonalData, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
         let id = userData.email.genHash()
         userManager.getUserData(id: id, completion)
+    }
+    
+    func updateUserInfoInCache(personalData: PersonalData) {
+        userDefaultsManager.updateUserInfo(userData: personalData)
     }
     
     func updateUserInfo(personalData: PersonalData, _ completion: @escaping (_ success: Bool) -> Void) {

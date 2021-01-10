@@ -2,16 +2,19 @@ import Foundation
 import UIKit
 
 protocol IMatchViewModel {
-    func getMatches(_ completion: @escaping ([(matchUser: PersonalData?, matchUserAvatar: UIImage?)]) -> Void)
+    func getMatches()
+    var matches: [(matchUser: PersonalData?, matchUserAvatar: UIImage?)] { get }
 }
 
 class MatchViewModel: IMatchViewModel {
     private let userManager: IUserManager
     private let userDefaultsManager: IUserDeafaultsManager
+    var matches: [(matchUser: PersonalData?, matchUserAvatar: UIImage?)] = []
     
     init(userManager: IUserManager, userDefaultsManager: IUserDeafaultsManager) {
         self.userManager = userManager
         self.userDefaultsManager = userDefaultsManager
+        getMatches()
     }
     
     func getUserAvatar(user: PersonalData, _ completion: @escaping (Result<UIImage, Error>) -> Void) {
@@ -22,8 +25,7 @@ class MatchViewModel: IMatchViewModel {
         userManager.getUserData(id: id, completion)
     }
     
-    func getMatches(_ completion: @escaping ([(matchUser: PersonalData?, matchUserAvatar: UIImage?)]) -> Void) {
-        var matches: [(PersonalData?, UIImage?)] = []
+    func getMatches() {
         if let currentUser = userDefaultsManager.getUserInfo() {
             for matchUserID in currentUser.matches {
                 getUserInfoFromServer(id: matchUserID) { result in
@@ -32,17 +34,17 @@ class MatchViewModel: IMatchViewModel {
                         self.getUserAvatar(user: matchUserData) { result in
                             switch result {
                             case .success(let matchUserAvatar):
-                                matches.append((matchUserData, matchUserAvatar))
+                                self.matches.append((matchUserData, matchUserAvatar))
+                                print(self.matches)
                             case .failure(_):
-                                matches.append((matchUserData, nil))
+                                self.matches.append((matchUserData, nil))
                             }
                         }
                     case .failure(_):
-                        matches.append((nil, nil))
+                        self.matches.append((nil, nil))
                     }
                 }
             }
-            completion(matches)
         }
     }
 }
