@@ -47,7 +47,7 @@ class PreferencesViewController: UIViewController {
     private func setupExitButton() {
         view.addSubview(exitButton)
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
-        exitButton.setTitle("Выход", for: .normal)
+        exitButton.setTitle("Выйти из аккаунта", for: .normal)
         exitButton.translatesAutoresizingMaskIntoConstraints = false
         
         exitButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true

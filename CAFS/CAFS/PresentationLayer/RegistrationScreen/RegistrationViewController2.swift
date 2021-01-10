@@ -11,15 +11,13 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
         
     }
     
-    private var mainScrollView = UIScrollView()
-    private var registrationStackView = UIStackView()
+    // MARK: - Views
     
+    private let mainScrollView = UIScrollView()
+    private let registrationStackView = UIStackView()
     private let emailTextField = UnderlineTextField()
     private let passwordTextField = UnderlineTextField()
     private let repeatPasswordTextField = UnderlineTextField()
-    private let emptyLabel = UILabel()
-    private let emptyLabel2 = UILabel()
-    private let emptyLabel3 = UILabel()
     private let errorLabel = UILabel()
     private let firstNameTextField = UnderlineTextField()
     private let secondNameTextField = UnderlineTextField()
@@ -35,56 +33,64 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
     
     private var spinner = UIActivityIndicatorView(style: .medium)
     
-    
+    // MARK: - Insets
     private let leftInset: CGFloat = 24.0
     private let rightInset: CGFloat = 24.0
     private let buttonHeight: CGFloat = 48.0
     private let topInsetTextFieldIndicator: CGFloat = 3.0
-    private let topInsetCheckBoxButton: CGFloat = 20.0
     
+    // MARK: - ViewModel
     private let model = viewModels.registrationViewModel
     
-    override func viewDidLoad() {
-        view.backgroundColor = .white
-        super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
-        
-        navigationController?.hideNavigationItenBackground()
-        
-        let attrs = [
-            NSAttributedString.Key.foregroundColor: UIColor.hseBlue,
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 32, weight: .bold)
-        ]
+    private let topInsetCheckBoxButton: CGFloat = 20.0
 
-        UINavigationBar.appearance().titleTextAttributes = attrs as [NSAttributedString.Key : Any]
-        
-        setupRegistrationLabel()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        self.hideKeyboardWhenTappedAround()
+        setupViews()
         setupSpinner()
-        setupScrollView()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(true)
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        super.viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewDidLayoutSubviews() {
+            super.viewDidLayoutSubviews()
+        mainScrollView.contentSize = CGSize(width: registrationStackView.frame.width, height: registrationStackView.frame.height)
         }
     
-    private func setupScrollView() {
-        
-        mainScrollView.translatesAutoresizingMaskIntoConstraints = false
+    // MARK: - Private methods
+    private func setupViews() {
+        setupRegistrationLabel()
+        setupStackView()
+    }
+    
+    private func setupStackView() {
         view.addSubview(mainScrollView)
         
+        mainScrollView.translatesAutoresizingMaskIntoConstraints = false
+        registrationStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+//        mainScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
+//        mainScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
+//        mainScrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+//        mainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 100).isActive = true
+//        
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[mainScrollView]|", options: .alignAllCenterX, metrics: nil, views: ["mainScrollView": mainScrollView]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[mainScrollView]|", options: .alignAllCenterX, metrics: nil, views: ["mainScrollView": mainScrollView]))
-        
-        registrationStackView.translatesAutoresizingMaskIntoConstraints = false
-        registrationStackView.axis = .vertical
-        mainScrollView.addSubview(registrationStackView)
 
         mainScrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[registrationStackView]|", options: NSLayoutConstraint.FormatOptions.alignAllCenterX, metrics: nil, views: ["registrationStackView": registrationStackView]))
         mainScrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[registrationStackView]", options: NSLayoutConstraint.FormatOptions.alignAllCenterX, metrics: nil, views: ["registrationStackView": registrationStackView]))
 
+
+//        registrationStackView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor).isActive = true
+//        registrationStackView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor).isActive = true
+//        registrationStackView.topAnchor.constraint(equalTo: mainScrollView.topAnchor).isActive = true
+//        registrationStackView.bottomAnchor.constraint(equalTo: mainScrollView.bottomAnchor).isActive = true
+        
         firstNameTextField.placeholder = "Имя"
         secondNameTextField.placeholder = "Фамилия"
         universityTextField.placeholder = "Университет"
@@ -148,11 +154,8 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
         
         checkBoxView.translatesAutoresizingMaskIntoConstraints = false
         checkBoxView.heightAnchor.constraint(equalToConstant: 80).isActive = true
-    
+
         
-        registrationStackView.addArrangedSubview(emptyLabel)
-        registrationStackView.addArrangedSubview(emptyLabel2)
-        registrationStackView.addArrangedSubview(emptyLabel3)
         registrationStackView.addArrangedSubview(firstNameTextField)
         registrationStackView.addArrangedSubview(secondNameTextField)
         registrationStackView.addArrangedSubview(universityTextField)
@@ -161,32 +164,24 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
         registrationStackView.addArrangedSubview(passwordTextField)
         registrationStackView.addArrangedSubview(repeatPasswordTextField)
         registrationStackView.addArrangedSubview(errorLabel)
-        registrationStackView.addArrangedSubview(registerButton)
+        registrationStackView.axis = .vertical
+        registrationStackView.spacing = 50.0
+        
+        mainScrollView.addSubview(registrationStackView)
+        
+        view.addSubview(registerButton)
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         registerButton.setTitle("Зарегистрироваться", for: .normal)
         registerButton.translatesAutoresizingMaskIntoConstraints = false
         
-        registrationStackView.addSubview(registerButton)
-        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
-        registerButton.setTitle("Зарегистрироваться", for: .normal)
-        registerButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        firstNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
-        firstNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
+        registerButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
         registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
         registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
-
-        registrationStackView.spacing = 50.0
-        registrationStackView.axis = .vertical
+        registerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -54.0).isActive = true
+    
         
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
-    
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        mainScrollView.contentSize = CGSize(width: registrationStackView.frame.width, height: registrationStackView.frame.height)
     }
     
     private func setupRegistrationLabel() {
@@ -266,26 +261,9 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
         }
     }
     
-    @objc func keyboardWillShow(notification:NSNotification) {
-
-        guard let userInfo = notification.userInfo else { return }
-        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-
-        var contentInset:UIEdgeInsets = self.mainScrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 20
-        mainScrollView.contentInset = contentInset
-    }
-
-    @objc func keyboardWillHide(notification:NSNotification) {
-
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        mainScrollView.contentInset = contentInset
-    }
-    
     @objc private func registerButtonTapped() {
         spinner.startAnimating()
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        
         let firstname = firstNameTextField.text ?? ""
         let secondname = secondNameTextField.text ?? ""
         let university = universityTextField.text ?? ""
@@ -310,5 +288,4 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
             spinner.stopAnimating()
         }
     }
-
 }
