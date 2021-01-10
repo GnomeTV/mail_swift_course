@@ -145,7 +145,6 @@
 		BD109C302545EA3A00EA76D6 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				C23A11CC25AB317400687D2E /* SwipeStateScreen */,
 				79A6079E255C324900EBF9AE /* MainTabBarController.swift */,
 				799CFE71255D032A00301D7A /* MainNavigationController.swift */,
 				F1315FAE25AB433B00E23C23 /* MatchScreen */,
@@ -153,6 +152,7 @@
 				C28143F2257FE70C00363B31 /* ProfileScreen */,
 				BD89ED442557123C00F20B4B /* LoginScreen */,
 				BDC99E152572514A00B08A74 /* RegistrationScreen */,
+				C23A11CC25AB317400687D2E /* SwipeStateScreen */,
 				79EA25D225A8ACEB006DCFD7 /* SelectionScreen */,
 				BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */,
 				BD109C362545EAD900EA76D6 /* Utils */,
