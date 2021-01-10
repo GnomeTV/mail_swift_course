@@ -13,7 +13,6 @@
 		799359C2255AC3D500D5A16D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799359C1255AC3D500D5A16D /* ProfileViewController.swift */; };
 		799CFE72255D032A00301D7A /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CFE71255D032A00301D7A /* MainNavigationController.swift */; };
 		79A6079F255C324900EBF9AE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A6079E255C324900EBF9AE /* MainTabBarController.swift */; };
-		79A607A1255C38AE00EBF9AE /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A607A0255C38AE00EBF9AE /* ChatViewController.swift */; };
 		79A607A3255C393F00EBF9AE /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A607A2255C393F00EBF9AE /* SelectionViewController.swift */; };
 		79EA25D425A8AD10006DCFD7 /* SelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EA25D325A8AD10006DCFD7 /* SelectionViewModel.swift */; };
 		BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */; };
@@ -40,6 +39,8 @@
 		C2B3FE5125A8BC7E0077316E /* SwipeSelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B3FE5025A8BC7E0077316E /* SwipeSelectionManager.swift */; };
 		C2CC21EA25A7828600EE2D11 /* PreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CC21E925A7828600EE2D11 /* PreferencesViewModel.swift */; };
 		F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12C2EFE2553328600C26AED /* UnderlineTextField.swift */; };
+		F1315FB025AB437D00E23C23 /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1315FAF25AB437D00E23C23 /* MatchViewController.swift */; };
+		F1315FB225AB446200E23C23 /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1315FB125AB446200E23C23 /* MatchViewModel.swift */; };
 		F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1326E192548A67800D317DE /* RegistrationViewController.swift */; };
 		F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135D64E2534646F00D74201 /* AppDelegate.swift */; };
 		F135D6582534647000D74201 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F135D6572534647000D74201 /* Assets.xcassets */; };
@@ -73,7 +74,6 @@
 		799359C1255AC3D500D5A16D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		799CFE71255D032A00301D7A /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		79A6079E255C324900EBF9AE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		79A607A0255C38AE00EBF9AE /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		79A607A2255C393F00EBF9AE /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectionViewController.swift; path = "../New Group/SelectionViewController.swift"; sourceTree = "<group>"; };
 		79EA25D325A8AD10006DCFD7 /* SelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewModel.swift; sourceTree = "<group>"; };
 		BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
@@ -100,6 +100,8 @@
 		C2B3FE5025A8BC7E0077316E /* SwipeSelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeSelectionManager.swift; sourceTree = "<group>"; };
 		C2CC21E925A7828600EE2D11 /* PreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewModel.swift; sourceTree = "<group>"; };
 		F12C2EFE2553328600C26AED /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
+		F1315FAF25AB437D00E23C23 /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
+		F1315FB125AB446200E23C23 /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		F1326E192548A67800D317DE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		F135D64B2534646F00D74201 /* CAFS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAFS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F135D64E2534646F00D74201 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,12 +148,12 @@
 				C23A11CC25AB317400687D2E /* SwipeStateScreen */,
 				79A6079E255C324900EBF9AE /* MainTabBarController.swift */,
 				799CFE71255D032A00301D7A /* MainNavigationController.swift */,
+				F1315FAE25AB433B00E23C23 /* MatchScreen */,
 				C2971EA325A781C100235E94 /* PreferencesScreen */,
 				C28143F2257FE70C00363B31 /* ProfileScreen */,
 				BD89ED442557123C00F20B4B /* LoginScreen */,
 				BDC99E152572514A00B08A74 /* RegistrationScreen */,
 				79EA25D225A8ACEB006DCFD7 /* SelectionScreen */,
-				79A607A0255C38AE00EBF9AE /* ChatViewController.swift */,
 				BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */,
 				BD109C362545EAD900EA76D6 /* Utils */,
 				BD8109682545F558000CC4E4 /* CustomElements */,
@@ -277,6 +279,15 @@
 				F68302174D511A9DD34B24C7 /* Pods-CAFS.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F1315FAE25AB433B00E23C23 /* MatchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F1315FAF25AB437D00E23C23 /* MatchViewController.swift */,
+				F1315FB125AB446200E23C23 /* MatchViewModel.swift */,
+			);
+			path = MatchScreen;
 			sourceTree = "<group>";
 		};
 		F135D6422534646F00D74201 = {
@@ -426,6 +437,7 @@
 			files = (
 				C23F0E792559B632008EC202 /* LoginViewController.swift in Sources */,
 				BD109C352545EACC00EA76D6 /* UIColor+Utils.swift in Sources */,
+				F1315FB225AB446200E23C23 /* MatchViewModel.swift in Sources */,
 				BDC99E1425724EB600B08A74 /* String+Hash.swift in Sources */,
 				79A6079F255C324900EBF9AE /* MainTabBarController.swift in Sources */,
 				C2971E7C25A7359C00235E94 /* UserDefaultsManager.swift in Sources */,
@@ -433,6 +445,7 @@
 				F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */,
 				C2B3FE5125A8BC7E0077316E /* SwipeSelectionManager.swift in Sources */,
 				BD92666825725E0600E0FDDD /* UIAlertController+Utils.swift in Sources */,
+				F1315FB025AB437D00E23C23 /* MatchViewController.swift in Sources */,
 				79A607A3255C393F00EBF9AE /* SelectionViewController.swift in Sources */,
 				C294C2CD256D7D740052A08E /* UserManager.swift in Sources */,
 				BD109C2D2545EA2300EA76D6 /* ServicesAssembly.swift in Sources */,
@@ -442,7 +455,6 @@
 				BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */,
 				79EA25D425A8AD10006DCFD7 /* SelectionViewModel.swift in Sources */,
 				F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */,
-				79A607A1255C38AE00EBF9AE /* ChatViewController.swift in Sources */,
 				BD9F6AB2257248BB00035412 /* String+Utils.swift in Sources */,
 				799CFE72255D032A00301D7A /* MainNavigationController.swift in Sources */,
 				C23A11D025AB31BB00687D2E /* SwipeStateViewController.swift in Sources */,
