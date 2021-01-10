@@ -62,7 +62,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                     switch result {
                     case .success((_, let url)):
                         let imageURL = url.absoluteString
-                        if imageURL.isEmpty {
+                        if !imageURL.isEmpty {
                             userInfo.avatar = imageURL
                             self.model.updateUserInfo(personalData: userInfo) { _ in
                             }
