@@ -22,13 +22,16 @@ class SwipeSelectionManager: ISwipeSelectionManager {
         self.firestoreManager = firestoreManager
     }
     
-    func getSwipeIDs(status: String, _ completion: @escaping (Result<[String], Error>) -> Void) {
-        let statusNeeded = status == "Студент" ? "Преподаватель" : "Студент"
+    func getSwipeIDs(currentUser: PersonalData, _ completion: @escaping (Result<[String], Error>) -> Void) {
+        let statusNeeded = currentUser.status == "Студент" ? "Преподаватель" : "Студент"
         firestoreManager.getDocuments(collection: Self.collection, field: Self.statusField, equalTo: statusNeeded) { result in
             switch result {
             case .success(let querySnapshot):
                 for document in querySnapshot.documents {
-                    self.ids.append(document.documentID)
+                    let idForSwipeQueue = document.documentID
+                    if !currentUser.matches.contains(idForSwipeQueue) && !currentUser.swiped.contains(idForSwipeQueue) && !currentUser.declined.contains(idForSwipeQueue) {
+                        self.ids.append(idForSwipeQueue)
+                    }
                 }
                 completion(.success(self.ids))
             case .failure(let err):
@@ -37,9 +40,9 @@ class SwipeSelectionManager: ISwipeSelectionManager {
         }
     }
     
-    func initIDs(status: String, _ completion: @escaping (Result<[String], Error>) -> Void) {
+    func initIDs(currentUser: PersonalData, _ completion: @escaping (Result<[String], Error>) -> Void) {
         if !self.isInit {
-            getSwipeIDs(status: status) { result in
+            getSwipeIDs(currentUser: currentUser) { result in
                 switch result {
                 case .failure(let error):
                     completion(.failure(error))
@@ -73,7 +76,7 @@ class SwipeSelectionManager: ISwipeSelectionManager {
     }
     
     func nextSwipe(currentUser: PersonalData, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
-        initIDs(status: currentUser.status) { [self] result in
+        initIDs(currentUser: currentUser) { [self] result in
             switch result {
             case .success(_):
                 if !ids.isEmpty {
