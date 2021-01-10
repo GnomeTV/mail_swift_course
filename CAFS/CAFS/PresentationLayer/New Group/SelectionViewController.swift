@@ -3,6 +3,8 @@ import UIKit
 
 class SelectionViewController: UIViewController {
     
+    private let screenWidth = UIScreen.main.bounds.width
+    
     private let titleLabel = UILabel()
     
     private let profileImageStackView = UIStackView()
@@ -15,10 +17,10 @@ class SelectionViewController: UIViewController {
     private let statusTextField = UnderlineTextLabel()
     
     private let extraInfoStackView = UIStackView()
-    private let extraContactTextField = UITextView()
-    private let firstWorkNameTextField = UITextView()
-    private let secondWorkNameTextField = UITextView()
-    private let thirdWorkNameTextField = UITextView()
+    private let extraContactLabel = UILabel()
+    private let firstWorkNameLabel = UILabel()
+    private let secondWorkNameLabel = UILabel()
+    private let thirdWorkNameLabel = UILabel()
     
     // MARK: - Insets
     
@@ -27,7 +29,6 @@ class SelectionViewController: UIViewController {
     private let buttonHeight: CGFloat = 48.0
     private let topInsetTextFieldIndicator: CGFloat = 3.0
     
-    private let screenRect = UIScreen.main.bounds
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,34 +60,31 @@ class SelectionViewController: UIViewController {
     }
     
     private func setupProfileImageStackView() {
-        let screenWidth = screenRect.size.width
-        let screenHeight = screenRect.size.height
+        
         view.addSubview(profileImageStackView)
-        profileImageStackView.addArrangedSubview(profileImageView)
         profileImageStackView.translatesAutoresizingMaskIntoConstraints = false
         profileImageStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         profileImageStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -screenWidth + 200 + leftInset).isActive = true
         profileImageStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
-        profileImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -screenHeight + 150 + 200).isActive = true
+        profileImageStackView.bottomAnchor.constraint(equalTo: profileImageStackView.topAnchor, constant: 250).isActive = true
         
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.masksToBounds = true
         
         profileImageStackView.addArrangedSubview(profileImageView)
-        profileImageStackView.axis = .vertical
-        profileImageStackView.spacing = 10.0
+
         
     }
     
     private func setupPersonalInfoStackView() {
         view.addSubview(personalInfoStackView)
-        let screenWidth = screenRect.size.width
+    
         personalInfoStackView.translatesAutoresizingMaskIntoConstraints = false
-        personalInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: screenWidth - rightInset - 150).isActive = true
+        personalInfoStackView.leadingAnchor.constraint(equalTo: profileImageStackView.trailingAnchor, constant: 10).isActive = true
         personalInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
-        personalInfoStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
-        personalInfoStackView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 360).isActive = true
+        personalInfoStackView.topAnchor.constraint(equalTo: profileImageStackView.topAnchor).isActive = true
+        personalInfoStackView.bottomAnchor.constraint(equalTo: personalInfoStackView.topAnchor, constant: 180).isActive = true
         
         updateSwipe(acceptUser: nil)
         
@@ -95,7 +93,7 @@ class SelectionViewController: UIViewController {
         personalInfoStackView.addArrangedSubview(universityTextField)
         personalInfoStackView.addArrangedSubview(statusTextField)
         personalInfoStackView.axis = .vertical
-        personalInfoStackView.spacing = 50.0
+        personalInfoStackView.spacing = 30.0
         
     }
     
@@ -123,15 +121,15 @@ class SelectionViewController: UIViewController {
         extraInfoStackView.topAnchor.constraint(equalTo: personalInfoStackView.bottomAnchor, constant: 20).isActive = true
         extraInfoStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -300).isActive = true
         
-        extraContactTextField.text = "Дополнительный контакт"
-        firstWorkNameTextField.text = "Название первой работы"
-        secondWorkNameTextField.text = "Название второй работы"
-        thirdWorkNameTextField.text = "Название третьей работы"
+        extraContactLabel.text = "Дополнительный контакт"
+        firstWorkNameLabel.text = "Название первой работы"
+        secondWorkNameLabel.text = "Название второй работы"
+        thirdWorkNameLabel.text = "Название третьей работы"
         
-        extraInfoStackView.addArrangedSubview(extraContactTextField)
-        extraInfoStackView.addArrangedSubview(firstWorkNameTextField)
-        extraInfoStackView.addArrangedSubview(secondWorkNameTextField)
-        extraInfoStackView.addArrangedSubview(thirdWorkNameTextField)
+        extraInfoStackView.addArrangedSubview(extraContactLabel)
+        extraInfoStackView.addArrangedSubview(firstWorkNameLabel)
+        extraInfoStackView.addArrangedSubview(secondWorkNameLabel)
+        extraInfoStackView.addArrangedSubview(thirdWorkNameLabel)
         
         extraInfoStackView.axis = .vertical
         extraInfoStackView.spacing = 10.0
@@ -139,10 +137,11 @@ class SelectionViewController: UIViewController {
     
     private func updateColors(color: UIColor) {
         view.backgroundColor = color
-        extraContactTextField.backgroundColor = color
-        firstWorkNameTextField.backgroundColor = color
-        secondWorkNameTextField.backgroundColor = color
-        thirdWorkNameTextField.backgroundColor = color
+        extraContactLabel.backgroundColor = color
+        firstWorkNameLabel.backgroundColor = color
+        secondWorkNameLabel.backgroundColor = color
+        thirdWorkNameLabel.backgroundColor = color
+        sleep(1)
     }
     
     private func updateSwipe(acceptUser: Bool?) {
