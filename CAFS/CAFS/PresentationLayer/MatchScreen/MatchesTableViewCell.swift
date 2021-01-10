@@ -7,11 +7,14 @@ class ContactTableViewCell: UITableViewCell {
             guard let matchItem = match else {return}
             profileImageView.image = UIImage(named: "profile_icon")
             nameLabel.text = matchItem.firstName + " " + matchItem.lastName
+            emailLabel.text = matchItem.email
             for job in matchItem.works {
-                jobTitleDetailedLabel.text? += job + "; "
+                print(job)
+                worksLabel.text? += job + "; "
             }
-            jobTitleDetailedLabel.text?.removeLast()
-            jobTitleDetailedLabel.text?.removeLast()
+            worksLabel.text?.removeLast()
+            worksLabel.text?.removeLast()
+            
 
         }
     }
@@ -19,14 +22,14 @@ class ContactTableViewCell: UITableViewCell {
     let containerView:UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true // this will make sure its children do not go out of the boundary
+        view.clipsToBounds = true
         return view
     }()
     
     let profileImageView:UIImageView = {
         let img = UIImageView()
-        img.contentMode = .scaleAspectFill // image will never be strecthed vertially or horizontally
-        img.translatesAutoresizingMaskIntoConstraints = false // enable autolayout
+        img.contentMode = .scaleAspectFill
+        img.translatesAutoresizingMaskIntoConstraints = false
         img.layer.cornerRadius = 35
         img.clipsToBounds = true
         return img
@@ -40,34 +43,31 @@ class ContactTableViewCell: UITableViewCell {
         return label
     }()
     
-    let jobTitleDetailedLabel:UILabel = {
+    let emailLabel:UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor =  .white
-        label.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        label.layer.cornerRadius = 5
-        label.clipsToBounds = true
+        label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let countryImageView:UIImageView = {
-        let img = UIImageView()
-        img.contentMode = .scaleAspectFill // without this your image will shrink and looks ugly
-        img.translatesAutoresizingMaskIntoConstraints = false
-        img.layer.cornerRadius = 13
-        img.clipsToBounds = true
-        return img
+    let worksLabel:UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
+    
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.contentView.addSubview(profileImageView)
         containerView.addSubview(nameLabel)
-        containerView.addSubview(jobTitleDetailedLabel)
+        containerView.addSubview(emailLabel)
+        containerView.addSubview(worksLabel)
         self.contentView.addSubview(containerView)
-        self.contentView.addSubview(countryImageView)
         
         profileImageView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         profileImageView.leadingAnchor.constraint(equalTo:self.contentView.leadingAnchor, constant:10).isActive = true
@@ -83,15 +83,13 @@ class ContactTableViewCell: UITableViewCell {
         nameLabel.leadingAnchor.constraint(equalTo:self.containerView.leadingAnchor).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo:self.containerView.trailingAnchor).isActive = true
         
-        jobTitleDetailedLabel.topAnchor.constraint(equalTo:self.nameLabel.bottomAnchor).isActive = true
-        jobTitleDetailedLabel.leadingAnchor.constraint(equalTo:self.containerView.leadingAnchor).isActive = true
-        jobTitleDetailedLabel.topAnchor.constraint(equalTo:self.nameLabel.bottomAnchor).isActive = true
-        jobTitleDetailedLabel.leadingAnchor.constraint(equalTo:self.containerView.leadingAnchor).isActive = true
+        emailLabel.topAnchor.constraint(equalTo:self.nameLabel.bottomAnchor).isActive = true
+        emailLabel.leadingAnchor.constraint(equalTo:self.nameLabel.leadingAnchor).isActive = true
+
+        worksLabel.topAnchor.constraint(equalTo:self.emailLabel.bottomAnchor).isActive = true
+        worksLabel.leadingAnchor.constraint(equalTo:self.emailLabel.leadingAnchor).isActive = true
+
         
-        countryImageView.widthAnchor.constraint(equalToConstant:26).isActive = true
-        countryImageView.heightAnchor.constraint(equalToConstant:26).isActive = true
-        countryImageView.trailingAnchor.constraint(equalTo:self.contentView.trailingAnchor, constant:-20).isActive = true
-        countryImageView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

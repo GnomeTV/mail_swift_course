@@ -49,6 +49,7 @@ class MatchViewController: UIViewController, UITableViewDataSource, UITableViewD
             switch result {
             case .success(let matchUserData):
                 print(matchUserData.email)
+                print(matchUserData.works)
                 cell.match = matchUserData
                 self.model.getUserAvatar(user: matchUserData) { result in
                     switch result {
