@@ -41,6 +41,7 @@
 		F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12C2EFE2553328600C26AED /* UnderlineTextField.swift */; };
 		F1315FB025AB437D00E23C23 /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1315FAF25AB437D00E23C23 /* MatchViewController.swift */; };
 		F1315FB225AB446200E23C23 /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1315FB125AB446200E23C23 /* MatchViewModel.swift */; };
+		F1315FB425AB6CAA00E23C23 /* MatchesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1315FB325AB6CAA00E23C23 /* MatchesTableViewCell.swift */; };
 		F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1326E192548A67800D317DE /* RegistrationViewController.swift */; };
 		F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135D64E2534646F00D74201 /* AppDelegate.swift */; };
 		F135D6582534647000D74201 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F135D6572534647000D74201 /* Assets.xcassets */; };
@@ -102,6 +103,7 @@
 		F12C2EFE2553328600C26AED /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
 		F1315FAF25AB437D00E23C23 /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
 		F1315FB125AB446200E23C23 /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
+		F1315FB325AB6CAA00E23C23 /* MatchesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesTableViewCell.swift; sourceTree = "<group>"; };
 		F1326E192548A67800D317DE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		F135D64B2534646F00D74201 /* CAFS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAFS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F135D64E2534646F00D74201 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 			children = (
 				F1315FAF25AB437D00E23C23 /* MatchViewController.swift */,
 				F1315FB125AB446200E23C23 /* MatchViewModel.swift */,
+				F1315FB325AB6CAA00E23C23 /* MatchesTableViewCell.swift */,
 			);
 			path = MatchScreen;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C23F0E792559B632008EC202 /* LoginViewController.swift in Sources */,
+				F1315FB425AB6CAA00E23C23 /* MatchesTableViewCell.swift in Sources */,
 				BD109C352545EACC00EA76D6 /* UIColor+Utils.swift in Sources */,
 				F1315FB225AB446200E23C23 /* MatchViewModel.swift in Sources */,
 				BDC99E1425724EB600B08A74 /* String+Hash.swift in Sources */,
