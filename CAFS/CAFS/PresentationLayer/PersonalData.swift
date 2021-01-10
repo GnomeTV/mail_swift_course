@@ -8,12 +8,13 @@ struct PersonalData: Codable {
     var avatar: String
     var works: [String]
     var swiped: [String]
+    var declined: [String]
     var matches: [String]
     var email: String
     private(set) var password: String
     
     init(firstName: String, lastName: String, university: String, status: String,
-         avatar: String = "", works: [String] = [], swiped: [String] = [], matches: [String] = [], email: String, password: String) {
+         avatar: String = "", works: [String] = [], swiped: [String] = [], declined: [String] = [], matches: [String] = [], email: String, password: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.university = university
@@ -21,6 +22,7 @@ struct PersonalData: Codable {
         self.avatar = avatar
         self.works = works
         self.swiped = swiped
+        self.declined = declined
         self.matches = matches
         self.email = email
         self.password = Self.safePassword(password, email)
