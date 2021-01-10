@@ -14,7 +14,6 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
     // MARK: - Views
     
     private let registrationStackView = UIStackView()
-    private let titleLabel = UILabel()
     private let emailTextField = UnderlineTextField()
     private let passwordTextField = UnderlineTextField()
     private let repeatPasswordTextField = UnderlineTextField()
@@ -71,7 +70,7 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
         
         registrationStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         registrationStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
-        registrationStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 184.0).isActive = true
+        registrationStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
         
         firstNameTextField.placeholder = "Имя"
         secondNameTextField.placeholder = "Фамилия"
@@ -154,17 +153,7 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
     }
     
     private func setupRegistrationLabel() {
-        view.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        titleLabel.text = "Регистрация"
-        titleLabel.textColor = UIColor.hseBlue
-        titleLabel.font = UIFont.systemFont(ofSize: 32.0, weight: .bold)
-        
-        titleLabel.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
+        self.navigationItem.title = "Регистрация"
     }
     
     private func setupRegisterButton() {

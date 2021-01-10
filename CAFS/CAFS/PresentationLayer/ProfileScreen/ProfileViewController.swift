@@ -81,6 +81,9 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
 class ProfileViewController: UIViewController {
     
+    let screenWidth = UIScreen.main.bounds.width
+    let screenHeight = UIScreen.main.bounds.height
+    
     private let titleLabel = UILabel()
     
     private let profileImageStackView = UIStackView()
@@ -93,6 +96,7 @@ class ProfileViewController: UIViewController {
     private let lastnameTextField = UnderlineTextLabel()
     private let universityTextField = UnderlineTextLabel()
     private let statusTextField = UnderlineTextLabel()
+    private let saveButton = HseStyleButton()
     
     private let extraInfoStackView = UIStackView()
     private let extraContactTextField = UITextField()
@@ -107,7 +111,6 @@ class ProfileViewController: UIViewController {
     private let buttonHeight: CGFloat = 48.0
     private let topInsetTextFieldIndicator: CGFloat = 3.0
     
-    private let screenRect = UIScreen.main.bounds
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,15 +131,13 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupProfileImageStackView() {
-        let screenWidth = screenRect.size.width
-        let screenHeight = screenRect.size.height
         view.addSubview(profileImageStackView)
         profileImageStackView.addArrangedSubview(profileImageView)
         profileImageStackView.translatesAutoresizingMaskIntoConstraints = false
         profileImageStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         profileImageStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -screenWidth + 200 + leftInset).isActive = true
         profileImageStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
-        profileImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -screenHeight + 150 + 200).isActive = true
+        profileImageStackView.bottomAnchor.constraint(equalTo: profileImageStackView.topAnchor, constant: 250).isActive = true
         
         
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -157,12 +158,15 @@ class ProfileViewController: UIViewController {
     
     private func setupPersonalInfoStackView() {
         view.addSubview(personalInfoStackView)
-        let screenWidth = screenRect.size.width
         personalInfoStackView.translatesAutoresizingMaskIntoConstraints = false
-        personalInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: screenWidth - rightInset - 150).isActive = true
+        personalInfoStackView.leadingAnchor.constraint(equalTo: profileImageStackView.trailingAnchor, constant: 10).isActive = true
         personalInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
-        personalInfoStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
-        personalInfoStackView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 360).isActive = true
+        personalInfoStackView.topAnchor.constraint(equalTo: profileImageStackView.topAnchor).isActive = true
+        personalInfoStackView.bottomAnchor.constraint(equalTo: personalInfoStackView.topAnchor, constant: 250).isActive = true
+        
+        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        saveButton.setTitle("Сохранить", for: .normal)
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
         
         updateUserInfoFields()
         
@@ -170,12 +174,15 @@ class ProfileViewController: UIViewController {
         personalInfoStackView.addArrangedSubview(lastnameTextField)
         personalInfoStackView.addArrangedSubview(universityTextField)
         personalInfoStackView.addArrangedSubview(statusTextField)
+        personalInfoStackView.addArrangedSubview(saveButton)
         personalInfoStackView.axis = .vertical
-        personalInfoStackView.spacing = 50.0
+        personalInfoStackView.spacing = 30.0
         
     }
     
     private func setupProfileLabel() {
+
+
         view.addSubview(titleLabel)
         view.addSubview(preferencesButton)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -195,8 +202,8 @@ class ProfileViewController: UIViewController {
         preferencesButton.addTarget(self, action: #selector(preferencesButtonTapped), for: .touchUpInside)
         
         preferencesButton.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
-        preferencesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
-        preferencesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset + 360).isActive = true
+        preferencesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: screenWidth - 50 - rightInset).isActive = true
+        preferencesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         preferencesButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
         
     }
@@ -207,7 +214,7 @@ class ProfileViewController: UIViewController {
         extraInfoStackView.translatesAutoresizingMaskIntoConstraints = false
         extraInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         extraInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
-        extraInfoStackView.topAnchor.constraint(equalTo: personalInfoStackView.bottomAnchor, constant: 20).isActive = true
+        extraInfoStackView.topAnchor.constraint(equalTo: profileImageStackView.bottomAnchor, constant: 20).isActive = true
         extraInfoStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -300).isActive = true
         
         extraContactTextField.placeholder = "Дополнительный контакт"
@@ -266,6 +273,10 @@ class ProfileViewController: UIViewController {
     
     @objc private func preferencesButtonTapped() {
         navigationController?.pushViewController(PreferencesViewController(), animated: true)
+        
+    }
+    
+    @objc private func saveButtonTapped() {
         
     }
     
