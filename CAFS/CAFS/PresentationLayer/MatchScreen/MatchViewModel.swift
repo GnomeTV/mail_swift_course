@@ -14,6 +14,7 @@ class MatchViewModel: IMatchViewModel {
     init(userManager: IUserManager, userDefaultsManager: IUserDeafaultsManager) {
         self.userManager = userManager
         self.userDefaultsManager = userDefaultsManager
+        getMatches()
     }
     
     func getUserAvatar(user: PersonalData, _ completion: @escaping (Result<UIImage, Error>) -> Void) {

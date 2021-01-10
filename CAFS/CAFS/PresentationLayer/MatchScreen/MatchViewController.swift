@@ -26,15 +26,20 @@ class MatchViewController: UIViewController,UITableViewDataSource, UITableViewDe
         
         updateMatches()
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateMatches()
+    }
+    
     func updateMatches() {
         model.getMatches()
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        updateMatches()
         matches = model.matches
-        print(matches)
         return matches.count
     }
     
