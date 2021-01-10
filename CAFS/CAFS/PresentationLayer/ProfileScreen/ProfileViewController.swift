@@ -277,7 +277,18 @@ class ProfileViewController: UIViewController {
     }
     
     @objc private func saveButtonTapped() {
-        
+        if var userPersonalData = model.getUserInfoFromCache() {
+            if userPersonalData.works.count != 4 {
+                userPersonalData.works = ["", "", "", ""]
+            }
+            userPersonalData.works[0] = (extraContactTextField.text ?? "")
+            userPersonalData.works[1] = (firstWorkNameTextField.text ?? "")
+            userPersonalData.works[2] = (secondWorkNameTextField.text ?? "")
+            userPersonalData.works[3] = (thirdWorkNameTextField.text ?? "")
+            
+            model.updateUserInfo(personalData: userPersonalData)  { _ in }
+        }
+        print("SaveButton tapped")
     }
     
 }
