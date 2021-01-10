@@ -1,9 +1,7 @@
 import UIKit
 
 
-class MatchViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
-    
-    private var matches: [(matchUser: PersonalData?, matchUserAvatar: UIImage?)] = []
+class MatchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     private let matchTabelView = UITableView()
     private let model = viewModels.matchViewModel
     
@@ -38,16 +36,31 @@ class MatchViewController: UIViewController,UITableViewDataSource, UITableViewDe
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        updateMatches()
-        matches = model.matches
-        return matches.count
+        print(model.matchesIDs.count)
+        return model.matchesIDs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactTableViewCell
-        if let userData = matches[indexPath.row].matchUser {
-            cell.match = userData
-            cell.profileImageView.image = matches[indexPath.row].matchUserAvatar ?? UIImage(named: "profile_icon")
+        let matchUserID = model.matchesIDs[indexPath.row]
+        print(model.matchesIDs)
+        cell.profileImageView.image = UIImage(named: "profile_icon")
+        model.getUserInfoFromServer(id: matchUserID) { result in
+            switch result {
+            case .success(let matchUserData):
+                print(matchUserData.email)
+                self.model.getUserAvatar(user: matchUserData) { result in
+                    switch result {
+                    case .success(let matchUserAvatar):
+                        cell.match = matchUserData
+                        cell.profileImageView.image = matchUserAvatar
+                    case .failure(_):
+                        cell.profileImageView.image = UIImage(named: "profile_icon")
+                    }
+                }
+            case .failure(_):
+                print("Error load user")
+            }
         }
         return cell
     }

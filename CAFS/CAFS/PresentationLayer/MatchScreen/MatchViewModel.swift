@@ -3,13 +3,15 @@ import UIKit
 
 protocol IMatchViewModel {
     func getMatches()
-    var matches: [(matchUser: PersonalData?, matchUserAvatar: UIImage?)] { get }
+    func getUserInfoFromServer(id: String, _ completion: @escaping (Result<PersonalData, Error>) -> Void)
+    func getUserAvatar(user: PersonalData, _ completion: @escaping (Result<UIImage, Error>) -> Void)
+    var matchesIDs: [String] { get }
 }
 
 class MatchViewModel: IMatchViewModel {
     private let userManager: IUserManager
     private let userDefaultsManager: IUserDeafaultsManager
-    var matches: [(matchUser: PersonalData?, matchUserAvatar: UIImage?)] = []
+    var matchesIDs: [String] = []
     
     init(userManager: IUserManager, userDefaultsManager: IUserDeafaultsManager) {
         self.userManager = userManager
@@ -27,22 +29,10 @@ class MatchViewModel: IMatchViewModel {
     
     func getMatches() {
         if let currentUser = userDefaultsManager.getUserInfo() {
+            matchesIDs = []
             for matchUserID in currentUser.matches {
-                getUserInfoFromServer(id: matchUserID) { result in
-                    switch result {
-                    case .success(let matchUserData):
-                        self.getUserAvatar(user: matchUserData) { result in
-                            switch result {
-                            case .success(let matchUserAvatar):
-                                self.matches.append((matchUserData, matchUserAvatar))
-                                print(self.matches)
-                            case .failure(_):
-                                self.matches.append((matchUserData, nil))
-                            }
-                        }
-                    case .failure(_):
-                        self.matches.append((nil, nil))
-                    }
+                if !matchesIDs.contains(matchUserID) {
+                    matchesIDs.append(matchUserID)
                 }
             }
         }
