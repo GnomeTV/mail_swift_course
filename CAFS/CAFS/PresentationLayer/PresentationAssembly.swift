@@ -6,6 +6,8 @@ protocol IPresentationAssembly {
     var profileViewModel: IProfileViewModel { get }
     var preferencesViewModel: IPreferencesViewModel { get }
     var selectionViewModel: ISelectionViewModel { get }
+    var matchViewModel: IMatchViewModel { get }
+    var swipeStateViewModel: ISwipeStateViewModel { get }
 }
 
 final class PresentationAssembly: IPresentationAssembly {
@@ -32,6 +34,10 @@ final class PresentationAssembly: IPresentationAssembly {
     
     lazy var matchViewModel: IMatchViewModel = {
         MatchViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager)
+    }()
+    
+    lazy var swipeStateViewModel: ISwipeStateViewModel = {
+        SwipeStateViewModel(swipeSelectionManager: servicesAssembly.swipeSelectionManager, userDefaultsManager: servicesAssembly.userDefaultsManager)
     }()
     
     private let servicesAssembly: IServicesAssembly

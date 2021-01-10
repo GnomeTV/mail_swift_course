@@ -48,7 +48,7 @@ class SelectionViewModel: ISelectionViewModel {
     }
     
     func nextSwipe(currentUser: PersonalData, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
-        swipeSelectionManager.nextSwipe(currentUser: currentUser) { result in
+        swipeSelectionManager.nextSwipe(currentUser: currentUser, checkQueue: false) { result in
             switch result {
             case .success(let pData):
                 self.lastID = pData.email.genHash()

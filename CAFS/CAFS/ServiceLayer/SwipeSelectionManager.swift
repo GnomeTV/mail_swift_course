@@ -2,7 +2,7 @@ import Foundation
 import FirebaseStorage
 
 protocol ISwipeSelectionManager {
-    func nextSwipe(currentUser: PersonalData, _ completion: @escaping (Result<PersonalData, Error>) -> Void)
+    func nextSwipe(currentUser: PersonalData, checkQueue: Bool, _ completion: @escaping (Result<PersonalData, Error>) -> Void)
     func resetSwipeQueue()
 }
 
@@ -75,14 +75,16 @@ class SwipeSelectionManager: ISwipeSelectionManager {
         }
     }
     
-    func nextSwipe(currentUser: PersonalData, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
+    func nextSwipe(currentUser: PersonalData, checkQueue: Bool = false, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
         initIDs(currentUser: currentUser) { [self] result in
             switch result {
             case .success(_):
                 if !ids.isEmpty {
                     let idx = Int(arc4random())%ids.count
                     getUserData(id: ids[idx], completion)
-                    ids.remove(at: idx)
+                    if !checkQueue {
+                        ids.remove(at: idx)
+                    }
                 } else {
                     completion(.failure(SwipeSelectionManagerError.emptyQueue))
                 }
