@@ -111,12 +111,16 @@ class ProfileViewController: UIViewController {
     private let buttonHeight: CGFloat = 48.0
     private let topInsetTextFieldIndicator: CGFloat = 3.0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         self.hideKeyboardWhenTappedAround()
         setupViews()
+        updateUserInfoFields()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         updateUserInfoFields()
     }
     
@@ -248,6 +252,7 @@ class ProfileViewController: UIViewController {
                         lastnameTextField.text = pData.lastName
                         universityTextField.text = pData.university
                         statusTextField.text = pData.status
+                        model.updateUserInfoInCache(personalData: pData)
                     case .failure(let error):
                         print("Error: ", error)
                     }

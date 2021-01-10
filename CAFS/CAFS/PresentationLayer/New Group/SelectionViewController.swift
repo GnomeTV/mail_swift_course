@@ -141,7 +141,6 @@ class SelectionViewController: UIViewController {
         firstWorkNameLabel.backgroundColor = color
         secondWorkNameLabel.backgroundColor = color
         thirdWorkNameLabel.backgroundColor = color
-        sleep(1)
     }
     
     private func updateSwipe(acceptUser: Bool?) {
@@ -168,8 +167,8 @@ class SelectionViewController: UIViewController {
                             print("Error download image")
                         }
                     }
-                case .failure(let error):
-                    print(error)
+                case .failure(_):
+                    self.navigationController?.pushViewController(SwipeStateViewController(), animated: true)
                 }
             }
         }
