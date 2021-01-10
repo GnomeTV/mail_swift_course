@@ -30,6 +30,10 @@ final class PresentationAssembly: IPresentationAssembly {
         SelectionViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager, swipeSelectionManager: servicesAssembly.swipeSelectionManager)
     }()
     
+    lazy var matchViewModel: IMatchViewModel = {
+        MatchViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager)
+    }()
+    
     private let servicesAssembly: IServicesAssembly
     
     init(servicesAssembly: IServicesAssembly) {
