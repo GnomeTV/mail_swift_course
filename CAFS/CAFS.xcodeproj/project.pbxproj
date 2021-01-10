@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		79186C27254819BF00B084E2 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79186C26254819BF00B084E2 /* FirestoreManager.swift */; };
 		791984812578CB7B001CF6ED /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791984802578CB7B001CF6ED /* PreferencesViewController.swift */; };
+		792DA7E825AB940800C170A5 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DA7E725AB940800C170A5 /* RegistrationViewController.swift */; };
 		798E1527256D80A8005938AA /* UnderlineTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798E1526256D80A8005938AA /* UnderlineTextLabel.swift */; };
 		799359C2255AC3D500D5A16D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799359C1255AC3D500D5A16D /* ProfileViewController.swift */; };
 		799CFE72255D032A00301D7A /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CFE71255D032A00301D7A /* MainNavigationController.swift */; };
@@ -39,7 +40,6 @@
 		F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12C2EFE2553328600C26AED /* UnderlineTextField.swift */; };
 		F1315FB025AB437D00E23C23 /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1315FAF25AB437D00E23C23 /* MatchViewController.swift */; };
 		F1315FB225AB446200E23C23 /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1315FB125AB446200E23C23 /* MatchViewModel.swift */; };
-		F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1326E192548A67800D317DE /* RegistrationViewController.swift */; };
 		F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135D64E2534646F00D74201 /* AppDelegate.swift */; };
 		F135D6582534647000D74201 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F135D6572534647000D74201 /* Assets.xcassets */; };
 		F135D65B2534647000D74201 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F135D6592534647000D74201 /* LaunchScreen.storyboard */; };
@@ -68,6 +68,7 @@
 		58DD20CBEF5B2D5055914C2D /* Pods_CAFS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CAFS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79186C26254819BF00B084E2 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirestoreManager.swift; path = CAFS/CoreLayer/FirestoreManager.swift; sourceTree = SOURCE_ROOT; };
 		791984802578CB7B001CF6ED /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		792DA7E725AB940800C170A5 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationViewController.swift; path = CAFS/PresentationLayer/RegistrationScreen/RegistrationViewController.swift; sourceTree = SOURCE_ROOT; };
 		798E1526256D80A8005938AA /* UnderlineTextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextLabel.swift; sourceTree = "<group>"; };
 		799359C1255AC3D500D5A16D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		799CFE71255D032A00301D7A /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
@@ -98,7 +99,6 @@
 		F12C2EFE2553328600C26AED /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
 		F1315FAF25AB437D00E23C23 /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
 		F1315FB125AB446200E23C23 /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
-		F1326E192548A67800D317DE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		F135D64B2534646F00D74201 /* CAFS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAFS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F135D64E2534646F00D74201 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F135D6572534647000D74201 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 		BDC99E152572514A00B08A74 /* RegistrationScreen */ = {
 			isa = PBXGroup;
 			children = (
-				F1326E192548A67800D317DE /* RegistrationViewController.swift */,
+				792DA7E725AB940800C170A5 /* RegistrationViewController.swift */,
 				BDC99E17257251BB00B08A74 /* RegistrationViewModel.swift */,
 			);
 			path = RegistrationScreen;
@@ -428,7 +428,6 @@
 				79A6079F255C324900EBF9AE /* MainTabBarController.swift in Sources */,
 				C2971E7C25A7359C00235E94 /* UserDefaultsManager.swift in Sources */,
 				BD89ED462557125000F20B4B /* LoginViewModel.swift in Sources */,
-				F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */,
 				C2B3FE5125A8BC7E0077316E /* SwipeSelectionManager.swift in Sources */,
 				BD92666825725E0600E0FDDD /* UIAlertController+Utils.swift in Sources */,
 				F1315FB025AB437D00E23C23 /* MatchViewController.swift in Sources */,
@@ -446,6 +445,7 @@
 				C2CC21EA25A7828600EE2D11 /* PreferencesViewModel.swift in Sources */,
 				F18367D525546CC100664294 /* CheckBoxButton.swift in Sources */,
 				BD92666625725D6C00E0FDDD /* UIApplication+Utils.swift in Sources */,
+				792DA7E825AB940800C170A5 /* RegistrationViewController.swift in Sources */,
 				C21113D5255AE795005CB68F /* PersonalData.swift in Sources */,
 				BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */,
 				BDC99E18257251BB00B08A74 /* RegistrationViewModel.swift in Sources */,
