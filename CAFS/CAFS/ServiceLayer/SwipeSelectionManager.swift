@@ -77,8 +77,9 @@ class SwipeSelectionManager: ISwipeSelectionManager {
             switch result {
             case .success(_):
                 if !ids.isEmpty {
-                    getUserData(id: ids[0], completion)
-                    ids.removeFirst()
+                    let idx = Int(arc4random())%ids.count
+                    getUserData(id: ids[idx], completion)
+                    ids.remove(at: idx)
                 } else {
                     completion(.failure(SwipeSelectionManagerError.emptyQueue))
                 }
