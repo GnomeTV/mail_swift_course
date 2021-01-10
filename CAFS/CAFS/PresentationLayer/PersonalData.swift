@@ -13,7 +13,7 @@ struct PersonalData: Codable {
     private(set) var password: String
     
     init(firstName: String, lastName: String, university: String, status: String,
-         avatar: String = "", works: [String] = [""], swiped: [String] = [""], matches: [String] = [""], email: String, password: String) {
+         avatar: String = "", works: [String] = [], swiped: [String] = [], matches: [String] = [], email: String, password: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.university = university
