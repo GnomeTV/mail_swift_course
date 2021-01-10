@@ -96,6 +96,7 @@ class ProfileViewController: UIViewController {
     private let lastnameTextField = UnderlineTextLabel()
     private let universityTextField = UnderlineTextLabel()
     private let statusTextField = UnderlineTextLabel()
+    private let saveButton = HseStyleButton()
     
     private let extraInfoStackView = UIStackView()
     private let extraContactTextField = UITextField()
@@ -160,7 +161,11 @@ class ProfileViewController: UIViewController {
         personalInfoStackView.leadingAnchor.constraint(equalTo: profileImageStackView.trailingAnchor, constant: 10).isActive = true
         personalInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
         personalInfoStackView.topAnchor.constraint(equalTo: profileImageStackView.topAnchor).isActive = true
-        personalInfoStackView.bottomAnchor.constraint(equalTo: personalInfoStackView.topAnchor, constant: 180).isActive = true
+        personalInfoStackView.bottomAnchor.constraint(equalTo: personalInfoStackView.topAnchor, constant: 250).isActive = true
+        
+        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        saveButton.setTitle("Сохранить", for: .normal)
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
         
         if let userPersonalData = model.getUserInfo() {
             
@@ -183,6 +188,7 @@ class ProfileViewController: UIViewController {
         personalInfoStackView.addArrangedSubview(lastnameTextField)
         personalInfoStackView.addArrangedSubview(universityTextField)
         personalInfoStackView.addArrangedSubview(statusTextField)
+        personalInfoStackView.addArrangedSubview(saveButton)
         personalInfoStackView.axis = .vertical
         personalInfoStackView.spacing = 30.0
         
@@ -246,6 +252,10 @@ class ProfileViewController: UIViewController {
     
     @objc private func preferencesButtonTapped() {
         navigationController?.pushViewController(PreferencesViewController(), animated: true)
+        
+    }
+    
+    @objc private func saveButtonTapped() {
         
     }
     
