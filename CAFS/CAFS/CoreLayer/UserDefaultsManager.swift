@@ -9,22 +9,26 @@ protocol IUserDeafaultsManager {
 }
 
 class UserDefaultsManager: IUserDeafaultsManager {
+    enum UserDefaultsKeys {
+        static let keyIsLogged = "isLogged"
+        static let keyUserInfo = "userInfo"
+        static let keyUserAvatar = "userAvatar"
+        static let keyIsDarkTheme = "isDarkTheme"
+    }
     lazy var userInfo = UserDefaults.standard
-    let keyUserInfo = "userInfo"
-    let keyUserAvatar = "userAvatar"
     
     func updateUserInfo(userData: PersonalData) {
-        userInfo.set(true, forKey: "isLogged")
+        userInfo.set(true, forKey: UserDefaultsKeys.keyIsLogged)
         let storageData = try? JSONEncoder().encode(userData)
-        userInfo.set(storageData, forKey: keyUserInfo)
+        userInfo.set(storageData, forKey: UserDefaultsKeys.keyUserInfo)
     }
     
     func updateUserAvatar(avatar: Data) {
-        userInfo.set(avatar, forKey: keyUserAvatar)
+        userInfo.set(avatar, forKey: UserDefaultsKeys.keyUserAvatar)
     }
     
     func getUserInfo() -> PersonalData? {
-        if let rawData = userInfo.data(forKey: keyUserInfo) {
+        if let rawData = userInfo.data(forKey: UserDefaultsKeys.keyUserInfo) {
             let userData = try? JSONDecoder().decode(PersonalData.self, from: rawData)
             return userData
         } else {
@@ -33,11 +37,19 @@ class UserDefaultsManager: IUserDeafaultsManager {
     }
     
     func getUserAvatar() -> Data? {
-        if let userAvatar = userInfo.data(forKey: keyUserAvatar) {
+        if let userAvatar = userInfo.data(forKey: UserDefaultsKeys.keyUserInfo) {
             return userAvatar
         } else {
             return nil
         }
+    }
+    
+    func isDarkTheme() -> Bool {
+        return userInfo.bool(forKey: UserDefaultsKeys.keyIsDarkTheme)
+    }
+    
+    func setTheme(isDarkTheme: Bool) {
+        userInfo.set(isDarkTheme, forKey: UserDefaultsKeys.keyIsDarkTheme)
     }
     
     func clearUserInfo() {
