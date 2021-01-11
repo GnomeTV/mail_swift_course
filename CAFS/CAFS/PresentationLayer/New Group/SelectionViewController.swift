@@ -167,6 +167,11 @@ class SelectionViewController: UIViewController {
                         secondWorkNameLabel.text = userToSwipe.works[2]
                         thirdWorkNameLabel.text = userToSwipe.works[3]
                     }
+                    else {
+                        extraContactLabel.text = ""
+                        firstWorkNameLabel.text = ""
+                        secondWorkNameLabel.text = ""
+                        thirdWorkNameLabel.text = ""                    }
                     
                     
                     model.getSwipeUserAvatar(user: userToSwipe) { result in
