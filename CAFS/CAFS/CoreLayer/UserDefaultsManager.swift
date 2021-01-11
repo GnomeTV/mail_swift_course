@@ -5,6 +5,10 @@ protocol IUserDeafaultsManager {
     
     func getUserInfo() -> PersonalData?
     
+    func isDarkTheme() -> Bool
+    
+    func setTheme(isDarkTheme: Bool)
+    
     func clearUserInfo()
 }
 
