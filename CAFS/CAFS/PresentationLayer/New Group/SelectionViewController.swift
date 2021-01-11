@@ -34,7 +34,7 @@ class SelectionViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         self.hideKeyboardWhenTappedAround()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.screenBackground
         
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(leftSwiped(_:)))
         leftSwipe.direction = .left
@@ -153,7 +153,7 @@ class SelectionViewController: UIViewController {
             model.nextSwipe(currentUser: userPersonalData) { [self] result in
                 switch result {
                 case .success(let userToSwipe):
-                    updateColors(color: .white)
+                    updateColors(color: UIColor.screenBackground ?? .white)
                     profileImageView.image = UIImage(named: "defaultProfilePhoto_image")
                     
                     firstnameLabel.text = userToSwipe.firstName
@@ -171,7 +171,8 @@ class SelectionViewController: UIViewController {
                         extraContactLabel.text = ""
                         firstWorkNameLabel.text = ""
                         secondWorkNameLabel.text = ""
-                        thirdWorkNameLabel.text = ""                    }
+                        thirdWorkNameLabel.text = ""
+                    }
                     
                     
                     model.getSwipeUserAvatar(user: userToSwipe) { result in

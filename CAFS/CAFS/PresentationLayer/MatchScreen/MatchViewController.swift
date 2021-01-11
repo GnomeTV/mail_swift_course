@@ -7,8 +7,6 @@ class MatchViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        
         view.addSubview(matchTabelView)
         
         matchTabelView.translatesAutoresizingMaskIntoConstraints = false

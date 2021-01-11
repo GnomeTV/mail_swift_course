@@ -14,8 +14,6 @@ class ContactTableViewCell: UITableViewCell {
             }
             worksLabel.text?.removeLast()
             worksLabel.text?.removeLast()
-            
-
         }
     }
     
@@ -38,7 +36,6 @@ class ContactTableViewCell: UITableViewCell {
     let nameLabel:UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -46,7 +43,6 @@ class ContactTableViewCell: UITableViewCell {
     let emailLabel:UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -54,14 +50,14 @@ class ContactTableViewCell: UITableViewCell {
     let worksLabel:UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.backgroundColor = UIColor.screenBackground
         
         self.contentView.addSubview(profileImageView)
         containerView.addSubview(nameLabel)

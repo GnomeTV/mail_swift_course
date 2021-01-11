@@ -25,7 +25,7 @@ class PreferencesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.screenBackground
         setupViews()
     }
     
@@ -99,12 +99,26 @@ class PreferencesViewController: UIViewController {
             lightThemeButton.isSelected = true
             darkThemeButton.isSelected = false
             lightThemeButton.backgroundColor = UIColor.hseBlue
+            
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .light
+            }
+            
+            view.setNeedsDisplay()
+            
             darkThemeButton.backgroundColor = .gray
         }
         else if sender == darkThemeButton {
             lightThemeButton.isSelected = false
             darkThemeButton.isSelected = true
             darkThemeButton.backgroundColor = UIColor.hseBlue
+            
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .dark
+            }
+            
+            view.setNeedsDisplay()
+            
             lightThemeButton.backgroundColor = .gray
         }
     }
