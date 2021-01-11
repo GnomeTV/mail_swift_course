@@ -118,8 +118,8 @@ class SelectionViewController: UIViewController {
         extraInfoStackView.translatesAutoresizingMaskIntoConstraints = false
         extraInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         extraInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
-        extraInfoStackView.topAnchor.constraint(equalTo: personalInfoStackView.bottomAnchor, constant: 20).isActive = true
-        extraInfoStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -300).isActive = true
+        extraInfoStackView.topAnchor.constraint(equalTo: profileImageStackView.bottomAnchor, constant: 20).isActive = true
+        extraInfoStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
         
         extraContactLabel.text = ""
         firstWorkNameLabel.text = ""

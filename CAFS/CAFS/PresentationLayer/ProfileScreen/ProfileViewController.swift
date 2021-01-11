@@ -244,6 +244,20 @@ class ProfileViewController: UIViewController {
             universityTextField.text = userPersonalData.university
             statusTextField.text = userPersonalData.status
             
+            if userPersonalData.works.count != 0{
+                extraContactTextField.text = userPersonalData.works[0]
+                firstWorkNameTextField.text = userPersonalData.works[1]
+                secondWorkNameTextField.text = userPersonalData.works[2]
+                thirdWorkNameTextField.text = userPersonalData.works[3]
+            }
+            else {
+                extraContactTextField.text = ""
+                firstWorkNameTextField.text = ""
+                secondWorkNameTextField.text = ""
+                thirdWorkNameTextField.text = ""
+            }
+            
+            
             DispatchQueue.main.async {
                 self.model.getUserInfoFromServer(userData: userPersonalData) { [self] result in
                     switch result {
