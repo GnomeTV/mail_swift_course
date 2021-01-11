@@ -11,10 +11,10 @@ class SelectionViewController: UIViewController {
     private let profileImageView = UIImageView(image: UIImage(named: "defaultProfilePhoto_image"))
     
     private let personalInfoStackView = UIStackView()
-    private let firstnameTextField = UnderlineTextLabel()
-    private let lastnameTextField = UnderlineTextLabel()
-    private let universityTextField = UnderlineTextLabel()
-    private let statusTextField = UnderlineTextLabel()
+    private let firstnameLabel = UnderlineTextLabel()
+    private let lastnameLabel = UnderlineTextLabel()
+    private let universityLabel = UnderlineTextLabel()
+    private let statusLabel = UnderlineTextLabel()
     
     private let extraInfoStackView = UIStackView()
     private let extraContactLabel = UILabel()
@@ -88,10 +88,10 @@ class SelectionViewController: UIViewController {
         
         updateSwipe(acceptUser: nil)
         
-        personalInfoStackView.addArrangedSubview(firstnameTextField)
-        personalInfoStackView.addArrangedSubview(lastnameTextField)
-        personalInfoStackView.addArrangedSubview(universityTextField)
-        personalInfoStackView.addArrangedSubview(statusTextField)
+        personalInfoStackView.addArrangedSubview(firstnameLabel)
+        personalInfoStackView.addArrangedSubview(lastnameLabel)
+        personalInfoStackView.addArrangedSubview(universityLabel)
+        personalInfoStackView.addArrangedSubview(statusLabel)
         personalInfoStackView.axis = .vertical
         personalInfoStackView.spacing = 30.0
         
@@ -121,10 +121,10 @@ class SelectionViewController: UIViewController {
         extraInfoStackView.topAnchor.constraint(equalTo: personalInfoStackView.bottomAnchor, constant: 20).isActive = true
         extraInfoStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -300).isActive = true
         
-        extraContactLabel.text = "Дополнительный контакт"
-        firstWorkNameLabel.text = "Название первой работы"
-        secondWorkNameLabel.text = "Название второй работы"
-        thirdWorkNameLabel.text = "Название третьей работы"
+        extraContactLabel.text = ""
+        firstWorkNameLabel.text = ""
+        secondWorkNameLabel.text = ""
+        thirdWorkNameLabel.text = ""
         
         extraInfoStackView.addArrangedSubview(extraContactLabel)
         extraInfoStackView.addArrangedSubview(firstWorkNameLabel)
@@ -155,10 +155,20 @@ class SelectionViewController: UIViewController {
                 case .success(let userToSwipe):
                     updateColors(color: .white)
                     profileImageView.image = UIImage(named: "defaultProfilePhoto_image")
-                    firstnameTextField.text = userToSwipe.firstName
-                    lastnameTextField.text = userToSwipe.lastName
-                    universityTextField.text = userToSwipe.university
-                    statusTextField.text = userToSwipe.status
+                    
+                    firstnameLabel.text = userToSwipe.firstName
+                    lastnameLabel.text = userToSwipe.lastName
+                    universityLabel.text = userToSwipe.university
+                    statusLabel.text = userToSwipe.status
+                    
+                    if userToSwipe.works.count != 0{
+                        extraContactLabel.text = userToSwipe.works[0]
+                        firstWorkNameLabel.text = userToSwipe.works[1]
+                        secondWorkNameLabel.text = userToSwipe.works[2]
+                        thirdWorkNameLabel.text = userToSwipe.works[3]
+                    }
+                    
+                    
                     model.getSwipeUserAvatar(user: userToSwipe) { result in
                         switch result {
                         case .success(let image):
