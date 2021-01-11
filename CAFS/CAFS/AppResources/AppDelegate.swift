@@ -10,6 +10,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow()
         
+        if UserDefaults.standard.bool(forKey: "isDarkTheme") {
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .dark
+            }
+        }
+        
         if UserDefaults.standard.bool(forKey: "isLogged") {
             let navigationController = MainNavigationController(rootViewController: MainTabBarController())
             window.rootViewController = navigationController
@@ -19,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.rootViewController = navigationController
             window.makeKeyAndVisible()
         }
-    
+        
         self.window = window
         return true
     }

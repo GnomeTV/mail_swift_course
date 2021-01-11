@@ -23,13 +23,19 @@ class PreferencesViewController: UIViewController {
     let screenHeight = UIScreen.main.bounds.height
     let screenWidth = UIScreen.main.bounds.width
     
+    private let model = viewModels.preferencesViewModel
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if model.isDarkTheme() {
+            lightThemeButton.backgroundColor = .gray
+        }
+        else {
+            darkThemeButton.backgroundColor = .gray
+        }
         view.backgroundColor = UIColor.screenBackground
         setupViews()
     }
-    
-    private let model = viewModels.preferencesViewModel
     
     // MARK: - Private methods
     private func setupViews() {
@@ -96,6 +102,7 @@ class PreferencesViewController: UIViewController {
     
     @objc private func switchButtonTapped(sender: HseStyleButton) {
         if sender == lightThemeButton {
+            model.setThemInfo(isDarkTheme: false)
             lightThemeButton.isSelected = true
             darkThemeButton.isSelected = false
             lightThemeButton.backgroundColor = UIColor.hseBlue
@@ -109,6 +116,7 @@ class PreferencesViewController: UIViewController {
             darkThemeButton.backgroundColor = .gray
         }
         else if sender == darkThemeButton {
+            model.setThemInfo(isDarkTheme: true)
             lightThemeButton.isSelected = false
             darkThemeButton.isSelected = true
             darkThemeButton.backgroundColor = UIColor.hseBlue

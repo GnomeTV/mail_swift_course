@@ -2,6 +2,8 @@ import Foundation
 
 protocol IPreferencesViewModel {
     func clearUser()
+    func isDarkTheme() -> Bool
+    func setThemInfo(isDarkTheme: Bool)
 }
 
 class PreferencesViewModel: IPreferencesViewModel {
@@ -18,5 +20,13 @@ class PreferencesViewModel: IPreferencesViewModel {
     func clearUser() {
         userDefaultsManager.clearUserInfo()
         swipeSelectionManager.resetSwipeQueue()
+    }
+    
+    func isDarkTheme() -> Bool {
+        return userDefaultsManager.isDarkTheme()
+    }
+    
+    func setThemInfo(isDarkTheme: Bool) {
+        userDefaultsManager.setTheme(isDarkTheme: isDarkTheme)
     }
 }
