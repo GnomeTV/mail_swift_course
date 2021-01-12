@@ -452,6 +452,14 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
                 self.model.updateUserInfo(personalData: userPersonalData)  { _ in }
             }
             print("SaveButton tapped")
+            
+            self.extraContactTextField.isHidden = false
+            self.firstWorkNameTextField.isHidden = false
+            self.firstWorkLinkTextField.isHidden = false
+            self.secondWorkNameTextField.isHidden = false
+            self.secondWorkLinkTextField.isHidden = false
+            self.thirdWorkNameTextField.isHidden = false
+            self.thirdWorkLinkTextField.isHidden = false
         }
     }
     
