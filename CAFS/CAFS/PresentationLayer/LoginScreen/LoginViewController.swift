@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
         if let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             keyboardHeight += keyboardRect.height
         }
-        let duration: TimeInterval = 1.0
+        let duration: TimeInterval = 0.5
         UIView.animate(withDuration: duration, animations: {
             self.loginButton.frame.origin.y = self.screenHeight - keyboardHeight - 2 * self.buttonHeight - 20
             self.registerButton.frame.origin.y = self.screenHeight - keyboardHeight - self.buttonHeight - 10
@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        let duration: TimeInterval = 1.0
+        let duration: TimeInterval = 0.5
         UIView.animate(withDuration: duration, animations: {
             self.loginButton.frame.origin.y = self.screenHeight - self.buttonHeight - 110
             self.registerButton.frame.origin.y = self.screenHeight - 100

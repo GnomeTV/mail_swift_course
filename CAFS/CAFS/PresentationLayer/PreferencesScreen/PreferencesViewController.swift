@@ -67,7 +67,7 @@ class PreferencesViewController: UIViewController {
         exitButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
         exitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftInset).isActive = true
         exitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -rightInset).isActive = true
-        exitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -buttonHeight*2).isActive = true
+        exitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
     }
     
     private func setupOptionsStackView() {

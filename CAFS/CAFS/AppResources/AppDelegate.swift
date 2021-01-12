@@ -15,6 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 window.overrideUserInterfaceStyle = .dark
             }
         }
+        else {
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .light
+            }
+        }
         
         if UserDefaults.standard.bool(forKey: "isLogged") {
             let navigationController = MainNavigationController(rootViewController: MainTabBarController())

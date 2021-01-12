@@ -1,6 +1,18 @@
 import UIKit
 
-class RegistrationViewController: UIViewController, checkBoxDelegate {
+extension RegistrationViewController {
+ func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+        nextField.becomeFirstResponder()
+    }
+    else {
+        textField.resignFirstResponder()
+    }
+    return false
+    }
+ }
+
+class RegistrationViewController: UIViewController, checkBoxDelegate, UITextFieldDelegate {
     func didTapCheckbox(isChecked: Bool, type: String) {
         switch type {
         case "student":
@@ -47,6 +59,20 @@ class RegistrationViewController: UIViewController, checkBoxDelegate {
     override func viewDidLoad() {
         view.backgroundColor = UIColor.screenBackground
         super.viewDidLoad()
+        
+        firstNameTextField.delegate = self
+        firstNameTextField.tag = 1
+        secondNameTextField.delegate = self
+        secondNameTextField.tag = 2
+        universityTextField.delegate = self
+        universityTextField.tag = 3
+        emailTextField.delegate = self
+        emailTextField.tag = 4
+        passwordTextField.delegate = self
+        passwordTextField.tag = 5
+        repeatPasswordTextField.delegate = self
+        repeatPasswordTextField.tag = 6
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
         

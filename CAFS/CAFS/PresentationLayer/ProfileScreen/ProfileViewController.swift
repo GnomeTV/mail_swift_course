@@ -12,9 +12,57 @@ extension UIViewController {
     }
 }
 
+public extension UIView {
+    func showAnimation(_ completionBlock: @escaping () -> Void) {
+      isUserInteractionEnabled = false
+        UIView.animate(withDuration: 0.1,
+                       delay: 0,
+                       options: .curveLinear,
+                       animations: { [weak self] in
+                            self?.transform = CGAffineTransform.init(scaleX: 0.9, y: 0.9)
+        }) {  (done) in
+            UIView.animate(withDuration: 0.1,
+                           delay: 0,
+                           options: .curveLinear,
+                           animations: { [weak self] in
+                                self?.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+            }) { [weak self] (_) in
+                self?.isUserInteractionEnabled = true
+                completionBlock()
+            }
+        }
+    }
+}
+
+extension ProfileViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == extraContactTextField {
+            textField.resignFirstResponder()
+            return true
+        }
+        
+        if textField == firstWorkNameTextField ||
+            textField == secondWorkNameTextField ||
+            textField == thirdWorkNameTextField {
+            if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+                nextField.becomeFirstResponder()
+            }
+        }
+        
+        if textField == firstWorkLinkTextField ||
+            textField == secondWorkLinkTextField ||
+            textField == thirdWorkLinkTextField {
+            textField.resignFirstResponder()
+            return true
+        }
+        return false
+    }
+ }
+
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func showImagePickerControllerActionSheet() {
+        
         let photoLibraryAction = UIAlertAction(title: "Открыть", style: .default) {
             (action) in
             self.showImagePickerController(sourceType: .photoLibrary)
@@ -79,7 +127,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 }
 
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
@@ -101,9 +149,12 @@ class ProfileViewController: UIViewController {
     private let extraInfoStackView = UIStackView()
     private let extraContactTextField = UITextField()
     private let firstWorkNameTextField = UITextField()
+    private let firstWorkLinkTextField = UITextField()
     private let secondWorkNameTextField = UITextField()
+    private let secondWorkLinkTextField = UITextField()
     private let thirdWorkNameTextField = UITextField()
-    
+    private let thirdWorkLinkTextField = UITextField()
+
     // MARK: - Insets
     
     private let leftInset: CGFloat = 24.0
@@ -113,7 +164,27 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        extraContactTextField.delegate = self
+        extraContactTextField.tag = 1
+        firstWorkNameTextField.delegate = self
+        firstWorkNameTextField.tag = 2
+        firstWorkLinkTextField.delegate = self
+        firstWorkLinkTextField.tag = 3
+        secondWorkNameTextField.delegate = self
+        secondWorkNameTextField.tag = 4
+        secondWorkLinkTextField.delegate = self
+        secondWorkLinkTextField.tag = 5
+        thirdWorkNameTextField.delegate = self
+        thirdWorkNameTextField.tag = 6
+        thirdWorkLinkTextField.delegate = self
+        thirdWorkLinkTextField.tag = 7
+        
         view.backgroundColor = UIColor.screenBackground
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         self.hideKeyboardWhenTappedAround()
         setupViews()
         updateUserInfoFields()
@@ -185,8 +256,6 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupProfileLabel() {
-
-
         view.addSubview(titleLabel)
         view.addSubview(preferencesButton)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -218,18 +287,32 @@ class ProfileViewController: UIViewController {
         extraInfoStackView.translatesAutoresizingMaskIntoConstraints = false
         extraInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         extraInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
-        extraInfoStackView.topAnchor.constraint(equalTo: profileImageStackView.bottomAnchor, constant: 20).isActive = true
-        extraInfoStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -300).isActive = true
+        extraInfoStackView.topAnchor.constraint(equalTo: profileImageStackView.bottomAnchor, constant: 50).isActive = true
+        //extraInfoStackView.bottomAnchor.constraint(equalTo: extraInfoStackView.topAnchor, constant: 7 * 22 + 60).isActive = true
         
         extraContactTextField.placeholder = "Дополнительный контакт"
         firstWorkNameTextField.placeholder = "Название первой работы"
+        firstWorkLinkTextField.placeholder = "Ссылка на первую работу"
         secondWorkNameTextField.placeholder = "Название второй работы"
+        secondWorkLinkTextField.placeholder = "Ссылка на вторую работу"
         thirdWorkNameTextField.placeholder = "Название третьей работы"
+        thirdWorkLinkTextField.placeholder = "Ссылка на третию работу"
+        
+        firstWorkNameTextField.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        secondWorkNameTextField.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        thirdWorkNameTextField.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        
+        firstWorkLinkTextField.borderStyle = .line
+        secondWorkLinkTextField.borderStyle = .line
+        thirdWorkLinkTextField.borderStyle = .line
         
         extraInfoStackView.addArrangedSubview(extraContactTextField)
         extraInfoStackView.addArrangedSubview(firstWorkNameTextField)
+        extraInfoStackView.addArrangedSubview(firstWorkLinkTextField)
         extraInfoStackView.addArrangedSubview(secondWorkNameTextField)
+        extraInfoStackView.addArrangedSubview(secondWorkLinkTextField)
         extraInfoStackView.addArrangedSubview(thirdWorkNameTextField)
+        extraInfoStackView.addArrangedSubview(thirdWorkLinkTextField)
         
         extraInfoStackView.axis = .vertical
         extraInfoStackView.spacing = 10.0
@@ -247,14 +330,20 @@ class ProfileViewController: UIViewController {
             if userPersonalData.works.count != 0{
                 extraContactTextField.text = userPersonalData.works[0]
                 firstWorkNameTextField.text = userPersonalData.works[1]
-                secondWorkNameTextField.text = userPersonalData.works[2]
-                thirdWorkNameTextField.text = userPersonalData.works[3]
+                firstWorkLinkTextField.text = userPersonalData.works[2]
+                secondWorkNameTextField.text = userPersonalData.works[3]
+                secondWorkLinkTextField.text = userPersonalData.works[4]
+                thirdWorkNameTextField.text = userPersonalData.works[5]
+                thirdWorkLinkTextField.text = userPersonalData.works[6]
             }
             else {
                 extraContactTextField.text = ""
                 firstWorkNameTextField.text = ""
+                firstWorkLinkTextField.text = ""
                 secondWorkNameTextField.text = ""
+                secondWorkLinkTextField.text = ""
                 thirdWorkNameTextField.text = ""
+                thirdWorkLinkTextField.text = ""
             }
             
             
@@ -295,19 +384,88 @@ class ProfileViewController: UIViewController {
         
     }
     
-    @objc private func saveButtonTapped() {
-        if var userPersonalData = model.getUserInfoFromCache() {
-            if userPersonalData.works.count != 4 {
-                userPersonalData.works = ["", "", "", ""]
+    @objc private func saveButtonTapped(sender: UIButton) {
+        sender.showAnimation {
+            if var userPersonalData = self.model.getUserInfoFromCache() {
+                if userPersonalData.works.count != 7 {
+                    userPersonalData.works = ["", "", "", "", "", "", ""]
+                }
+                userPersonalData.works[0] = (self.extraContactTextField.text ?? "")
+                userPersonalData.works[1] = (self.firstWorkNameTextField.text ?? "")
+                userPersonalData.works[2] = (self.firstWorkLinkTextField.text ?? "")
+                userPersonalData.works[3] = (self.secondWorkNameTextField.text ?? "")
+                userPersonalData.works[4] = (self.secondWorkLinkTextField.text ?? "")
+                userPersonalData.works[5] = (self.thirdWorkNameTextField.text ?? "")
+                userPersonalData.works[6] = (self.thirdWorkLinkTextField.text ?? "")
+                
+                self.model.updateUserInfo(personalData: userPersonalData)  { _ in }
             }
-            userPersonalData.works[0] = (extraContactTextField.text ?? "")
-            userPersonalData.works[1] = (firstWorkNameTextField.text ?? "")
-            userPersonalData.works[2] = (secondWorkNameTextField.text ?? "")
-            userPersonalData.works[3] = (thirdWorkNameTextField.text ?? "")
-            
-            model.updateUserInfo(personalData: userPersonalData)  { _ in }
+            print("SaveButton tapped")
         }
-        print("SaveButton tapped")
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        var keyboardHeight : CGFloat = 0
+        if let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            keyboardHeight += keyboardRect.height
+        }
+        let duration: TimeInterval = 0.5
+        UIView.animate(withDuration: duration, animations: {
+            
+            if self.extraContactTextField.isEditing {
+                self.firstWorkNameTextField.isHidden = true
+                self.firstWorkLinkTextField.isHidden = true
+                self.secondWorkNameTextField.isHidden = true
+                self.secondWorkLinkTextField.isHidden = true
+                self.thirdWorkNameTextField.isHidden = true
+                self.thirdWorkLinkTextField.isHidden = true
+            }
+            else if self.firstWorkNameTextField.isEditing || self.firstWorkLinkTextField.isEditing {
+                self.extraContactTextField.isHidden = true
+                self.secondWorkNameTextField.isHidden = true
+                self.secondWorkLinkTextField.isHidden = true
+                self.thirdWorkNameTextField.isHidden = true
+                self.thirdWorkLinkTextField.isHidden = true
+            }
+            else if self.secondWorkNameTextField.isEditing || self.secondWorkLinkTextField.isEditing {
+                self.extraContactTextField.isHidden = true
+                self.firstWorkNameTextField.isHidden = true
+                self.firstWorkLinkTextField.isHidden = true
+                self.thirdWorkNameTextField.isHidden = true
+                self.thirdWorkLinkTextField.isHidden = true
+            }
+            else if self.thirdWorkNameTextField.isEditing || self.thirdWorkLinkTextField.isEditing {
+                self.extraContactTextField.isHidden = true
+                self.firstWorkNameTextField.isHidden = true
+                self.firstWorkLinkTextField.isHidden = true
+                self.secondWorkNameTextField.isHidden = true
+                self.secondWorkLinkTextField.isHidden = true
+            }
+            
+            }, completion: nil)
+        if ((notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        let duration: TimeInterval = 0.5
+        UIView.animate(withDuration: duration, animations: {
+            
+            self.extraContactTextField.isHidden = false
+            self.firstWorkNameTextField.isHidden = false
+            self.firstWorkLinkTextField.isHidden = false
+            self.secondWorkNameTextField.isHidden = false
+            self.secondWorkLinkTextField.isHidden = false
+            self.thirdWorkNameTextField.isHidden = false
+            self.thirdWorkLinkTextField.isHidden = false
+            
+            }, completion: nil)
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
     
 }
