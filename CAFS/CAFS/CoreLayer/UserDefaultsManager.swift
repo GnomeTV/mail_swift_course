@@ -1,9 +1,17 @@
 import Foundation
 
 protocol IUserDeafaultsManager {
+    func initUser(userData: PersonalData)
+    
     func updateUserInfo(userData: PersonalData)
     
+    func updateUserAvatar(avatar: Data?)
+    
+    func isLogged() -> Bool
+    
     func getUserInfo() -> PersonalData?
+    
+    func getUserAvatar() -> Data?
     
     func isDarkTheme() -> Bool
     
@@ -21,13 +29,22 @@ class UserDefaultsManager: IUserDeafaultsManager {
     }
     lazy var userInfo = UserDefaults.standard
     
+    func initUser(userData: PersonalData) {
+        updateUserInfo(userData: userData)
+    }
+    
     func updateUserInfo(userData: PersonalData) {
         userInfo.set(true, forKey: UserDefaultsKeys.keyIsLogged)
         let storageData = try? JSONEncoder().encode(userData)
         userInfo.set(storageData, forKey: UserDefaultsKeys.keyUserInfo)
     }
     
-    func updateUserAvatar(avatar: Data) {
+    func isLogged() -> Bool {
+        return userInfo.bool(forKey: "isLogged")
+    }
+    
+    func updateUserAvatar(avatar: Data?) {
+        print("Adding avatar hash: \(avatar?.hashValue ?? 0)")
         userInfo.set(avatar, forKey: UserDefaultsKeys.keyUserAvatar)
     }
     
@@ -41,9 +58,11 @@ class UserDefaultsManager: IUserDeafaultsManager {
     }
     
     func getUserAvatar() -> Data? {
-        if let userAvatar = userInfo.data(forKey: UserDefaultsKeys.keyUserInfo) {
+        if let userAvatar = userInfo.data(forKey: UserDefaultsKeys.keyUserAvatar) {
+            print("getUserAvatarFromCache Success")
             return userAvatar
         } else {
+            print("getUserAvatarFromCache Error")
             return nil
         }
     }

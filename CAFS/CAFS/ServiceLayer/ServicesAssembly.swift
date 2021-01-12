@@ -9,11 +9,11 @@ protocol IServicesAssembly {
 final class ServicesAssembly: IServicesAssembly {
     
     lazy var userManager: IUserManager = {
-        UserManager(firestoreManager: coreAssembly.firestoreManager)
+        UserManager(firestoreManager: coreAssembly.firestoreManager, userDefaultsManager: coreAssembly.userDefaultsManager)
     }()
     
     lazy var userDefaultsManager: IUserDeafaultsManager = {
-        UserDefaultsManager()
+        coreAssembly.userDefaultsManager
     }()
     
     lazy var swipeSelectionManager: ISwipeSelectionManager = {

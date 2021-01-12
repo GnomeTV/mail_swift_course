@@ -20,7 +20,7 @@ final class PresentationAssembly: IPresentationAssembly {
     }()
     
     lazy var profileViewModel: IProfileViewModel = {
-        ProfileViewModel(userManager: servicesAssembly.userManager, userDefaultsManager: servicesAssembly.userDefaultsManager)
+        ProfileViewModel(userManager: servicesAssembly.userManager)
     }()
     
     lazy var preferencesViewModel: IPreferencesViewModel = {
