@@ -41,41 +41,14 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             profileImageView.image = editedImage
+            model.addNewUserAvatarCache(avatar: editedImage)
         }
         else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profileImageView.image = originalImage
-        }
-        DispatchQueue.main.async {
-            self.updateProfilePhoto() { error in
-            }
+            model.addNewUserAvatarCache(avatar: originalImage)
         }
         dismiss(animated: true, completion: nil)
     }
-    
-    func updateProfilePhoto(_ completion: @escaping (Bool) -> Void) {
-        let avatar = profileImageView.image?.pngData() ?? Data()
-        if avatar.isEmpty {
-            completion(false)
-        } else {
-            if var userInfo = model.getUserInfoFromCache() {
-                model.addUserAvatar(user: userInfo, avatar: avatar) { result in
-                    switch result {
-                    case .success((_, let url)):
-                        let imageURL = url.absoluteString
-                        if !imageURL.isEmpty {
-                            userInfo.avatar = imageURL
-                            self.model.updateUserInfo(personalData: userInfo) { _ in
-                            }
-                            completion(true)
-                        }
-                    case .failure(_):
-                        completion(false)
-                    }
-                }
-            }
-        }
-    }
-    
 }
 
 
@@ -116,12 +89,10 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = UIColor.screenBackground
         self.hideKeyboardWhenTappedAround()
         setupViews()
-        updateUserInfoFields()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateUserInfoFields()
     }
     
     private let model = viewModels.profileViewModel
@@ -172,7 +143,7 @@ class ProfileViewController: UIViewController {
         saveButton.setTitle("Сохранить", for: .normal)
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         
-        updateUserInfoFields()
+        setupUserInfoFieldsListener()
         
         personalInfoStackView.addArrangedSubview(firstnameTextField)
         personalInfoStackView.addArrangedSubview(lastnameTextField)
@@ -185,8 +156,8 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupProfileLabel() {
-
-
+        
+        
         view.addSubview(titleLabel)
         view.addSubview(preferencesButton)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -236,51 +207,47 @@ class ProfileViewController: UIViewController {
         
     }
     
-    private func updateUserInfoFields() {
+    private func updateUserInfoFieldsFromPersonalData(userPersonalData: PersonalData) {
+        firstnameTextField.text = userPersonalData.firstName
+        lastnameTextField.text = userPersonalData.lastName
+        universityTextField.text = userPersonalData.university
+        statusTextField.text = userPersonalData.status
+        
+        if userPersonalData.works.count != 0{
+            extraContactTextField.text = userPersonalData.works[0]
+            firstWorkNameTextField.text = userPersonalData.works[1]
+            secondWorkNameTextField.text = userPersonalData.works[2]
+            thirdWorkNameTextField.text = userPersonalData.works[3]
+        } else {
+            extraContactTextField.text = ""
+            firstWorkNameTextField.text = ""
+            secondWorkNameTextField.text = ""
+            thirdWorkNameTextField.text = ""
+        }
+    }
+    
+    private func updateUserAvatar(userAvatar: UIImage) {
+        self.profileImageView.image = userAvatar
+    }
+    
+    private func setupUserInfoFieldsListener() {
+        self.profileImageView.image = model.getUserAvatarFromCache() ?? UIImage(named: "defaultProfilePhoto_image")
         if let userPersonalData = model.getUserInfoFromCache() {
-            
-            firstnameTextField.text = userPersonalData.firstName
-            lastnameTextField.text = userPersonalData.lastName
-            universityTextField.text = userPersonalData.university
-            statusTextField.text = userPersonalData.status
-            
-            if userPersonalData.works.count != 0{
-                extraContactTextField.text = userPersonalData.works[0]
-                firstWorkNameTextField.text = userPersonalData.works[1]
-                secondWorkNameTextField.text = userPersonalData.works[2]
-                thirdWorkNameTextField.text = userPersonalData.works[3]
-            }
-            else {
-                extraContactTextField.text = ""
-                firstWorkNameTextField.text = ""
-                secondWorkNameTextField.text = ""
-                thirdWorkNameTextField.text = ""
-            }
-            
-            
-            DispatchQueue.main.async {
-                self.model.getUserInfoFromServer(userData: userPersonalData) { [self] result in
-                    switch result {
-                    case .success(let pData):
-                        firstnameTextField.text = pData.firstName
-                        lastnameTextField.text = pData.lastName
-                        universityTextField.text = pData.university
-                        statusTextField.text = pData.status
-                        model.updateUserInfoInCache(personalData: pData)
-                    case .failure(let error):
-                        print("Error: ", error)
+            print("updateUserInfoFields")
+            updateUserInfoFieldsFromPersonalData(userPersonalData: userPersonalData)
+            self.model.addUpdateListener(userData: userPersonalData) { result in
+                print("Listener has update")
+                switch result {
+                case .success(let userData):
+                    print("addUpdateListener Success")
+                    self.updateUserInfoFieldsFromPersonalData(userPersonalData: userData)
+                    self.model.updateAvatarFromServer(userData: userData) { avatar in
+                        print("AsyncUpdateAvatar")
+                        self.profileImageView.image = avatar ?? UIImage(named: "defaultProfilePhoto_image")
                     }
-                }
-            }
-            
-            DispatchQueue.main.async {
-                self.model.getUserAvatar(user: userPersonalData) { result in
-                    switch result {
-                    case .success(let image):
-                        self.profileImageView.image = image
-                    case .failure(_):
-                        print("Error download image")
-                    }
+                case .failure(let error):
+                    print("addUpdateListener Failure: \(error)")
+                    self.updateUserInfoFieldsFromPersonalData(userPersonalData: userPersonalData)
                 }
             }
         }
@@ -305,7 +272,7 @@ class ProfileViewController: UIViewController {
             userPersonalData.works[2] = (secondWorkNameTextField.text ?? "")
             userPersonalData.works[3] = (thirdWorkNameTextField.text ?? "")
             
-            model.updateUserInfo(personalData: userPersonalData)  { _ in }
+            model.updateUserCache(userData: userPersonalData)
         }
         print("SaveButton tapped")
     }
