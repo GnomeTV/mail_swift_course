@@ -1,9 +1,9 @@
 import Foundation
 
 protocol ILoginViewModel {
-    func userExist(email: String, _ completion: @escaping (_ userExists: Bool) -> Void)
+    func isUserExist(email: String, _ completion: @escaping (_ userExists: Bool) -> Void)
     func getUserData(email: String, _ completion: @escaping (Result<PersonalData, Error>) -> Void)
-    func updateUserInfo(personalData: PersonalData)
+    func initUserCache(userData: PersonalData)
 }
 
 class LoginViewModel: ILoginViewModel {
@@ -14,9 +14,9 @@ class LoginViewModel: ILoginViewModel {
         self.userManager = userManager
         self.userDefaultsManager = userDefaultsManager
     }
-
-    func userExist(email: String, _ completion: @escaping (_ userExists: Bool) -> Void) {
-        userManager.userExist(email: email, completion)
+    
+    func isUserExist(email: String, _ completion: @escaping (_ isUserExist: Bool) -> Void) {
+        userManager.isUserExist(email: email, completion)
     }
     
     func getUserData(email: String, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
@@ -24,7 +24,7 @@ class LoginViewModel: ILoginViewModel {
         userManager.getUserData(id: id, completion)
     }
     
-    func updateUserInfo(personalData: PersonalData) {
-        userDefaultsManager.updateUserInfo(userData: personalData)
+    func initUserCache(userData: PersonalData) {
+        userManager.updateUserCache(userData: userData)
     }
 }
