@@ -1,33 +1,30 @@
 import Foundation
 
 protocol ILoginViewModel {
-    func login()
-    func register()
+    func userExist(email: String, _ completion: @escaping (_ userExists: Bool) -> Void)
+    func getUserData(email: String, _ completion: @escaping (Result<PersonalData, Error>) -> Void)
+    func updateUserInfo(personalData: PersonalData)
 }
 
 class LoginViewModel: ILoginViewModel {
+    private let userManager: IUserManager
+    private let userDefaultsManager: IUserDeafaultsManager
     
-    /**
-     Сюда надо будет закидывать сервисы и общаться с ними здесь
-     Вот в принципе пример какой-то архитектуры
-     Здесь будет что-то типа:
-     private let userService: IUserService
-     
-     init(userService: IUserService) {
-        self.userService = userService
-     }
-     
-     и модель будет инициализироваться в классе PresentationAssembly
-     
-     во ViewModel  можно пихать че угодно чтобы разгрузить ViewController
-     это не Viper, в такой архитектуре нет четкого разделения ответственностей
-     */
-    
-    func login() {
-        print("Login")
+    init(userManager: IUserManager, userDefaultsManager: IUserDeafaultsManager) {
+        self.userManager = userManager
+        self.userDefaultsManager = userDefaultsManager
+    }
+
+    func userExist(email: String, _ completion: @escaping (_ userExists: Bool) -> Void) {
+        userManager.userExist(email: email, completion)
     }
     
-    func register() {
-        print("Register")
+    func getUserData(email: String, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
+        let id = email.genHash()
+        userManager.getUserData(id: id, completion)
+    }
+    
+    func updateUserInfo(personalData: PersonalData) {
+        userDefaultsManager.updateUserInfo(userData: personalData)
     }
 }

@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		79186C27254819BF00B084E2 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79186C26254819BF00B084E2 /* FirestoreManager.swift */; };
+		791984812578CB7B001CF6ED /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791984802578CB7B001CF6ED /* PreferencesViewController.swift */; };
+		792DA7E825AB940800C170A5 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DA7E725AB940800C170A5 /* RegistrationViewController.swift */; };
 		798E1527256D80A8005938AA /* UnderlineTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798E1526256D80A8005938AA /* UnderlineTextLabel.swift */; };
 		799359C2255AC3D500D5A16D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799359C1255AC3D500D5A16D /* ProfileViewController.swift */; };
 		799CFE72255D032A00301D7A /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CFE71255D032A00301D7A /* MainNavigationController.swift */; };
 		79A6079F255C324900EBF9AE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A6079E255C324900EBF9AE /* MainTabBarController.swift */; };
-		79A607A1255C38AE00EBF9AE /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A607A0255C38AE00EBF9AE /* ChatViewController.swift */; };
-		79A607A3255C393F00EBF9AE /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */; };
+		79A607A3255C393F00EBF9AE /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A607A2255C393F00EBF9AE /* SelectionViewController.swift */; };
+		79EA25D425A8AD10006DCFD7 /* SelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EA25D325A8AD10006DCFD7 /* SelectionViewModel.swift */; };
 		BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */; };
 		BD109C2D2545EA2300EA76D6 /* ServicesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2C2545EA2300EA76D6 /* ServicesAssembly.swift */; };
 		BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */; };
@@ -29,10 +31,18 @@
 		BDC99E1425724EB600B08A74 /* String+Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC99E1325724EB600B08A74 /* String+Hash.swift */; };
 		BDC99E18257251BB00B08A74 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC99E17257251BB00B08A74 /* RegistrationViewModel.swift */; };
 		C21113D5255AE795005CB68F /* PersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21113D4255AE795005CB68F /* PersonalData.swift */; };
+		C23A11CE25AB31A200687D2E /* SwipeStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23A11CD25AB31A200687D2E /* SwipeStateViewModel.swift */; };
+		C23A11D025AB31BB00687D2E /* SwipeStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23A11CF25AB31BB00687D2E /* SwipeStateViewController.swift */; };
 		C23F0E792559B632008EC202 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F0E782559B632008EC202 /* LoginViewController.swift */; };
+		C28143F4257FE81400363B31 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28143F3257FE81400363B31 /* ProfileViewModel.swift */; };
 		C294C2CD256D7D740052A08E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294C2CC256D7D740052A08E /* UserManager.swift */; };
+		C2971E7C25A7359C00235E94 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2971E7B25A7359C00235E94 /* UserDefaultsManager.swift */; };
+		C2B3FE5125A8BC7E0077316E /* SwipeSelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B3FE5025A8BC7E0077316E /* SwipeSelectionManager.swift */; };
+		C2CC21EA25A7828600EE2D11 /* PreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CC21E925A7828600EE2D11 /* PreferencesViewModel.swift */; };
 		F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12C2EFE2553328600C26AED /* UnderlineTextField.swift */; };
-		F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1326E192548A67800D317DE /* RegistrationViewController.swift */; };
+		F1315FB025AB437D00E23C23 /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1315FAF25AB437D00E23C23 /* MatchViewController.swift */; };
+		F1315FB225AB446200E23C23 /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1315FB125AB446200E23C23 /* MatchViewModel.swift */; };
+		F1315FB425AB6CAA00E23C23 /* MatchesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1315FB325AB6CAA00E23C23 /* MatchesTableViewCell.swift */; };
 		F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135D64E2534646F00D74201 /* AppDelegate.swift */; };
 		F135D6582534647000D74201 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F135D6572534647000D74201 /* Assets.xcassets */; };
 		F135D65B2534647000D74201 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F135D6592534647000D74201 /* LaunchScreen.storyboard */; };
@@ -60,12 +70,14 @@
 		2D65339E6538AE487697171F /* Pods-CAFS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CAFS.debug.xcconfig"; path = "Target Support Files/Pods-CAFS/Pods-CAFS.debug.xcconfig"; sourceTree = "<group>"; };
 		58DD20CBEF5B2D5055914C2D /* Pods_CAFS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CAFS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79186C26254819BF00B084E2 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirestoreManager.swift; path = CAFS/CoreLayer/FirestoreManager.swift; sourceTree = SOURCE_ROOT; };
+		791984802578CB7B001CF6ED /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		792DA7E725AB940800C170A5 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationViewController.swift; path = CAFS/PresentationLayer/RegistrationScreen/RegistrationViewController.swift; sourceTree = SOURCE_ROOT; };
 		798E1526256D80A8005938AA /* UnderlineTextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextLabel.swift; sourceTree = "<group>"; };
 		799359C1255AC3D500D5A16D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		799CFE71255D032A00301D7A /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		79A6079E255C324900EBF9AE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		79A607A0255C38AE00EBF9AE /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		79A607A2255C393F00EBF9AE /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectionViewController.swift; path = "../New Group/SelectionViewController.swift"; sourceTree = "<group>"; };
+		79EA25D325A8AD10006DCFD7 /* SelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewModel.swift; sourceTree = "<group>"; };
 		BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
 		BD109C2C2545EA2300EA76D6 /* ServicesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesAssembly.swift; sourceTree = "<group>"; };
 		BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAssembly.swift; sourceTree = "<group>"; };
@@ -81,10 +93,18 @@
 		BDC99E1325724EB600B08A74 /* String+Hash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Hash.swift"; sourceTree = "<group>"; };
 		BDC99E17257251BB00B08A74 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		C21113D4255AE795005CB68F /* PersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalData.swift; sourceTree = "<group>"; };
+		C23A11CD25AB31A200687D2E /* SwipeStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeStateViewModel.swift; sourceTree = "<group>"; };
+		C23A11CF25AB31BB00687D2E /* SwipeStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeStateViewController.swift; sourceTree = "<group>"; };
 		C23F0E782559B632008EC202 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C28143F3257FE81400363B31 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C294C2CC256D7D740052A08E /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		C2971E7B25A7359C00235E94 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		C2B3FE5025A8BC7E0077316E /* SwipeSelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeSelectionManager.swift; sourceTree = "<group>"; };
+		C2CC21E925A7828600EE2D11 /* PreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewModel.swift; sourceTree = "<group>"; };
 		F12C2EFE2553328600C26AED /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
-		F1326E192548A67800D317DE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		F1315FAF25AB437D00E23C23 /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
+		F1315FB125AB446200E23C23 /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
+		F1315FB325AB6CAA00E23C23 /* MatchesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesTableViewCell.swift; sourceTree = "<group>"; };
 		F135D64B2534646F00D74201 /* CAFS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAFS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F135D64E2534646F00D74201 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F135D6572534647000D74201 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,6 +127,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79EA25D225A8ACEB006DCFD7 /* SelectionScreen */ = {
+			isa = PBXGroup;
+			children = (
+				79A607A2255C393F00EBF9AE /* SelectionViewController.swift */,
+				79EA25D325A8AD10006DCFD7 /* SelectionViewModel.swift */,
+			);
+			path = SelectionScreen;
+			sourceTree = "<group>";
+		};
 		8BBAC995A5D38EBF4C5A6775 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,11 +149,13 @@
 			children = (
 				79A6079E255C324900EBF9AE /* MainTabBarController.swift */,
 				799CFE71255D032A00301D7A /* MainNavigationController.swift */,
+				F1315FAE25AB433B00E23C23 /* MatchScreen */,
+				C2971EA325A781C100235E94 /* PreferencesScreen */,
+				C28143F2257FE70C00363B31 /* ProfileScreen */,
 				BD89ED442557123C00F20B4B /* LoginScreen */,
 				BDC99E152572514A00B08A74 /* RegistrationScreen */,
-				79A607A2255C393F00EBF9AE /* MainScreenViewController.swift */,
-				79A607A0255C38AE00EBF9AE /* ChatViewController.swift */,
-				799359C1255AC3D500D5A16D /* ProfileViewController.swift */,
+				C23A11CC25AB317400687D2E /* SwipeStateScreen */,
+				79EA25D225A8ACEB006DCFD7 /* SelectionScreen */,
 				BD109C2E2545EA3500EA76D6 /* PresentationAssembly.swift */,
 				BD109C362545EAD900EA76D6 /* Utils */,
 				BD8109682545F558000CC4E4 /* CustomElements */,
@@ -139,6 +170,7 @@
 				BD9F6AB3257248C600035412 /* Utils */,
 				BD109C2C2545EA2300EA76D6 /* ServicesAssembly.swift */,
 				C294C2CC256D7D740052A08E /* UserManager.swift */,
+				C2B3FE5025A8BC7E0077316E /* SwipeSelectionManager.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -148,6 +180,7 @@
 			children = (
 				79186C26254819BF00B084E2 /* FirestoreManager.swift */,
 				BD109C2A2545EA0800EA76D6 /* CoreAssembly.swift */,
+				C2971E7B25A7359C00235E94 /* UserDefaultsManager.swift */,
 			);
 			path = CoreLayer;
 			sourceTree = "<group>";
@@ -208,10 +241,37 @@
 		BDC99E152572514A00B08A74 /* RegistrationScreen */ = {
 			isa = PBXGroup;
 			children = (
-				F1326E192548A67800D317DE /* RegistrationViewController.swift */,
+				792DA7E725AB940800C170A5 /* RegistrationViewController.swift */,
 				BDC99E17257251BB00B08A74 /* RegistrationViewModel.swift */,
 			);
 			path = RegistrationScreen;
+			sourceTree = "<group>";
+		};
+		C23A11CC25AB317400687D2E /* SwipeStateScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C23A11CD25AB31A200687D2E /* SwipeStateViewModel.swift */,
+				C23A11CF25AB31BB00687D2E /* SwipeStateViewController.swift */,
+			);
+			path = SwipeStateScreen;
+			sourceTree = "<group>";
+		};
+		C28143F2257FE70C00363B31 /* ProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				799359C1255AC3D500D5A16D /* ProfileViewController.swift */,
+				C28143F3257FE81400363B31 /* ProfileViewModel.swift */,
+			);
+			path = ProfileScreen;
+			sourceTree = "<group>";
+		};
+		C2971EA325A781C100235E94 /* PreferencesScreen */ = {
+			isa = PBXGroup;
+			children = (
+				791984802578CB7B001CF6ED /* PreferencesViewController.swift */,
+				C2CC21E925A7828600EE2D11 /* PreferencesViewModel.swift */,
+			);
+			path = PreferencesScreen;
 			sourceTree = "<group>";
 		};
 		EE11FB2331BCB59B6FE89A67 /* Pods */ = {
@@ -221,6 +281,16 @@
 				F68302174D511A9DD34B24C7 /* Pods-CAFS.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F1315FAE25AB433B00E23C23 /* MatchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F1315FAF25AB437D00E23C23 /* MatchViewController.swift */,
+				F1315FB125AB446200E23C23 /* MatchViewModel.swift */,
+				F1315FB325AB6CAA00E23C23 /* MatchesTableViewCell.swift */,
+			);
+			path = MatchScreen;
 			sourceTree = "<group>";
 		};
 		F135D6422534646F00D74201 = {
@@ -369,29 +439,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				C23F0E792559B632008EC202 /* LoginViewController.swift in Sources */,
+				F1315FB425AB6CAA00E23C23 /* MatchesTableViewCell.swift in Sources */,
 				BD109C352545EACC00EA76D6 /* UIColor+Utils.swift in Sources */,
+				F1315FB225AB446200E23C23 /* MatchViewModel.swift in Sources */,
 				BDC99E1425724EB600B08A74 /* String+Hash.swift in Sources */,
 				79A6079F255C324900EBF9AE /* MainTabBarController.swift in Sources */,
+				C2971E7C25A7359C00235E94 /* UserDefaultsManager.swift in Sources */,
 				BD89ED462557125000F20B4B /* LoginViewModel.swift in Sources */,
-				F1326E1A2548A67800D317DE /* RegistrationViewController.swift in Sources */,
+				C2B3FE5125A8BC7E0077316E /* SwipeSelectionManager.swift in Sources */,
 				BD92666825725E0600E0FDDD /* UIAlertController+Utils.swift in Sources */,
-				79A607A3255C393F00EBF9AE /* MainScreenViewController.swift in Sources */,
+				F1315FB025AB437D00E23C23 /* MatchViewController.swift in Sources */,
+				79A607A3255C393F00EBF9AE /* SelectionViewController.swift in Sources */,
 				C294C2CD256D7D740052A08E /* UserManager.swift in Sources */,
 				BD109C2D2545EA2300EA76D6 /* ServicesAssembly.swift in Sources */,
 				BD8109672545F54E000CC4E4 /* HseStyleButton.swift in Sources */,
 				BD89ED432557119A00F20B4B /* UIViewController+Utils.swift in Sources */,
 				BD89ED4125570CCC00F20B4B /* RootAssembly.swift in Sources */,
 				BD109C2F2545EA3500EA76D6 /* PresentationAssembly.swift in Sources */,
+				79EA25D425A8AD10006DCFD7 /* SelectionViewModel.swift in Sources */,
 				F12C2EFF2553328600C26AED /* UnderlineTextField.swift in Sources */,
-				79A607A1255C38AE00EBF9AE /* ChatViewController.swift in Sources */,
 				BD9F6AB2257248BB00035412 /* String+Utils.swift in Sources */,
 				799CFE72255D032A00301D7A /* MainNavigationController.swift in Sources */,
+				C23A11D025AB31BB00687D2E /* SwipeStateViewController.swift in Sources */,
+				C2CC21EA25A7828600EE2D11 /* PreferencesViewModel.swift in Sources */,
 				F18367D525546CC100664294 /* CheckBoxButton.swift in Sources */,
 				BD92666625725D6C00E0FDDD /* UIApplication+Utils.swift in Sources */,
+				792DA7E825AB940800C170A5 /* RegistrationViewController.swift in Sources */,
 				C21113D5255AE795005CB68F /* PersonalData.swift in Sources */,
 				BD109C2B2545EA0800EA76D6 /* CoreAssembly.swift in Sources */,
 				BDC99E18257251BB00B08A74 /* RegistrationViewModel.swift in Sources */,
 				799359C2255AC3D500D5A16D /* ProfileViewController.swift in Sources */,
+				C23A11CE25AB31A200687D2E /* SwipeStateViewModel.swift in Sources */,
+				C28143F4257FE81400363B31 /* ProfileViewModel.swift in Sources */,
+				791984812578CB7B001CF6ED /* PreferencesViewController.swift in Sources */,
 				F135D64F2534646F00D74201 /* AppDelegate.swift in Sources */,
 				BD926652257254D200E0FDDD /* NSAttributedString+Utils.swift in Sources */,
 				79186C27254819BF00B084E2 /* FirestoreManager.swift in Sources */,
@@ -536,6 +616,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N6KS6JD5X2;
 				INFOPLIST_FILE = CAFS/AppResources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -556,6 +637,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N6KS6JD5X2;
 				INFOPLIST_FILE = CAFS/AppResources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

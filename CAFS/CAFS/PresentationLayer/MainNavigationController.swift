@@ -1,11 +1,11 @@
-//
-//  MainNavigationController.swift
-//  CAFS
-//
-//  Created by Павел Травкин on 12.11.2020.
-//
-
 import UIKit
+
+extension UINavigationController {
+    func hideNavigationItenBackground() {
+        self.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationBar.shadowImage = UIImage()
+    }
+}
 
 class MainNavigationController: UINavigationController {
 

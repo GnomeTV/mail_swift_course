@@ -25,7 +25,6 @@ class UnderlineTextLabel: UILabel {
     
     private func initializeTextField() {
         self.font = UIFont.systemFont(ofSize: fontSizeTextField, weight: .regular)
-        self.textColor = .black
         self.addSubview(bottomLine)
 
         bottomLine.backgroundColor = UIColor.hseBlue

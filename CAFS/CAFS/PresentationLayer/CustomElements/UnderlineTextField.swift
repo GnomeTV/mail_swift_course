@@ -25,7 +25,6 @@ class UnderlineTextField: UITextField {
     
     private func initializeTextField() {
         self.font = UIFont.systemFont(ofSize: fontSizeTextField, weight: .regular)
-        self.textColor = .black
         self.borderStyle = .none
         self.addSubview(bottomLine)
 
