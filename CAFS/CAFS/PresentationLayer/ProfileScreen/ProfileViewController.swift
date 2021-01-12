@@ -1,5 +1,16 @@
 import UIKit
 
+extension String {
+    var isValidURL: Bool {
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        if let match = detector.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count)) {
+            return match.range.length == self.utf16.count
+        } else {
+            return false
+        }
+    }
+}
+
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -150,10 +161,13 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     private let extraContactTextField = UITextField()
     private let firstWorkNameTextField = UITextField()
     private let firstWorkLinkTextField = UITextField()
+    private let firstLinkStatus = UILabel()
     private let secondWorkNameTextField = UITextField()
     private let secondWorkLinkTextField = UITextField()
+    private let secondLinkStatus = UILabel()
     private let thirdWorkNameTextField = UITextField()
     private let thirdWorkLinkTextField = UITextField()
+    private let thirdLinkStatus = UILabel()
 
     // MARK: - Insets
     
@@ -290,6 +304,13 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         extraInfoStackView.topAnchor.constraint(equalTo: profileImageStackView.bottomAnchor, constant: 50).isActive = true
         //extraInfoStackView.bottomAnchor.constraint(equalTo: extraInfoStackView.topAnchor, constant: 7 * 22 + 60).isActive = true
         
+        firstLinkStatus.isHidden = true
+        secondLinkStatus.isHidden = true
+        thirdLinkStatus.isHidden = true
+        firstLinkStatus.textColor = UIColor.systemRed
+        secondLinkStatus.textColor = UIColor.systemRed
+        thirdLinkStatus.textColor = UIColor.systemRed
+        
         extraContactTextField.placeholder = "Дополнительный контакт"
         firstWorkNameTextField.placeholder = "Название первой работы"
         firstWorkLinkTextField.placeholder = "Ссылка на первую работу"
@@ -309,10 +330,13 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         extraInfoStackView.addArrangedSubview(extraContactTextField)
         extraInfoStackView.addArrangedSubview(firstWorkNameTextField)
         extraInfoStackView.addArrangedSubview(firstWorkLinkTextField)
+        extraInfoStackView.addArrangedSubview(firstLinkStatus)
         extraInfoStackView.addArrangedSubview(secondWorkNameTextField)
         extraInfoStackView.addArrangedSubview(secondWorkLinkTextField)
+        extraInfoStackView.addArrangedSubview(secondLinkStatus)
         extraInfoStackView.addArrangedSubview(thirdWorkNameTextField)
         extraInfoStackView.addArrangedSubview(thirdWorkLinkTextField)
+        extraInfoStackView.addArrangedSubview(thirdLinkStatus)
         
         extraInfoStackView.axis = .vertical
         extraInfoStackView.spacing = 10.0
@@ -393,10 +417,39 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
                 userPersonalData.works[0] = (self.extraContactTextField.text ?? "")
                 userPersonalData.works[1] = (self.firstWorkNameTextField.text ?? "")
                 userPersonalData.works[2] = (self.firstWorkLinkTextField.text ?? "")
+                if self.firstWorkLinkTextField.text != "" {
+                    if !(self.firstWorkLinkTextField.text?.isValidURL ?? true) {
+                        self.firstLinkStatus.isHidden = false
+                        self.firstLinkStatus.text = "Некорректная ссылка"
+                    }
+                }
+                else {
+                    self.firstLinkStatus.isHidden = true
+                }
+                
                 userPersonalData.works[3] = (self.secondWorkNameTextField.text ?? "")
                 userPersonalData.works[4] = (self.secondWorkLinkTextField.text ?? "")
+                if self.secondWorkLinkTextField.text != "" {
+                    if !(self.secondWorkLinkTextField.text?.isValidURL ?? true) {
+                        self.secondLinkStatus.isHidden = false
+                        self.secondLinkStatus.text = "Некорректная ссылка"
+                    }
+                }
+                else {
+                    self.secondLinkStatus.isHidden = true
+                }
+                
                 userPersonalData.works[5] = (self.thirdWorkNameTextField.text ?? "")
                 userPersonalData.works[6] = (self.thirdWorkLinkTextField.text ?? "")
+                if self.thirdWorkLinkTextField.text != "" {
+                    if !(self.thirdWorkLinkTextField.text?.isValidURL ?? true) {
+                        self.thirdLinkStatus.isHidden = false
+                        self.thirdLinkStatus.text = "Некорректная ссылка"
+                    }
+                }
+                else {
+                    self.thirdLinkStatus.isHidden = true
+                }
                 
                 self.model.updateUserInfo(personalData: userPersonalData)  { _ in }
             }

@@ -248,7 +248,6 @@ class SelectionViewController: UIViewController {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
-        
         updateSwipe(acceptUser: false)
     }
     
@@ -263,8 +262,7 @@ class SelectionViewController: UIViewController {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
-        
-        updateSwipe(acceptUser: false)
+        updateSwipe(acceptUser: true)
     }
     
 }
