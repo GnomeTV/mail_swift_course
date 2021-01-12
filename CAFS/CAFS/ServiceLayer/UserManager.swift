@@ -2,9 +2,7 @@ import Foundation
 import FirebaseStorage
 
 protocol IUserManager {
-    /*func addNewUser(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void)
-     
-     func getUserData(id : String, _ completion: @escaping (Result<PersonalData, Error>) -> Void)
+    /*func getUserData(id : String, _ completion: @escaping (Result<PersonalData, Error>) -> Void)
      
      func updateUserData(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void)
      
@@ -15,6 +13,8 @@ protocol IUserManager {
     func initMainListener(email: String, _ completion: @escaping (Result<PersonalData, Error>) -> Void)
     
     func isUserExist(email: String, _ completion: @escaping (_ isUserExist: Bool) -> Void)
+    
+    func addNewUser(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void)
     
     func getUserData(id : String, _ completion: @escaping (Result<PersonalData, Error>) -> Void)
     
@@ -31,6 +31,8 @@ protocol IUserManager {
     func getUserAvatarFromCache() -> UIImage?
     
     func stopListen()
+    
+    func clearUserInfo()
 }
 
 class UserManager : IUserManager {
@@ -52,10 +54,7 @@ class UserManager : IUserManager {
         self.userDefaultsManager = userDefaultsManager
     }
     
-    /*func addNewUser(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void) {
-     let id = personalData.email.genHash()
-     firestoreManager.addNewDocument(collection: Self.collection, id: id, data: personalData, completion)
-     }
+    /*
      
      func updateUserData(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void) {
      let id = personalData.email.genHash()
@@ -101,7 +100,6 @@ class UserManager : IUserManager {
         addUserDataListener(id: id) { result in
             switch result {
             case .success((let personalData, let source)):
-                //self.observingUserData = personalData
                 if !self.userDefaultsManager.isLogged() {
                     self.userDefaultsManager.initUser(userData: personalData)
                     return
@@ -109,16 +107,6 @@ class UserManager : IUserManager {
                 self.userDefaultsManager.updateUserInfo(userData: personalData)
                 print("Main Listener: from \(source) update")
                 completion(.success(personalData))
-                /*if source != "server" {
-                    print("Main Listener: from server:\(source) update")
-                    self.userDefaultsManager.updateUserInfo(userData: personalData)
-                    completion(.success(personalData))
-                    return
-                } else {
-                    print("Main Listener: from \(source) update")
-                    completion(.failure(UserManagerError.localUpdate))
-                    return
-                }*/
             case .failure(let error):
                 print(error)
                 completion(.failure(error))
@@ -156,6 +144,11 @@ class UserManager : IUserManager {
                 completion(false)
             }
         }
+    }
+    
+    func addNewUser(personalData : PersonalData, _ completion: @escaping (_ error: Error?) -> Void) {
+        let id = personalData.email.genHash()
+        firestoreManager.addNewDocument(collection: Self.collection, id: id, data: personalData, completion)
     }
     
     func getUserData(id : String, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
@@ -262,5 +255,10 @@ class UserManager : IUserManager {
     
     func stopListen() {
         firestoreManager.stopListen()
+    }
+    
+    func clearUserInfo() {
+        stopListen()
+        userDefaultsManager.clearUserInfo()
     }
 }

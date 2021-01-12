@@ -18,7 +18,7 @@ class PreferencesViewModel: IPreferencesViewModel {
     }
     
     func clearUser() {
-        userDefaultsManager.clearUserInfo()
+        userManager.clearUserInfo()
         swipeSelectionManager.resetSwipeQueue()
     }
     

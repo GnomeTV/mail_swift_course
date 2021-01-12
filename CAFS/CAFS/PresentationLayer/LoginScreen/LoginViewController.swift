@@ -196,7 +196,7 @@ class LoginViewController: UIViewController {
                     switch result {
                     case .success(let userData):
                         model.initUserCache(userData: userData)
-                        self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+                        self.navigationController?.setViewControllers([MainTabBarController()], animated: true)
                     case .failure(_):
                         errorLabel.text = "Повторите попытку позже"
                     }
@@ -209,6 +209,6 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func registerButtonTapped() {
-        //self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
+        self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
     }
 }

@@ -97,7 +97,7 @@ class PreferencesViewController: UIViewController {
     @objc private func exitButtonTapped() {
         model.clearUser()
         self.navigationController?.tabBarController?.tabBar.removeFromSuperview()
-        self.navigationController?.pushViewController(LoginViewController(), animated: true)
+        self.navigationController?.setViewControllers([LoginViewController()], animated: true)
     }
     
     @objc private func switchButtonTapped(sender: HseStyleButton) {

@@ -16,7 +16,7 @@ class RegistrationViewModel: IRegistrationViewModel {
     }
     
     func userExist(email: String, _ completion: @escaping (_ userExists: Bool) -> Void) {
-        userManager.userExist(email: email, completion)
+        userManager.isUserExist(email: email, completion)
     }
     
     func addNewUser(personalData : PersonalData, _ completion: @escaping (_ success: Bool) -> Void) {
