@@ -239,30 +239,63 @@ class SelectionViewController: UIViewController {
     
     @objc private func leftSwiped(_ gesture: UISwipeGestureRecognizer) {
         
-        let duration: TimeInterval = 1
-        UIView.animate(withDuration: duration, animations: {
-            self.personalInfoStackView.frame.origin.x -= 500
-            self.profileImageStackView.frame.origin.x -= 500
-            self.extraInfoStackView.frame.origin.x -= 500
-            }, completion: nil)
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
+        DispatchQueue.main.async {
+            let duration: TimeInterval = 1
+            UIView.animate(withDuration: duration, animations: {
+                self.personalInfoStackView.frame.origin.x -= 500
+                self.profileImageStackView.frame.origin.x -= 500
+                self.extraInfoStackView.frame.origin.x -= 500
+                }, completion: nil)
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
         }
-        updateSwipe(acceptUser: false)
+
+        DispatchQueue.main.async {
+            self.updateSwipe(acceptUser: true)
+        }
+        
+//        DispatchQueue.main.async {
+//            let duration: TimeInterval = 1
+//            UIView.animate(withDuration: duration, animations: {
+//                self.personalInfoStackView.frame.origin.x += 500
+//                self.profileImageStackView.frame.origin.x += 500
+//                self.extraInfoStackView.frame.origin.x += 500
+//                }, completion: nil)
+//            if self.view.frame.origin.y != 0 {
+//                self.view.frame.origin.y = 0
+//            }
+//        }
     }
     
     @objc private func rightSwiped(_ gesture: UISwipeGestureRecognizer) {
         
-        let duration: TimeInterval = 1
-        UIView.animate(withDuration: duration, animations: {
-            self.personalInfoStackView.frame.origin.x += 500
-            self.profileImageStackView.frame.origin.x += 500
-            self.extraInfoStackView.frame.origin.x += 500
-            }, completion: nil)
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
+        DispatchQueue.main.async {
+            let duration: TimeInterval = 1
+            UIView.animate(withDuration: duration, animations: {
+                self.personalInfoStackView.frame.origin.x += 500
+                self.profileImageStackView.frame.origin.x += 500
+                self.extraInfoStackView.frame.origin.x += 500
+                }, completion: nil)
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
         }
-        updateSwipe(acceptUser: true)
+
+        DispatchQueue.main.async {
+            self.updateSwipe(acceptUser: false)
+        }
+        
+//        DispatchQueue.main.async {
+//            let duration: TimeInterval = 1
+//            UIView.animate(withDuration: duration, animations: {
+//                self.personalInfoStackView.frame.origin.x += 500
+//                self.profileImageStackView.frame.origin.x += 500
+//                self.extraInfoStackView.frame.origin.x += 500
+//                }, completion: nil)
+//            if self.view.frame.origin.y != 0 {
+//                self.view.frame.origin.y = 0
+//            }
+//        }
     }
-    
 }
