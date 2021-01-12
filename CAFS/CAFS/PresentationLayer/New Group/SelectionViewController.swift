@@ -10,6 +10,9 @@ class SelectionViewController: UIViewController {
     private let profileImageStackView = UIStackView()
     private let profileImageView = UIImageView(image: UIImage(named: "defaultProfilePhoto_image"))
     
+    private let approveImage = UIImageView(image: UIImage(named: "approve_icon"))
+    private let disapproveImage = UIImageView(image: UIImage(named: "disapprove_icon"))
+    
     private let personalInfoStackView = UIStackView()
     private let firstnameLabel = UnderlineTextLabel()
     private let lastnameLabel = UnderlineTextLabel()
@@ -69,7 +72,7 @@ class SelectionViewController: UIViewController {
         profileImageStackView.translatesAutoresizingMaskIntoConstraints = false
         profileImageStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
         profileImageStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -screenWidth + 200 + leftInset).isActive = true
-        profileImageStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 114.0).isActive = true
+        profileImageStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20.0).isActive = true
         profileImageStackView.bottomAnchor.constraint(equalTo: profileImageStackView.topAnchor, constant: 250).isActive = true
         
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -102,17 +105,39 @@ class SelectionViewController: UIViewController {
     }
     
     private func setupProfileLabel() {
+        view.addSubview(disapproveImage)
         view.addSubview(titleLabel)
+        view.addSubview(approveImage)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        disapproveImage.translatesAutoresizingMaskIntoConstraints = false
+        disapproveImage.contentMode = .scaleAspectFill
+        disapproveImage.layer.masksToBounds = true
+        
+        approveImage.translatesAutoresizingMaskIntoConstraints = false
+        approveImage.contentMode = .scaleAspectFill
+        approveImage.layer.masksToBounds = true
+        
+        approveImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
+        approveImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
+        approveImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        approveImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        
         
         titleLabel.text = "Свайпалка"
         titleLabel.textColor = UIColor.hseBlue
+        titleLabel.textAlignment = .center
         titleLabel.font = UIFont.systemFont(ofSize: 32.0, weight: .bold)
         
-        titleLabel.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: rightInset).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: approveImage.trailingAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leftInset - 40).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
+        
+        disapproveImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
+        disapproveImage.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
+        disapproveImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        disapproveImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
         
     }
     
@@ -211,14 +236,35 @@ class SelectionViewController: UIViewController {
         }
     }
     
+    
     @objc private func leftSwiped(_ gesture: UISwipeGestureRecognizer) {
-        updateColors(color: .red)
+        
+        let duration: TimeInterval = 1
+        UIView.animate(withDuration: duration, animations: {
+            self.personalInfoStackView.frame.origin.x -= 500
+            self.profileImageStackView.frame.origin.x -= 500
+            self.extraInfoStackView.frame.origin.x -= 500
+            }, completion: nil)
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+        
         updateSwipe(acceptUser: false)
     }
     
     @objc private func rightSwiped(_ gesture: UISwipeGestureRecognizer) {
-        updateColors(color: .green)
-        updateSwipe(acceptUser: true)
+        
+        let duration: TimeInterval = 1
+        UIView.animate(withDuration: duration, animations: {
+            self.personalInfoStackView.frame.origin.x += 500
+            self.profileImageStackView.frame.origin.x += 500
+            self.extraInfoStackView.frame.origin.x += 500
+            }, completion: nil)
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+        
+        updateSwipe(acceptUser: false)
     }
     
 }
