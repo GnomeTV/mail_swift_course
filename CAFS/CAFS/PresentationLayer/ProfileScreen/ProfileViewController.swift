@@ -411,9 +411,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     @objc private func saveButtonTapped(sender: UIButton) {
         sender.showAnimation {
             if var userPersonalData = self.model.getUserInfoFromCache() {
-                if userPersonalData.works.count != 7 {
-                    userPersonalData.works = ["", "", "", "", "", "", ""]
-                }
+
                 userPersonalData.works[0] = (self.extraContactTextField.text ?? "")
                 userPersonalData.works[1] = (self.firstWorkNameTextField.text ?? "")
                 userPersonalData.works[2] = (self.firstWorkLinkTextField.text ?? "")
