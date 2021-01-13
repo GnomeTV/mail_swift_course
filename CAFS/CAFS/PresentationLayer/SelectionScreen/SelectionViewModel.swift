@@ -23,28 +23,29 @@ class SelectionViewModel: ISelectionViewModel {
     }
     
     func getCurrentUserInfo() -> PersonalData? {
-        return userDefaultsManager.getUserInfo()
+        userDefaultsManager.getUserInfo()
+        //return userDefaultsManager.getUserInfo()
     }
     
     func updateCurrentUserInfo(personalData: PersonalData, _ completion: @escaping (_ success: Bool) -> Void) {
-        userDefaultsManager.updateUserInfo(userData: personalData)
+        /*userDefaultsManager.updateUserInfo(userData: personalData)
         userManager.updateUserData(personalData: personalData) { error in
             DispatchQueue.main.async {
                 completion(error == nil)
             }
-        }
+        }*/
     }
     
     func updateUserInfo(personalData: PersonalData, _ completion: @escaping (_ success: Bool) -> Void) {
-        userManager.updateUserData(personalData: personalData) { error in
+        /*userManager.updateUserData(personalData: personalData) { error in
             DispatchQueue.main.async {
                 completion(error == nil)
             }
-        }
+        }*/
     }
     
     func getSwipeUserAvatar(user: PersonalData, _ completion: @escaping (Result<UIImage, Error>) -> Void) {
-        userManager.getImage(user: user, completion)
+        //userManager.getImage(user: user, completion)
     }
     
     func nextSwipe(currentUser: PersonalData, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {

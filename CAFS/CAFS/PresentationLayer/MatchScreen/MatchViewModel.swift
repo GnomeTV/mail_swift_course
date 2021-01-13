@@ -20,7 +20,7 @@ class MatchViewModel: IMatchViewModel {
     }
     
     func getUserAvatar(user: PersonalData, _ completion: @escaping (Result<UIImage, Error>) -> Void) {
-        userManager.getImage(user: user, completion)
+        //userManager.getImage(user: user, completion)
     }
     
     func getUserInfoFromServer(id: String, _ completion: @escaping (Result<PersonalData, Error>) -> Void) {
